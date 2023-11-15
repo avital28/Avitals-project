@@ -1,4 +1,4 @@
-﻿using ABI.System;
+﻿
 using Avitals_project.Models;
 using System;
 using System.Collections.Generic;
@@ -20,12 +20,12 @@ namespace Avitals_project.Services
         {
             httpClient = client;
         }
-        public async Task<User> LogInAsync(string userName, string password)
+        public async Task<User> LogInAsync(string username, string password)
         {
             try
             {
                 
-                User user = new User() { Username = userName, Password = password };
+                User user = new User() { Username = username, Password = password };
                 var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}Login", content);
@@ -37,13 +37,13 @@ namespace Avitals_project.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            break;
+                            return user;
                         }
                         
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return new UserDto() { Success = false, User = null, Message = ErrorMessages.INVALID_LOGIN };
-                            break;
+                            return new UserDto() { Message="Username or password aren't valid"};
+                            
                         }
                         
 
@@ -51,8 +51,34 @@ namespace Avitals_project.Services
 
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            return new UserDto() { Success = false, User = null, Message = ErrorMessages.INVALID_LOGIN };
+            return new UserDto() { User = null, Message = "Username or password aren't valid" };
 
+        }
+
+        public async Task<User> RegisterAsync(User User)
+        {
+            try
+            {
+                User user = User;
+                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}Register", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return user;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return new UserDto() { Message = "Username or password aren't valid" };
+
+                        }
+                }
+            }
         }
     }
 }
