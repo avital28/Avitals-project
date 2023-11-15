@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avitals_project.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,9 @@ namespace Avitals_project.ViewModels
         public string Password { get => password; set { if (password != value) { password = value; OnPropertyChange(); } } }
 
         public ICommand LoginCommand { get; set; }
-        public LoginPageViewModel()
+        public LoginPageViewModel(UserService service)
         {
-            //LoginCommand=new Command
-
+            LoginCommand=new Command (async ()=>
         }
     }
 }
