@@ -6,4 +6,12 @@ public partial class Login : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override void OnAppearing()
+    {
+        if(((AppShell)AppShell.Current).user != null)
+        {
+            Shell.Current.GoToAsync()
+        }
+        base.OnAppearing();
+    }
 }

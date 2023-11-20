@@ -55,7 +55,7 @@ namespace Avitals_project.Services
 
         }
 
-        public async Task<User> RegisterAsync(User User)
+        public async Task<bool> RegisterAsync(User User)
         {
             try
             {
@@ -70,12 +70,11 @@ namespace Avitals_project.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            return user;
+                            return true;
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return new UserDto() { Message = "Username or password aren't valid" };
-
+                            return false;
                         }
                 }
             }
