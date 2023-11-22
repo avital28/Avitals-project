@@ -11,8 +11,9 @@
     VerticalOptions="Center" 
     HorizontalOptions="Center" />
         <Label Text="Username"></Label>
-        <Entry Placeholder="Enter username"></Entry>
+        <Entry Text="{Binding Username}" ></Entry>
         <Label Text="Password"></Label>
-        <Entry Placeholder="Enter password"></Entry>
+        <Entry Text="{Binding Password}"></Entry>
+        
     </VerticalStackLayout>
 </ContentPage>

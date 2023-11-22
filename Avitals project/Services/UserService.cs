@@ -55,8 +55,9 @@ namespace Avitals_project.Services
 
         }
 
-        public async Task<bool> RegisterAsync(User User)
+        public async Task<Result> RegisterAsync(User User)
         {
+           
             try
             {
                 User user = User;
@@ -70,14 +71,16 @@ namespace Avitals_project.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            return true;
+                            return new Result() { success=true };
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return false;
+                            return new Result() { message = "Registeration failed", success = false };
                         }
                 }
             }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return new Result() { message = "Registeration failed", success = false };
         }
     }
 }

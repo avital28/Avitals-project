@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Avitals_project.Views.WelcomePage"
+             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             x:DataType="viewmodels:WelcomePageViewModel"
+             Title="WelcomePage">
+    <VerticalStackLayout>
+
+        <Label Text="Welcome to the app" TextColor="Purple"></Label>
+        <Button Text="Login" TextColor="Black" Command="{Binding ToLogin}"></Button>
+        <Button Text="Register" TextColor="Black"></Button>
+    </VerticalStackLayout>
+</ContentPage>

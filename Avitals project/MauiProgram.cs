@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Avitals_project.Services;
+using Avitals_project.ViewModels;
+using Avitals_project.Views;
+using Microsoft.Extensions.Logging;
 
 namespace Avitals_project
 {
@@ -17,6 +20,12 @@ namespace Avitals_project
 
 #if DEBUG
 		builder.Logging.AddDebug();
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<Login>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterPageViewModel>();
+
 #endif
 
             return builder.Build();
