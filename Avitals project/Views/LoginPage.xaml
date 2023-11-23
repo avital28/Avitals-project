@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.Login"
+             x:Class="Avitals_project.Views.LoginPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              x:DataType="viewmodels:LoginPageViewModel"
-             Title="Login">
+             Title="LoginPage">
     <VerticalStackLayout>
         <Label 
-    Text="Login"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
+Text="Login"
+VerticalOptions="Center" 
+HorizontalOptions="Center" />
         <Label Text="Username"></Label>
         <Entry Text="{Binding Username}" ></Entry>
         <Label Text="Password"></Label>
         <Entry Text="{Binding Password}"></Entry>
-        
     </VerticalStackLayout>
 </ContentPage>

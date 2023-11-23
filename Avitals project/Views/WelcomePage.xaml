@@ -9,6 +9,6 @@
 
         <Label Text="Welcome to the app" TextColor="Purple"></Label>
         <Button Text="Login" TextColor="Black" Command="{Binding ToLogin}"></Button>
-        <Button Text="Register" TextColor="Black"></Button>
+        <Button Text="Register" TextColor="Black" Command="{Binding ToRegister}"></Button>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Avitals_project.Models;
+using Avitals_project.Views;
 using System.Text.Json;
 
 namespace Avitals_project
@@ -9,13 +10,15 @@ namespace Avitals_project
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));    
 
         }
         protected override async void OnAppearing()
         {
              var content = await SecureStorage.Default.GetAsync("user");
+            if (content!=null)
             user= JsonSerializer.Deserialize<User>(content);
-
             base.OnAppearing();
         }
     }

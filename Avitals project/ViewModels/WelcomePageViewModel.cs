@@ -10,12 +10,13 @@ namespace Avitals_project.ViewModels
 {
     public class WelcomePageViewModel:ViewModel
     {
-        public ICommand ToLogin;
-        public ICommand ToRegister;
+        public ICommand ToLogin { get; set; }   
+        public ICommand ToRegister { get; set; }
 
         public WelcomePageViewModel() 
         {
-            ToLogin = new Command(async () => { await AppShell.Current.GoToAsync("Login"); }) ;
+            ToLogin = new Command(async () => { await AppShell.Current.GoToAsync("LoginPage"); }) ;
+            ToRegister = new Command(async () => { await AppShell.Current.GoToAsync("RegisterPage"); });
         }
     }
 }

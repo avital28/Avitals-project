@@ -1,4 +1,6 @@
-﻿using Avitals_project.Models;
+﻿
+using Avitals_project.Models;
+using Avitals_project.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -21,16 +24,21 @@ namespace Avitals_project.ViewModels
         private string email;
         private DateTime birthday;
 
+
         #region error messages
         private bool shownameerror=false;
         private const string nameerrormessage = "Must begin with a capital letter";
         private bool showbdayerror = false;
         private const string bdayerrormessage = "Invalid date";
+        private bool showerrormessage = false;
+        private const string errormessage = "Registeration failed";
         #endregion
 
         #endregion
 
         #region Properties
+        public string ErrorMessage { get { return errormessage; } }
+        public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
         public string NameErrorMessage { get { return nameerrormessage; } }
        
         public bool ShowNameError { get { return shownameerror; } set { if (shownameerror != value) { shownameerror = value; OnPropertyChange(); } } }
@@ -50,6 +58,8 @@ namespace Avitals_project.ViewModels
         public string Email { get { return email; } set { if (email!=value && ValidateEmail(email)) { email = value; OnPropertyChange(); } } }
 
         public DateTime Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
+
+        public ICommand RegisterCommand;
         #endregion
 
         #region Validation methods
@@ -67,7 +77,7 @@ namespace Avitals_project.ViewModels
         }
         public bool ValidateUserName(string username)
         {
-            return username != null && username.Length >= 3; // להוסיף תנאי אם השם משתמש לא תפוס
+            return username != null && username.Length >= 3; 
         }
         public bool ValidatePassword(string password)
         {
@@ -93,6 +103,30 @@ namespace Avitals_project.ViewModels
             }
         }
         #endregion
+
+        public RegisterPageViewModel(UserService service)
+        {
+            RegisterCommand = new Command(async () =>
+            {
+                try
+                {
+                    var response = await service.RegisterAsync(new User() { Birthday = birthday, Email = email, Firstname = firstname, Lastname = lastname, Password = password, Username = username });
+                    if (response == true)
+                    {
+                        await AppShell.Current.GoToAsync("Login");
+                    }
+                    else
+                    {
+                        showerrormessage = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(ex.Message);
+                }
+            }); 
+        }
         
     }
 }

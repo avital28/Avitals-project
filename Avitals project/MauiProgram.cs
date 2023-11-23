@@ -21,10 +21,13 @@ namespace Avitals_project
 #if DEBUG
 		builder.Logging.AddDebug();
             builder.Services.AddSingleton<UserService>();
-            builder.Services.AddSingleton<Login>();
+            builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddTransient<WelcomePage>();
+            builder.Services.AddTransient<WelcomePageViewModel>();
+            
 
 #endif
 

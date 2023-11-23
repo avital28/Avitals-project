@@ -1,5 +1,6 @@
 ﻿
 using Avitals_project.Models;
+using Microsoft.Maui.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Avitals_project.Services
         readonly JsonSerializerOptions _serializerOptions;
         const string URL = @"";
 
-        public UserService (HttpClient client)
+        public UserService ()
         {
-            httpClient = client;
+            httpClient = new HttpClient();
         }
         public async Task<User> LogInAsync(string username, string password)
         {
@@ -55,9 +56,8 @@ namespace Avitals_project.Services
 
         }
 
-        public async Task<Result> RegisterAsync(User User)
+        public async Task<bool> RegisterAsync(User User)
         {
-           
             try
             {
                 User user = User;
@@ -71,16 +71,16 @@ namespace Avitals_project.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            return new Result() { success=true };
+                            return true;
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return new Result() { message = "Registeration failed", success = false };
+                            return false;
                         }
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            return new Result() { message = "Registeration failed", success = false };
+            return false;
         }
     }
 }
