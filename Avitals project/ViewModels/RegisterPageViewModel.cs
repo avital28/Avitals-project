@@ -26,7 +26,7 @@ namespace Avitals_project.ViewModels
 
 
         #region error messages
-        private bool shownameerror=false;
+        private bool shownameerror;
         private const string nameerrormessage = "Must begin with a capital letter";
         private bool showbdayerror = false;
         private const string bdayerrormessage = "Invalid date";
@@ -47,7 +47,7 @@ namespace Avitals_project.ViewModels
 
         public bool ShowBdayError { get { return showbdayerror; } set { if (showbdayerror != value) { showbdayerror = value; OnPropertyChange(); } } }
 
-        public string Firstname { get { return firstname; } set { if (firstname != value && ValidateName(firstname)) { firstname = value; OnPropertyChange(); } } } 
+        public string Firstname { get { return firstname; } set { if (firstname != value) {  firstname = value; OnPropertyChange(); if (ValidateName(firstname)) { ShowNameError = false; } else { ShowNameError = true; } }   } } 
 
         public string Lastname { get { return lastname; } set  { if (lastname != value && ValidateName(lastname)) { lastname = value; OnPropertyChange(); } } }           
           
@@ -69,7 +69,6 @@ namespace Avitals_project.ViewModels
             {
                 if (name[0] < 'A' || name[0] > 'Z')
                 {
-                    shownameerror = true;
                     return false;
                 }
             }
@@ -114,10 +113,11 @@ namespace Avitals_project.ViewModels
                     if (response == true)
                     {
                         await AppShell.Current.GoToAsync("Login");
+                        ShowNameError = false;
                     }
                     else
                     {
-                        showerrormessage = true;
+                        ShowNameError = true;
                     }
                 }
                 catch (Exception ex)

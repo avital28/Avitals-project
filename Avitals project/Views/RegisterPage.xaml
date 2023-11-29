@@ -13,6 +13,7 @@
         <Entry Text="{Binding Password}"></Entry>
         <Label Text="First name"></Label>
         <Entry Text="{Binding Firstname}"></Entry>
+        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowNameError}"></Label>
         <Label Text="Last name"></Label>
         <Entry Text="{Binding Lastname}"></Entry>
         <Label Text="Email"></Label>
