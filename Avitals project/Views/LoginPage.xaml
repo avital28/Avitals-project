@@ -5,15 +5,26 @@
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              x:DataType="viewmodels:LoginPageViewModel"
              Title="LoginPage" 
-             BackgroundColor="{StaticResource MainColor}">
+            >
     <VerticalStackLayout>
-        <Label FontSize="Header" Text="Welcome back" FontAttributes="Italic" TextColor="{StaticResource TextColor}"></Label>
-        <Label FontSize="Medium" Text="Sign in to your account" FontAttributes="Italic" TextColor="{StaticResource TextColor}"></Label>
-        
-        <Border 
-        <Label Text="Username"></Label>
-        <Entry Text="{Binding Username}" ></Entry>
-        <Label Text="Password"></Label>
-        <Entry Text="{Binding Password}"></Entry>
+        <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
+        <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
+        <Grid BackgroundColor="White" HeightRequest="180">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+         <Label Text="Enter username" FontSize="Caption" TextColor="Black" Grid.Row="0"></Label>
+            <Entry Text="{Binding Username}" Grid.Row="1"></Entry>
+            <Label Text="Enter password" FontSize="Caption" TextColor="Black" Grid.Row="2"></Label>
+            <Entry Text="{Binding Password}" Grid.Row="3"></Entry>
+       
+        <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
+                CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

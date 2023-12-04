@@ -22,11 +22,12 @@ namespace Avitals_project.ViewModels
         private string username;
         private string password;
         private string email;
-        private DateTime birthday;
+        private DateOnly birthday;
 
 
         #region error messages
-        private bool shownameerror;
+        private bool showfnameerror;
+        private bool showlnameerror;
         private const string nameerrormessage = "Must begin with a capital letter";
         private bool showbdayerror = false;
         private const string bdayerrormessage = "Invalid date";
@@ -41,15 +42,17 @@ namespace Avitals_project.ViewModels
         public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
         public string NameErrorMessage { get { return nameerrormessage; } }
        
-        public bool ShowNameError { get { return shownameerror; } set { if (shownameerror != value) { shownameerror = value; OnPropertyChange(); } } }
+        public bool ShowFNameError { get { return showfnameerror; } set { if (showfnameerror != value) { showfnameerror = value; OnPropertyChange(); } } }
+        public bool ShowLNameError { get { return showlnameerror; } set { if (showlnameerror != value) { showlnameerror = value; OnPropertyChange(); } } }
+
 
         public string BdayErrorMessage { get { return bdayerrormessage; } }
 
         public bool ShowBdayError { get { return showbdayerror; } set { if (showbdayerror != value) { showbdayerror = value; OnPropertyChange(); } } }
 
-        public string Firstname { get { return firstname; } set { if (firstname != value) {  firstname = value; OnPropertyChange(); if (ValidateName(firstname)) { ShowNameError = false; } else { ShowNameError = true; } }   } } 
+        public string Firstname { get { return firstname; } set { if (firstname != value) {  firstname = value; OnPropertyChange(); if (ValidateName(firstname)) { ShowFNameError = false; } else { ShowFNameError = true; } } } } 
 
-        public string Lastname { get { return lastname; } set  { if (lastname != value && ValidateName(lastname)) { lastname = value; OnPropertyChange(); } } }           
+        public string Lastname { get { return lastname; } set  { if (lastname != value) { lastname = value; OnPropertyChange(); if (ValidateName(lastname)) { ShowLNameError = false; } else { ShowLNameError = true; } } } }           
           
         public string Username { get { return username; } set { if (username != value&&ValidateUserName(username)){ username = value; OnPropertyChange(); } } }
 
@@ -57,9 +60,9 @@ namespace Avitals_project.ViewModels
 
         public string Email { get { return email; } set { if (email!=value && ValidateEmail(email)) { email = value; OnPropertyChange(); } } }
 
-        public DateTime Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
+        public DateOnly Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
 
-        public ICommand RegisterCommand;
+        public ICommand RegisterCommand { get; set; }
         #endregion
 
         #region Validation methods
@@ -92,7 +95,7 @@ namespace Avitals_project.ViewModels
         {
             try
             {
-               DateTime d= DateTime.ParseExact(date, "d/M/yyyy", CultureInfo.InvariantCulture);
+               DateOnly d= DateOnly.ParseExact(date, "d/M/yyyy", CultureInfo.InvariantCulture);
                 return true;
             }
             catch (FormatException )
@@ -113,11 +116,11 @@ namespace Avitals_project.ViewModels
                     if (response == true)
                     {
                         await AppShell.Current.GoToAsync("Login");
-                        ShowNameError = false;
+                       
                     }
                     else
                     {
-                        ShowNameError = true;
+                        
                     }
                 }
                 catch (Exception ex)

@@ -7,18 +7,22 @@
              
              Title="RegisterPage">
     <VerticalStackLayout>
+        <Label Text="Register" FontSize="Title" TextColor="{StaticResource MainColor}"></Label>
         <Label Text="Username"></Label>
         <Entry Text="{Binding Username}" ></Entry>
         <Label Text="Password"></Label>
         <Entry Text="{Binding Password}"></Entry>
         <Label Text="First name"></Label>
         <Entry Text="{Binding Firstname}"></Entry>
-        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowNameError}"></Label>
+        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowFNameError}"></Label>
         <Label Text="Last name"></Label>
         <Entry Text="{Binding Lastname}"></Entry>
+        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowLNameError}"></Label>
         <Label Text="Email"></Label>
-        <Entry Text="{Binding Email}"></Entry>
+        <Entry Text="{Binding Email}" Keyboard="Email"></Entry>
         <Label Text="Birthday"></Label>
-        <Entry Placeholder="dd/mm/yyyy" Text="{Binding Birthday}"></Entry>
+        <Entry Keyboard="Numeric" Text="{Binding Birthday}"></Entry>
+        <Button Text="Register" Command="{Binding RegisterCommand}" HorizontalOptions="Center"
+         CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
     </VerticalStackLayout>
 </ContentPage>
