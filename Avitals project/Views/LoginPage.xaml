@@ -4,12 +4,13 @@
              x:Class="Avitals_project.Views.LoginPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              x:DataType="viewmodels:LoginPageViewModel"
-             Title="LoginPage">
+             Title="LoginPage" 
+             BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
-        <Label 
-Text="Login"
-VerticalOptions="Center" 
-HorizontalOptions="Center" />
+        <Label FontSize="Header" Text="Welcome back" FontAttributes="Italic" TextColor="{StaticResource TextColor}"></Label>
+        <Label FontSize="Medium" Text="Sign in to your account" FontAttributes="Italic" TextColor="{StaticResource TextColor}"></Label>
+        
+        <Border 
         <Label Text="Username"></Label>
         <Entry Text="{Binding Username}" ></Entry>
         <Label Text="Password"></Label>

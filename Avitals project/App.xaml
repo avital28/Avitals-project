@@ -5,9 +5,14 @@
              x:Class="Avitals_project.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="MainColor">#2BADAD</Color>
+            <Color x:Key="TextColor">#F3F3F3</Color>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Rc:\users\avita\source\repos\avitals-project\avitals project\app.xaml.cs
+c:\users\avita\source\repos\avitals-project\avitals project\app.xaml
+esources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+               
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
