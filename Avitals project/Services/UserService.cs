@@ -14,8 +14,8 @@ namespace Avitals_project.Services
     public class UserService
     {
         readonly HttpClient httpClient;
-        readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://820lvwr3-7102.euw.devtunnels.ms/CollectiveMomentsAPI/";
+        //readonly JsonSerializerOptions _serializerOptions;
+        const string URL = @"https://c7gzhh04-7102.euw.devtunnels.ms/CollectiveMomentsAPI/";
 
         public UserService ()
         {
@@ -27,7 +27,7 @@ namespace Avitals_project.Services
             {
                 
                 User user = new User() { Username = username, Password = password };
-                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}Login", content);
 
@@ -36,8 +36,7 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
-                            await Task.Delay(2000);
+                            User u = JsonSerializer.Deserialize<User>(jsonContent);
                             return user;
                         }
                         
@@ -61,7 +60,7 @@ namespace Avitals_project.Services
             try
             {
                 User user = User;
-                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}Register", content);
                 switch (response.StatusCode)
@@ -69,7 +68,7 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            User u = JsonSerializer.Deserialize<User>(jsonContent);
                             await Task.Delay(2000);
                             return true;
                         }
