@@ -10,7 +10,7 @@ namespace Avitals_project
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("Login", typeof(LoginPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));    
 
         }
@@ -20,6 +20,7 @@ namespace Avitals_project
             if (content!=null)
             user= JsonSerializer.Deserialize<User>(content);
             base.OnAppearing();
+            //todo if user exists go to main page
         }
     }
 }

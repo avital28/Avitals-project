@@ -54,9 +54,9 @@ namespace Avitals_project.ViewModels
 
         public string Lastname { get { return lastname; } set  { if (lastname != value) { lastname = value; OnPropertyChange(); if (ValidateName(lastname)) { ShowLNameError = false; } else { ShowLNameError = true; } } } }           
           
-        public string Username { get { return username; } set { if (username != value&&ValidateUserName(username)){ username = value; OnPropertyChange(); } } }
+        public string Username { get { return username; } set { if (username != value){ username = value; OnPropertyChange(); } } }
 
-        public string Password { get { return password; } set { if (password != value && ValidatePassword(password)) { password = value; OnPropertyChange(); } } }
+        public string Password { get { return password; } set { if (password != value ) { password = value; OnPropertyChange(); } } }
 
         public string Email { get { return email; } set { if (email!=value && ValidateEmail(email)) { email = value; OnPropertyChange(); } } }
 
@@ -112,7 +112,7 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    var response = await service.RegisterAsync(new User() { Birthday = birthday, Email = email, Firstname = firstname, Lastname = lastname, Password = password, Username = username });
+                    var response = await service.RegisterAsync(new User() { Birthday = birthday, Email = email, Firstname = firstname, Lastname = lastname, Passwrd = password, Username = username });
                     if (response == true)
                     {
                         await AppShell.Current.GoToAsync("Login");

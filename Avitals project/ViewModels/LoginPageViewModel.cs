@@ -19,7 +19,7 @@ namespace Avitals_project.ViewModels
         public string ErrorMessage { get => errormessage; set { if (errormessage != value) { errormessage = value; OnPropertyChange(); } } }
         public ICommand LoginCommand { get; set; }
         #endregion
-
+        //todo 
         public LoginPageViewModel(UserService service)
         {
             LoginCommand = new Command(async () =>
@@ -35,6 +35,8 @@ namespace Avitals_project.ViewModels
                     {
                         ((AppShell)AppShell.Current).user = user;
                         await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
+                        //TODO p : move to X screen
+                        await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
                     }
                 }
                 catch (Exception ex)

@@ -15,7 +15,7 @@ namespace Avitals_project.Services
     {
         readonly HttpClient httpClient;
         //readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://c7gzhh04-7102.euw.devtunnels.ms/CollectiveMomentsAPI/";
+        const string URL = @"https://tddn8w2r-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
 
         public UserService ()
         {
@@ -26,7 +26,7 @@ namespace Avitals_project.Services
             try
             {
                 
-                User user = new User() { Username = username, Password = password };
+                User user = new User() { Username = username, Passwrd = password };
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}Login", content);

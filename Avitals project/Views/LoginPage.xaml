@@ -25,6 +25,7 @@
        
         <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
                 CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
+            
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

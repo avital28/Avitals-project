@@ -15,7 +15,7 @@ namespace Avitals_project.ViewModels
 
         public WelcomePageViewModel() 
         {
-            ToLogin = new Command(async () => { await AppShell.Current.GoToAsync("LoginPage"); }) ;
+            ToLogin = new Command(async () => { await AppShell.Current.GoToAsync("Login"); }) ;
             ToRegister = new Command(async () => { await AppShell.Current.GoToAsync("RegisterPage"); });
         }
     }
