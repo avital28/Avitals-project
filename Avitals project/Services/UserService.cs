@@ -15,7 +15,7 @@ namespace Avitals_project.Services
     {
         readonly HttpClient httpClient;
         //readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://tddn8w2r-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
+        const string URL = @"https://sg0xhwpv-7102.euw.devtunnels.ms/CollectiveMomentsAPI/";
 
         public UserService ()
         {

@@ -49,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\UserIcon.png" />
+	  <None Remove="Resources\Images\usericon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -57,8 +57,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\UserDetailsPae.xaml.cs">
-	    <DependentUpon>UserDetailsPae.xaml</DependentUpon>
+	  <Compile Update="Views\UserDetailsPage.xaml.cs">
+	    <DependentUpon>UserDetailsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -69,10 +69,16 @@
 	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\UserDetailsPae.xaml">
+	  <MauiXaml Update="Views\UserDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WelcomePage.xaml">

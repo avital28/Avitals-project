@@ -1,5 +1,6 @@
 ﻿using Avitals_project.Models;
 using Avitals_project.Services;
+using Avitals_project.Views;
 using System.Text.Json;
 using System.Windows.Input;
 
@@ -37,6 +38,7 @@ namespace Avitals_project.ViewModels
                         await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
                         //TODO p : move to X screen
                         await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
+                        await Shell.Current.GoToAsync("UserDetailsPage");
                     }
                 }
                 catch (Exception ex)
@@ -44,6 +46,7 @@ namespace Avitals_project.ViewModels
 
                     Console.WriteLine(ex.Message);
                 }
+                App.Current.MainPage = new MenuPage();
             });
         }
 

@@ -16,7 +16,7 @@ namespace Avitals_project.Models
         public string Username { get; set; }
         public string Passwrd { get; set; }
         public string Email { get; set; }
-        public DateOnly Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
 
 

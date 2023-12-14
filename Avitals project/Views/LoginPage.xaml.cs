@@ -10,6 +10,10 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 	}
 
+    public LoginPage()
+    {
+
+    }
     protected override void OnAppearing()
     {
         //if(((AppShell)AppShell.Current).user != null)

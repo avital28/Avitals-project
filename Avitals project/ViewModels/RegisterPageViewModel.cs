@@ -22,7 +22,7 @@ namespace Avitals_project.ViewModels
         private string username;
         private string password;
         private string email;
-        private DateOnly birthday;
+        private DateTime birthday;
 
 
         #region error messages
@@ -60,7 +60,7 @@ namespace Avitals_project.ViewModels
 
         public string Email { get { return email; } set { if (email!=value && ValidateEmail(email)) { email = value; OnPropertyChange(); } } }
 
-        public DateOnly Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
+        public DateTime Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
 
         public ICommand RegisterCommand { get; set; }
         #endregion
@@ -112,7 +112,7 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    var response = await service.RegisterAsync(new User() { Birthday = birthday, Email = email, Firstname = firstname, Lastname = lastname, Passwrd = password, Username = username });
+                    var response = await service.RegisterAsync(new User() { Birthday = DateTime.Now, Email = email, Firstname = firstname, Lastname = lastname, Passwrd = password, Username = username });
                     if (response == true)
                     {
                         await AppShell.Current.GoToAsync("Login");
