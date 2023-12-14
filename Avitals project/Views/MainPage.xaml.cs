@@ -1,6 +1,6 @@
 ﻿namespace Avitals_project
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
       
 
