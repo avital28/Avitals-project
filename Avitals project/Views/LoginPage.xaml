@@ -4,7 +4,6 @@
              x:Class="Avitals_project.Views.LoginPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
-             xmlns:handlers="clr-namespace:Avitals_project.Handlers"
              x:DataType="viewmodels:LoginPageViewModel"
              Title="LoginPage" 
             >
@@ -12,16 +11,12 @@
         <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
         <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
 
-        <CustomControls:OutlinedEntryControl  Placeholder="Email address"  HeightRequest="110" WidthRequest="300" >
-            
-        </CustomControls:OutlinedEntryControl>
-                                              
-            
-                                                
-        <CustomControls:OutlinedEntryControl  Placeholder="Password"  HeightRequest="110" WidthRequest="300" >
-        
-        </CustomControls:OutlinedEntryControl>
-        <Entry Placeholder="email" ></Entry>
+        <CustomControls:OutlinedEntryControl  Placeholder="Username" Text="{Binding Username}" />
+        <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}" />
+
+
+
+
         <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
                 CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
             

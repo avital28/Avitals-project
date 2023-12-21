@@ -3,21 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              RowDefinitions="Auto"
             xmlns:handlers="clr-namespace:Avitals_project.Handlers"
-
              x:Name="this"       
-             x:Class="Avitals_project.Controls.OutlinedEntryControl">
-    <Frame Grid.Row="0" Padding="8,2,8,2" BorderColor="{StaticResource MainColor}">
+            x:Class="Avitals_project.Controls.OutlinedEntryControl">
+    <Frame Grid.Row="0" Padding="8,2,8,2" BorderColor="Cyan">
         <handlers:BorderlessEntry x:Name="txtEntry" 
                Focused="txtEntry_Focused" 
-               Unfocused="txtEntry_Unfocused"                   
+               Unfocused="txtEntry_Unfocused"
                Text="{Binding Source={x:Reference this},Path=Text}"  />
     </Frame>
 
     <Label Grid.Row="0" 
-           FontSize="25"
+           FontSize="15"
            x:Name="lblPlaceholder"
            Margin="10,0,10,0"
-           TextColor="Black"
+           TextColor="Gray"
            Text="{Binding Source={x:Reference this},Path=Placeholder}"
            BackgroundColor="White"
            HorizontalOptions="StartAndExpand"
