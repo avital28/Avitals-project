@@ -1,6 +1,6 @@
 namespace Avitals_project.Views;
 
-public partial class MainPage : TabbedPage
+public partial class MainPage : ContentPage
 {
 	public MainPage()
 	{

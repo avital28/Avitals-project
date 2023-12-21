@@ -12,7 +12,9 @@
         <CustomControls:OutlinedEntryControl Placeholder="Username" Text="{Binding Username}" ></CustomControls:OutlinedEntryControl>
         <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}"></CustomControls:OutlinedEntryControl>
         <CustomControls:OutlinedEntryControl  Placeholder="First Name" Text="{Binding Firstname}" />
+        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowFNameError}" TextColor="Red"></Label>
         <CustomControls:OutlinedEntryControl Placeholder="Last Name" Text="{Binding Lastname}" />
+        <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowLNameError}" TextColor="Red"></Label>
         <CustomControls:OutlinedEntryControl Placeholder="Email address" Text="{Binding Email}" ></CustomControls:OutlinedEntryControl>
         <CustomControls:OutlinedEntryControl Placeholder="Birthday" Text="{Binding Birthday}">
             <DatePicker Date="{Binding Birthday}" />

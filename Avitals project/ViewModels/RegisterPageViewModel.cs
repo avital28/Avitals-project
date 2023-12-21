@@ -60,7 +60,7 @@ namespace Avitals_project.ViewModels
 
         public string Email { get { return email; } set { if (email!=value && ValidateEmail(email)) { email = value; OnPropertyChange(); } } }
 
-        public DateTime Birthday { get { return birthday; } set { if (birthday != value && ValidateBirthday(birthday.ToString())){ birthday = value; OnPropertyChange(); } } }
+        public DateTime Birthday { get { return birthday; } set { if (birthday != value /*&& ValidateBirthday(birthday.ToString())*/){ birthday = value; OnPropertyChange(); } } }
 
         public ICommand RegisterCommand { get; set; }
         #endregion
@@ -68,14 +68,10 @@ namespace Avitals_project.ViewModels
         #region Validation methods
         public bool ValidateName(string name)
         {
-            if (name != null)
-            {
-                if (name[0] < 'A' || name[0] > 'Z')
-                {
-                    return false;
-                }
-            }
-            return true;
+
+            return name != null && (!(name[0] < 'A' || name[0] > 'Z'));
+                
+            
         }
         public bool ValidateUserName(string username)
         {
@@ -91,19 +87,19 @@ namespace Avitals_project.ViewModels
             return new EmailAddressAttribute().IsValid(email);
         }
 
-        public bool ValidateBirthday (string date)
-        {
-            try
-            {
-               DateOnly d= DateOnly.ParseExact(date, "d/M/yyyy", CultureInfo.InvariantCulture);
-                return true;
-            }
-            catch (FormatException )
-            {
-                showbdayerror = true;
-                return false;
-            }
-        }
+        //public bool ValidateBirthday (string date)
+        //{
+        //    try
+        //    {
+        //       DateOnly d= DateOnly.ParseExact(date, "d/M/yyyy", CultureInfo.InvariantCulture);
+        //        return true;
+        //    }
+        //    catch (FormatException )
+        //    {
+        //        showbdayerror = true;
+        //        return false;
+        //    }
+        //}
         #endregion
 
         public RegisterPageViewModel(UserService service)

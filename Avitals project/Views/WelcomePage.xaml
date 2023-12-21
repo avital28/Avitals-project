@@ -3,25 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.WelcomePage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              x:DataType="viewmodels:WelcomePageViewModel"
-             Title="WelcomePage">
+             Title="WelcomePage"
+             >
     <VerticalStackLayout>
-        <Frame BorderColor="Black" CornerRadius="5" Padding="8" >
-            <Grid BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+       
                 <Label Text="Welcome back!" FontSize="Title" TextColor="{StaticResource MainColor}" Grid.Row="0" Grid.ColumnSpan="2"></Label>
-                <Button Text="Log in" Command="{Binding ToLogin}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"
+        <Label Text="Sign in to create your collective moments" TextColor="Black" FontSize="Subtitle"></Label>
+     
+        <Button Text="Log in" Command="{Binding ToLogin}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"
          CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
                 <Button Text="Register" Command="{Binding ToRegister}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"
          CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
-        </Grid>
-        </Frame>
+        
     </VerticalStackLayout>
 </ContentPage>

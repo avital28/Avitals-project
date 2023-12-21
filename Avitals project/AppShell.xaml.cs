@@ -12,8 +12,8 @@ namespace Avitals_project
             InitializeComponent();
             Routing.RegisterRoute("Login", typeof(LoginPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));    
-            Routing.RegisterRoute("UserDetailsPage", typeof(UserDetailsPage));    
-
+            Routing.RegisterRoute("UserDetailsPage", typeof(UserDetailsPage));
+            Routing.RegisterRoute("MenuPage", typeof(MenuPage));
         }
         protected override async void OnAppearing()
         {

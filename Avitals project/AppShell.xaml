@@ -12,5 +12,11 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:WelcomePage}"
         Route="MainPage" />
+    <TabBar  IsVisible="false">
+        <Tab Title=""></Tab>
+        <ShellContent>
+            
+        </ShellContent>
+    </TabBar>
 
 </Shell>
