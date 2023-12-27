@@ -17,10 +17,10 @@ namespace Avitals_project
         }
         protected override async void OnAppearing()
         {
+            base.OnAppearing();
              var content = await SecureStorage.Default.GetAsync("user");
             if (content!=null)
             user= JsonSerializer.Deserialize<User>(content);
-            base.OnAppearing();
             //todo if user exists go to main page
         }
     }

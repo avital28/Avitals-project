@@ -9,8 +9,8 @@ namespace Avitals_project.ViewModels
 {
     public class UserDetailsPageViewModel:ViewModel
     {
-        private static User user = GetUserAsync().Result;
-        private string username= user.Username;
+        private  User user = ((AppShell)Shell.Current).user;
+        private string username;
         public string Username { get => username; set { if (username != value) { username = value; OnPropertyChange(); } } }
         #region Get current user
         public static async Task<User> GetUserAsync()
@@ -22,6 +22,12 @@ namespace Avitals_project.ViewModels
             return user;
         }
         #endregion
-
+        public UserDetailsPageViewModel()
+        {
+            if (user != null)
+            {
+                //default values
+            }
+        }
     }
 }

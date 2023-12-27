@@ -9,7 +9,7 @@
         <handlers:BorderlessEntry x:Name="txtEntry" 
                Focused="txtEntry_Focused" 
                Unfocused="txtEntry_Unfocused"
-               Text="{Binding Source={x:Reference this},Path=Text}"  />
+               Text="{Binding Source={x:Reference this},Path=Text}"  IsPassword="" />
     </Frame>
 
     <Label Grid.Row="0" 

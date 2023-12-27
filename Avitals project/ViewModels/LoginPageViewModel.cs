@@ -23,6 +23,7 @@ namespace Avitals_project.ViewModels
         public ICommand LoginCommand { get; set; }
         #endregion
         //todo 
+        
         public LoginPageViewModel(UserService service)
         {
             LoginCommand = new Command(async () =>
