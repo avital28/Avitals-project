@@ -5,13 +5,15 @@
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              x:DataType="viewmodels:LoginPageViewModel"
+             
              Title="LoginPage" 
+            
             >
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
         <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
 
-        <CustomControls:OutlinedEntryControl  Placeholder="Username" Text="{Binding Username}" />
+        <CustomControls:OutlinedEntryControl  Placeholder="Username" Text="{Binding Username}"  />
         <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}" />
 
 

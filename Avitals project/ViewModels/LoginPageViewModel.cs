@@ -12,12 +12,14 @@ namespace Avitals_project.ViewModels
         private string username;
         private string password;
         private string errormessage;
+        private bool isvisible = false;
         #endregion
 
         #region Properties
         public string Username { get => username; set { if (username != value) { username = value; OnPropertyChange(); } } }
         public string Password { get => password; set { if (password != value) { password = value; OnPropertyChange(); } } }
         public string ErrorMessage { get => errormessage; set { if (errormessage != value) { errormessage = value; OnPropertyChange(); } } }
+        public bool IsVisible { get => isvisible; set { if (isvisible != value) { isvisible = value; OnPropertyChange(); } } }
         public ICommand LoginCommand { get; set; }
         #endregion
         //todo 
@@ -38,7 +40,8 @@ namespace Avitals_project.ViewModels
                         await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
                         //TODO p : move to X screen
                         await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
-                       
+                       isvisible = true;
+                        await Shell.Current.GoToAsync("UserDetailsPage");
 
                     }
                 }

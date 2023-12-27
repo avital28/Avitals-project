@@ -5,6 +5,7 @@
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              x:DataType="viewmodels:WelcomePageViewModel"
+             Shell.TabBarIsVisible="False"
              Title="WelcomePage"
              >
     <VerticalStackLayout>

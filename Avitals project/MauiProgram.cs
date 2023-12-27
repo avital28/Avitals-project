@@ -27,7 +27,8 @@ namespace Avitals_project
             builder.Services.AddSingleton<RegisterPageViewModel>();
             builder.Services.AddTransient<WelcomePage>();
             builder.Services.AddTransient<WelcomePageViewModel>();
-            builder.Services.AddTransient<MenuPage>(); 
+            builder.Services.AddTransient<UserDetailsPage>(); 
+            builder.Services.AddTransient<SettingsPage>();
             
 
 #endif

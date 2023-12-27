@@ -5,18 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Avitals_project"
     xmlns:views="clr-namespace:Avitals_project.Views"
-    
-    Shell.FlyoutBehavior="Disabled">
-
-    <ShellContent
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    x:DataType="viewmodels:LoginPageViewModel"
+    Shell.FlyoutBehavior="Disabled"
+    >
+    <TabBar >
+        <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:WelcomePage}"
         Route="MainPage" />
-    <TabBar  IsVisible="false">
-        <Tab Title=""></Tab>
-        <ShellContent>
-            
-        </ShellContent>
+        <Tab Icon="usericon.png">
+            <ShellContent
+                x:Name="userdetails"
+                ContentTemplate="{DataTemplate views:UserDetailsPage}"
+                Route="UserDetailsPage">
+                
+            </ShellContent>
+        </Tab>
+        <Tab Title="settings">
+            <ShellContent
+        x:Name="settings"
+        ContentTemplate="{DataTemplate views:SettingsPage}"
+        Route="SettingsPage">
+
+            </ShellContent>
+        </Tab>
     </TabBar>
 
 </Shell>

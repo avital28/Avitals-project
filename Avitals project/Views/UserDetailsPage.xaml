@@ -2,9 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.UserDetailsPage"
-             >
+             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             xmlns:Customcontrols="clr-namespace:Avitals_project.Controls"
+             x:DataType="viewmodels:UserDetailsPageViewModel"
+             BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
-        <Label Text="User details"></Label>
-        <!--display user details-->
+        <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,7">
+            <HorizontalStackLayout Grid.Row="0">
+                <Image Source="emptyprofilepicture.jpg" WidthRequest="30" HeightRequest="30"></Image>
+                <Label Text="Edit profile" TextColor="White" FontSize="Header"></Label>
+            </HorizontalStackLayout>
+        </Grid>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="600" BackgroundColor="White" CornerRadius="45">
+            <Grid>
+                <Customcontrols:OutlinedEntryControl Text="{Binding Username }"></Customcontrols:OutlinedEntryControl>
+
+            </Grid>
+
+        </Frame>
+       
     </VerticalStackLayout>
 </ContentPage>

@@ -68,8 +68,9 @@ namespace Avitals_project.ViewModels
         #region Validation methods
         public bool ValidateName(string name)
         {
-
-            return name != null && (!(name[0] < 'A' || name[0] > 'Z'));
+            if (name == null)
+                name = "";
+            return name != "" && (!(name[0] < 'A' || name[0] > 'Z'));
                 
             
         }

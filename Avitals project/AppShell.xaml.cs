@@ -13,7 +13,7 @@ namespace Avitals_project
             Routing.RegisterRoute("Login", typeof(LoginPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));    
             Routing.RegisterRoute("UserDetailsPage", typeof(UserDetailsPage));
-            Routing.RegisterRoute("MenuPage", typeof(MenuPage));
+            Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
         }
         protected override async void OnAppearing()
         {
