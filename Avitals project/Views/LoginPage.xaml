@@ -14,7 +14,7 @@
         <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
 
         <CustomControls:OutlinedEntryControl  Placeholder="Username" Text="{Binding Username}"  />
-        <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}" />
+        <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
 
 
 

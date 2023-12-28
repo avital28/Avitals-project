@@ -20,7 +20,19 @@ public partial class OutlinedEntryControl : Grid
         get => (string)GetValue(TextProperty);
         set { SetValue(TextProperty, value); }
     }
+    public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
+        propertyName: nameof(IsPassword),
+        returnType: typeof(bool),
+        declaringType: typeof(OutlinedEntryControl),
+        defaultValue: null,
+        defaultBindingMode: BindingMode.TwoWay);
+    public bool IsPassword
+    {
+        get => (bool)GetValue(IsPasswordProperty);
+        set { SetValue(IsPasswordProperty, value); }
+    }
 
+    
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
       propertyName: nameof(Placeholder),
       returnType: typeof(string),
