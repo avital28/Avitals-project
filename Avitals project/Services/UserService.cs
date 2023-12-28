@@ -81,5 +81,31 @@ namespace Avitals_project.Services
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return false;
         }
+
+        public async Task<User> UpdateUserAsync (User User)
+        {
+            try
+            { 
+            User user = User;
+            var jsonContent = JsonSerializer.Serialize(user);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync($"{URL}Updateuser", content);
+            switch (response.StatusCode)
+            {
+                case (HttpStatusCode.OK):
+                    {
+                        jsonContent = await response.Content.ReadAsStringAsync();
+                        User u = JsonSerializer.Deserialize<User>(jsonContent);
+                        await Task.Delay(2000);
+                        
+                    }
+                case (HttpStatusCode.Unauthorized):
+                    {
+                    }
+            }
+        }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
+        }
     }
 }
