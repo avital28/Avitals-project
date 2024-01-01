@@ -48,7 +48,7 @@ namespace Avitals_project.ViewModels
         public bool ShowFNameError { get { return showfnameerror; } set { if (showfnameerror != value) { showfnameerror = value; OnPropertyChange(); } } }
         public bool ShowLNameError { get { return showlnameerror; } set { if (showlnameerror != value) { showlnameerror = value; OnPropertyChange(); } } }
 
-        public ICommand UpdateUser { get; set; }
+        public ICommand UpdateUserCommand { get; set; }
         #endregion
 
         #region Validation methods
@@ -85,7 +85,7 @@ namespace Avitals_project.ViewModels
                 Password = currentuser.Passwrd;
             }
 
-            UpdateUser = new Command(async async =>
+            UpdateUserCommand = new Command(async ()  =>
             {
                 try
                 {
@@ -93,8 +93,9 @@ namespace Avitals_project.ViewModels
                     {
                         var user = await service.UpdateUserAsync(updateduser);
                         if (user != null) 
-                        { 
-
+                        {
+                            ((AppShell)Shell.Current).user=user;
+                            await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
                         }
                     }
 

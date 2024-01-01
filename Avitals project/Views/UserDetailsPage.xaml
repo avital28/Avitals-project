@@ -3,23 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.UserDetailsPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             xmlns:Customcontrols="clr-namespace:Avitals_project.Controls"
+             xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              x:DataType="viewmodels:UserDetailsPageViewModel"
              BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
-        <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,7">
+        <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,30">
             <HorizontalStackLayout Grid.Row="0">
-                <Image Source="emptyprofilepicture.jpg" WidthRequest="30" HeightRequest="30"></Image>
+                <Border HeightRequest="60" 
+                    WidthRequest="60"
+                    StrokeShape="RoundRectangle 30,30,30,30"
+                    HorizontalOptions="Center"
+                    
+                    StrokeThickness="8"
+                    Margin="0,0,0,0">
+                    <Image Source="emptyprofilepicture.jpg" WidthRequest="60" HeightRequest="60" ></Image>
+                </Border>
                 <Label Text="Edit profile" TextColor="White" FontSize="Header"></Label>
             </HorizontalStackLayout>
         </Grid>
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="600" BackgroundColor="White" CornerRadius="45">
-            <Grid>
-                <Customcontrols:OutlinedEntryControl Text="{Binding Username }"></Customcontrols:OutlinedEntryControl>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
+            <VerticalStackLayout>
+                <CustomControls:OutlinedEntryControl Placeholder="Username" Text="{Binding Username}" ></CustomControls:OutlinedEntryControl>
+                <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}"></CustomControls:OutlinedEntryControl>
+                <CustomControls:OutlinedEntryControl  Placeholder="First Name" Text="{Binding Firstname}" />
+                <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowFNameError}" TextColor="Red"></Label>
+                <CustomControls:OutlinedEntryControl Placeholder="Last Name" Text="{Binding Lastname}" />
+                <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowLNameError}" TextColor="Red"></Label>
+                <Button Command="{Binding UpdateUserCommand}" Text="Update" HorizontalOptions="Center"
+ CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
 
-            </Grid>
+            </VerticalStackLayout>
 
         </Frame>
-       
+        
     </VerticalStackLayout>
 </ContentPage>

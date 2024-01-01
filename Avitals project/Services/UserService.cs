@@ -15,7 +15,7 @@ namespace Avitals_project.Services
     {
         readonly HttpClient httpClient;
         //readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://lzb20z04-7102.euw.devtunnels.ms/CollectiveMomentsAPI/";
+        const string URL = @"https://n15c5b5t-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
 
         public UserService ()
         {
@@ -85,27 +85,34 @@ namespace Avitals_project.Services
         public async Task<User> UpdateUserAsync (User User)
         {
             try
-            { 
-            User user = User;
-            var jsonContent = JsonSerializer.Serialize(user);
-            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync($"{URL}Updateuser", content);
-            switch (response.StatusCode)
             {
-                case (HttpStatusCode.OK):
-                    {
-                        jsonContent = await response.Content.ReadAsStringAsync();
-                        User u = JsonSerializer.Deserialize<User>(jsonContent);
-                        await Task.Delay(2000);
-                        
-                    }
-                case (HttpStatusCode.Unauthorized):
-                    {
-                    }
+                User user = User;
+                var jsonContent = JsonSerializer.Serialize(user);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}UpdateUser", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            User u = JsonSerializer.Deserialize<User>(jsonContent);
+                            await Task.Delay(2000);
+                            return u;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return new UserDto() { Message = "Update failed" };
+
+                        }
+                }
             }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.Message);
+            }
+            return new UserDto() { Message = "Update failed" };
         }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
-            return false;
+            
         }
     }
-}
+
