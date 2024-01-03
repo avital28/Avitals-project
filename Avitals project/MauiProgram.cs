@@ -28,6 +28,7 @@ namespace Avitals_project
             builder.Services.AddTransient<WelcomePage>();
             builder.Services.AddTransient<WelcomePageViewModel>();
             builder.Services.AddTransient<UserDetailsPage>(); 
+            builder.Services.AddTransient<UserDetailsPageViewModel>();
             builder.Services.AddTransient<SettingsPage>();
             
 
