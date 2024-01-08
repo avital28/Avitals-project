@@ -13,14 +13,14 @@ namespace Avitals_project.ViewModels
 {
     public class UserDetailsPageViewModel:ViewModel
     {
-        User currentuser = ((AppShell)Shell.Current).user;
+        User currentuser ;
         private User updateduser=new User();
         #region private fields
         private string firstname;
         private string lastname;
         private string username;
         private string password;
-
+        private string errormessageupdate;
         #region error messages
         private bool showfnameerror;
         private bool showlnameerror;
@@ -44,6 +44,8 @@ namespace Avitals_project.ViewModels
         public string ErrorMessage { get { return errormessage; } }
         public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
         public string NameErrorMessage { get { return nameerrormessage; } }
+        public string ErrorMessageUpdate { get => errormessageupdate; set { if (errormessageupdate != value) { errormessageupdate = value; OnPropertyChange(); } } }
+
 
         public bool ShowFNameError { get { return showfnameerror; } set { if (showfnameerror != value) { showfnameerror = value; OnPropertyChange(); } } }
         public bool ShowLNameError { get { return showlnameerror; } set { if (showlnameerror != value) { showlnameerror = value; OnPropertyChange(); } } }
@@ -77,6 +79,7 @@ namespace Avitals_project.ViewModels
         #endregion
         public UserDetailsPageViewModel(UserService service)
         {
+            currentuser = ((AppShell)Shell.Current).user;
             if (currentuser != null)
             {
                 Firstname=currentuser.Firstname; 
@@ -91,11 +94,17 @@ namespace Avitals_project.ViewModels
                 {
                     if (updateduser != null)
                     {
+                        updateduser.Id = currentuser.Id;    
                         var user = await service.UpdateUserAsync(updateduser);
-                        if (user != null) 
+                        if (user is UserDto)
+                        {
+                            ErrorMessageUpdate = ((UserDto)user).Message;
+                        }
+                        else 
                         {
                             ((AppShell)Shell.Current).user=user;
                             await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
+                            await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
                         }
                     }
 

@@ -14,12 +14,13 @@ namespace Avitals_project.Services
     public class UserService
     {
         readonly HttpClient httpClient;
-        //readonly JsonSerializerOptions _serializerOptions;
+       readonly JsonSerializerOptions _serializerOptions;
         const string URL = @"https://n15c5b5t-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
 
         public UserService ()
         {
             httpClient = new HttpClient();
+            _serializerOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true, WriteIndented=true };
         }
         public async Task<User> LogInAsync(string username, string password)
         {
@@ -95,7 +96,7 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent);
+                            User u = JsonSerializer.Deserialize<User>(jsonContent,_serializerOptions);
                             await Task.Delay(2000);
                             return u;
                         }
