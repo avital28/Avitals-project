@@ -2,7 +2,7 @@
 using Avitals_project.ViewModels;
 using Avitals_project.Views;
 using Microsoft.Extensions.Logging;
-
+using Syncfusion.Maui.Core.Hosting;
 namespace Avitals_project
 {
     public static class MauiProgram
@@ -12,6 +12,7 @@ namespace Avitals_project
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

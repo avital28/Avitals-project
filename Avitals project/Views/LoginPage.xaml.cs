@@ -22,4 +22,9 @@ public partial class LoginPage : ContentPage
         //}
         base.OnAppearing();
     }
+
+    private void SfTextInputLayout_Focused(object sender, FocusEventArgs e)
+    {
+
+    }
 }
