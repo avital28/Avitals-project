@@ -4,6 +4,7 @@
              x:Class="Avitals_project.Views.UserDetailsPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              x:DataType="viewmodels:UserDetailsPageViewModel"
              BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
@@ -23,12 +24,19 @@
         </Grid>
         <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
             <VerticalStackLayout>
-                <CustomControls:OutlinedEntryControl Placeholder="Username" Text="{Binding Username}" ></CustomControls:OutlinedEntryControl>
-                <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}"></CustomControls:OutlinedEntryControl>
-                <CustomControls:OutlinedEntryControl  Placeholder="First Name" Text="{Binding Firstname}" />
-                <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowFNameError}" TextColor="Red"></Label>
-                <CustomControls:OutlinedEntryControl Placeholder="Last Name" Text="{Binding Lastname}" />
-                <Label Text="{Binding NameErrorMessage}" IsVisible="{Binding ShowLNameError}" TextColor="Red"></Label>
+                <sf:SfTextInputLayout Hint="Username"  >
+                    <Entry Text="{Binding Username}"/>
+                </sf:SfTextInputLayout>
+                <sf:SfTextInputLayout Hint="Password" EnablePasswordVisibilityToggle="True" >
+                    <Entry Text="{Binding Password}"/>
+                </sf:SfTextInputLayout>
+                <sf:SfTextInputLayout  Hint="First Name" >
+                    <Entry Text="{Binding Firstname}"/>
+                </sf:SfTextInputLayout>
+                <sf:SfTextInputLayout Hint="Last Name" >
+                    <Entry Text="{Binding Lastname}" />
+                </sf:SfTextInputLayout>
+                
                 <Button Command="{Binding UpdateUserCommand}" Text="Update" HorizontalOptions="Center"
  CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
 

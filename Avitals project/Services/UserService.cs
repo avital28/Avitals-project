@@ -37,8 +37,8 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent);
-                            return user;
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions );
+                            return u;
                         }
                         
                     case (HttpStatusCode.Unauthorized):

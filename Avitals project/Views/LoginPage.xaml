@@ -14,12 +14,16 @@
         <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
         <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
         <sf:SfTextInputLayout
-   Hint="Name" ContainerBackground="White" HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
-            >
-            <Entry />
+Hint="Username" ContainerBackground="White"  HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
+         >
+            <Entry Text="{Binding Username}" />
         </sf:SfTextInputLayout>
-        <CustomControls:OutlinedEntryControl  Placeholder="Username" Text="{Binding Username}"  />
-        <CustomControls:OutlinedEntryControl Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
+        <sf:SfTextInputLayout
+   Hint="Password" ContainerBackground="White" EnablePasswordVisibilityToggle="True" HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
+            >
+            <Entry Text="{Binding Password}"/>
+        </sf:SfTextInputLayout>
+        
 
 
 
