@@ -1,4 +1,5 @@
 ﻿using Avitals_project.Models;
+using Avitals_project.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,15 +9,24 @@ using System.Threading.Tasks;
 
 namespace Avitals_project.ViewModels
 {
-    public class AlbumPageViewModel
+    public class AlbumPageViewModel:ViewModel
     {
        
         #region Properties
-        public ObservableCollection<Image> Images { get; set; }
+        public ObservableCollection<string> Images { get; set; }
         //or
         public Album album;
         #endregion
 
+        public AlbumPageViewModel(UserService service)
+        {
+            if (album != null)
+            {
+                Images = new ObservableCollection<string>(album.Media);
+            }
+            else
+            { Images = new ObservableCollection<string>(); }
+        }
         #region Capturing media methods
         public async void TakePhoto()
         {
