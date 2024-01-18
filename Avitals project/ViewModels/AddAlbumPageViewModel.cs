@@ -35,7 +35,7 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    string longtitude= Geocoding.Default.GetLocationsAsync()
+                    //string longtitude= Geocoding.Default.GetLocationsAsync()
                     Albums = new ObservableCollection<Album>();
                     if (Albums != null)
                     {
