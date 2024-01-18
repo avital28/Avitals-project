@@ -30,7 +30,7 @@ namespace Avitals_project.ViewModels
         #endregion
         public AddAlbumPageViewModel(UserService service) 
         {
-
+            //
             CreateAlbum = new Command(async () =>
             {
                 try
