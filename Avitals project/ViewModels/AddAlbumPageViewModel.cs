@@ -13,36 +13,49 @@ namespace Avitals_project.ViewModels
     public class AddAlbumPageViewModel:ViewModel
     {
         #region Private fields
-        private bool Isfound;
+        private bool isfound;
+        
         #endregion
         #region Properties
         public ICommand JoinAlbum {  get; set; }    
-        public ICommand AddAlbum { get; set;}
-        public bool IsFound { get { return Isfound; } set { if (Isfound != value) { Isfound = value; OnPropertyChange(); } } }
+        public ICommand CreateAlbum { get; set;}
+        public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
 
+       
 
         public ObservableCollection<Album> Albums { get; set; }
         #endregion
+        #region Methods
 
+        #endregion
         public AddAlbumPageViewModel(UserService service) 
         {
-            AddAlbum = new Command(async () =>
-            {
-                //display existing albums
-                 if (Albums!=null)
-                {
-                    //show existing albums and ask if to add anyway
-                }
 
-                 // "Not found" message 
+            CreateAlbum = new Command(async () =>
+            {
+                try
+                {
+                    string longtitude= Geocoding.Default.GetLocationsAsync()
+                    Albums = new ObservableCollection<Album>();
+                    if (Albums != null)
+                    {
+                        IsFound = true;
+
+                    }
+
+                    // "Not found" message 
+                }
+                catch 
+                {
+
+                }
             });
 
+            
 
         }
 
-        public async void GetAlbumsByLocation()
-        {
 
         }
     }
-}
+

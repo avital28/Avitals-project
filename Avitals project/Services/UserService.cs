@@ -113,7 +113,41 @@ namespace Avitals_project.Services
             }
             return new UserDto() { Message = "Update failed" };
         }
-            
+
+        public async Task<List<Album>> GetAlbumsByLocation(string longitude, string altitude)
+        {
+            try
+            {
+                Album album = new Album { Longitude=longitude, Altitude=altitude };
+                var jsonContent = JsonSerializer.Serialize(album);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}UpdateUser", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return albums;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+
+
         }
+
+
+
+    }
     }
 

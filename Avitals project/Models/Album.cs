@@ -12,6 +12,7 @@ namespace Avitals_project.Models
         public List<string> Media { get; set; }
         public List <User> Members { get; set; }    
 
-        public string Location { get; set; }        
+        public string Longitude { get; set; }
+        public string Altitude { get; set; }
     }
 }
