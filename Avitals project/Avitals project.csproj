@@ -52,10 +52,12 @@
 	  <None Remove="Resources\Images\emptyprofilepicture.jpg" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\usericon.png" />
+	  <None Remove="Resources\Raw\loadingdots.json" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.45" />
 	</ItemGroup>
 
@@ -73,6 +75,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AlbumPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoadingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
