@@ -5,9 +5,10 @@
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="LoadingPage">
     <VerticalStackLayout>
-        <skia:SKLottieView
+        <Label Text="Redirecting"></Label>
+        <skia:SKLottieView VerticalOptions="Center"
       RepeatCount="-1"
-      RepeatMode="Reverse"
+      RepeatMode="Restart"
       Source="loadingdots.json" 
       HeightRequest="200"
       WidthRequest="200" />

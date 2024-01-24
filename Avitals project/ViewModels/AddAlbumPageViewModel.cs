@@ -14,7 +14,9 @@ namespace Avitals_project.ViewModels
     {
         #region Private fields
         private bool isfound;
-        
+        private String longtitude;
+        private String latitude;
+
         #endregion
         #region Properties
         public ICommand JoinAlbum {  get; set; }    
@@ -35,19 +37,26 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    //string longtitude= Geocoding.Default.GetLocationsAsync()
-                    Albums = new ObservableCollection<Album>();
+                    Location l = Geolocation.GetLocationAsync().Result;
+                    longtitude = l.Longitude.ToString();
+                    latitude = l.Latitude.ToString();
+                    Albums = new ObservableCollection<Album>(service.GetAlbumsByLocation(longtitude, latitude).Result);
                     if (Albums != null)
                     {
                         IsFound = true;
 
                     }
+                    else
+                    {
 
-                    // "Not found" message 
+                    }
+
+                    
                 }
-                catch 
+                catch (Exception ex)
                 {
 
+                    Console.WriteLine(ex.Message);
                 }
             });
 

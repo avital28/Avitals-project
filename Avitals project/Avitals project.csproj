@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\emptyprofilepicture.jpg" />
+	  <None Remove="Resources\Images\plusicon.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\usericon.png" />
 	  <None Remove="Resources\Raw\loadingdots.json" />

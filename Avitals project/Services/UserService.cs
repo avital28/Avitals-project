@@ -118,7 +118,7 @@ namespace Avitals_project.Services
         {
             try
             {
-                Album album = new Album { Longitude=longitude, Altitude=altitude };
+                Album album = new Album { Longitude=longitude, Latitude=altitude };
                 var jsonContent = JsonSerializer.Serialize(album);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}UpdateUser", content);

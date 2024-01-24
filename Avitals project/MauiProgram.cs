@@ -2,6 +2,7 @@
 using Avitals_project.ViewModels;
 using Avitals_project.Views;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 namespace Avitals_project
 {
@@ -12,7 +13,7 @@ namespace Avitals_project
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                //.UseSkiaSharp()
+                .UseSkiaSharp()
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {

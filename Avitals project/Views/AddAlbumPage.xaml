@@ -6,6 +6,7 @@
              x:DataType="viewmodels:AddAlbumPageViewModel"
              Title="AddAlbumPage">
     <VerticalStackLayout>
+        <
         <Button Text="Create album" Command="{Binding CreateAlbum}"></Button>
         
     </VerticalStackLayout>

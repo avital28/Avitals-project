@@ -30,7 +30,14 @@
 
             </ShellContent>
         </Tab>
-        <Tab Title="Add">
+        <Tab Icon="plusicon">
+            <ShellContent 
+                x:Name="addalbum"
+                ContentTemplate="{DataTemplate views:AddAlbumPage}"
+                Route="AddAlbumPage">
+            </ShellContent>
+        </Tab>
+        <Tab Icon="usericon">
             <ShellContent
         x:Name="userdetails"
         ContentTemplate="{DataTemplate views:UserDetailsPage}"
