@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.AddAlbumPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             xmlns:sf="syncfusion.maui.p"
+
              x:DataType="viewmodels:AddAlbumPageViewModel"
              Title="AddAlbumPage">
     <VerticalStackLayout>
-        <
-        <Button Text="Create album" Command="{Binding CreateAlbum}"></Button>
+        
+        
         
     </VerticalStackLayout>
 </ContentPage>

@@ -33,7 +33,10 @@ namespace Avitals_project
             builder.Services.AddTransient<UserDetailsPage>(); 
             builder.Services.AddTransient<UserDetailsPageViewModel>();
             builder.Services.AddTransient<SettingsPage>();
-            
+            builder.Services.AddTransient<AddAlbumPage>();
+            builder.Services.AddTransient<AddAlbumPageViewModel>();
+
+
 
 #endif
 

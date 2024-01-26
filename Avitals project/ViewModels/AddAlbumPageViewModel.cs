@@ -16,15 +16,13 @@ namespace Avitals_project.ViewModels
         private bool isfound;
         private String longtitude;
         private String latitude;
-
+        private const string notfoundmessage = "No albums were found nearby";
         #endregion
         #region Properties
         public ICommand JoinAlbum {  get; set; }    
         public ICommand CreateAlbum { get; set;}
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
-
-       
-
+        public string NotFoundMessage { get { return notfoundmessage; } }
         public ObservableCollection<Album> Albums { get; set; }
         #endregion
         #region Methods
@@ -48,10 +46,10 @@ namespace Avitals_project.ViewModels
                     }
                     else
                     {
+                        IsFound = false;
 
                     }
 
-                    
                 }
                 catch (Exception ex)
                 {
@@ -60,6 +58,10 @@ namespace Avitals_project.ViewModels
                 }
             });
 
+            //JoinAlbum= new Command (async()=>
+            //{
+            //    try 
+            //})
             
 
         }
