@@ -3,12 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.AddAlbumPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             xmlns:sf="syncfusion.maui.p"
-
+             xmlns:models="clr-namespace:Avitals_project.Models"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:DataType="viewmodels:AddAlbumPageViewModel"
              Title="AddAlbumPage">
     <VerticalStackLayout>
-        
+        <sf:SfPopup IsOpen="True"  >
+            <sf:SfPopup.HeaderTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding HeaderMessage}"></Label>
+                        <skia:SKLottieView VerticalOptions="Center"
+                          RepeatCount="-1"
+                          RepeatMode="Restart"
+                          Source="loadingdots.json" 
+                          HeightRequest="20"
+                          WidthRequest="20"   />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </sf:SfPopup.HeaderTemplate>
+            <sf:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <FlexLayout x:Name="flexLayout"
+                      Wrap="Wrap"
+                     JustifyContent="SpaceAround" >
+                        <CollectionView ItemsSource="{Binding Albums}">
+                            <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{Binding a}">
+                                    <VerticalStackLayout >
+                                        <Image Source="{Binding AlbumCover}" HorizontalOptions="Center"></Image>
+                                        <Label Text="{Binding AlbumTitle}" HorizontalOptions="Center"></Label>
+                                    </VerticalStackLayout>
+                            </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                    </FlexLayout>
+
+                </DataTemplate>
+                    
+            </sf:SfPopup.ContentTemplate>
+            <Button Command="{Binding LoadAlbums}"></Button>
+        </sf:SfPopup> 
         
         
     </VerticalStackLayout>

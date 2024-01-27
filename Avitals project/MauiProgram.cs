@@ -4,6 +4,7 @@ using Avitals_project.Views;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
+using Syncfusion.Maui.Popup;
 namespace Avitals_project
 {
     public static class MauiProgram

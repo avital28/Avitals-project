@@ -59,8 +59,9 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.45" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="24.1.45" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.47" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="24.1.47" />
+		
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,6 +78,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AlbumPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CreateAlbumPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoadingPage.xaml">

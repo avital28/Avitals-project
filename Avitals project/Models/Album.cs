@@ -11,8 +11,10 @@ namespace Avitals_project.Models
         public string AlbumCover { get; set; }
         public List<string> Media { get; set; }
         public List <User> Members { get; set; }    
-
+        public bool IsPublic { get; set; }  
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public User Admin { get; set; } 
+        public string AlbumTitle { get; set; }  
     }
 }

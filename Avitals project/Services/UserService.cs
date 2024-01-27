@@ -14,19 +14,19 @@ namespace Avitals_project.Services
     public class UserService
     {
         readonly HttpClient httpClient;
-       readonly JsonSerializerOptions _serializerOptions;
+        readonly JsonSerializerOptions _serializerOptions;
         const string URL = @"https://n15c5b5t-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
 
-        public UserService ()
+        public UserService()
         {
             httpClient = new HttpClient();
-            _serializerOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true, WriteIndented=true };
+            _serializerOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true, WriteIndented = true };
         }
         public async Task<User> LogInAsync(string username, string password)
         {
             try
             {
-                
+
                 User user = new User() { Username = username, Passwrd = password };
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -37,16 +37,16 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions );
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             return u;
                         }
-                        
+
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return new UserDto() { Message="Username or password aren't valid"};
-                            
+                            return new UserDto() { Message = "Username or password aren't valid" };
+
                         }
-                        
+
 
                 }
 
@@ -83,7 +83,7 @@ namespace Avitals_project.Services
             return false;
         }
 
-        public async Task<User> UpdateUserAsync (User User)
+        public async Task<User> UpdateUserAsync(User User)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent,_serializerOptions);
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
                             return u;
                         }
@@ -107,8 +107,8 @@ namespace Avitals_project.Services
                         }
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
             return new UserDto() { Message = "Update failed" };
@@ -118,7 +118,7 @@ namespace Avitals_project.Services
         {
             try
             {
-                Album album = new Album { Longitude=longitude, Latitude=altitude };
+                Album album = new Album { Longitude = longitude, Latitude = altitude };
                 var jsonContent = JsonSerializer.Serialize(album);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}UpdateUser", content);
@@ -142,12 +142,35 @@ namespace Avitals_project.Services
                 Console.WriteLine(ex.Message);
             }
             return null;
+        }
+        public async Task<bool> CreateAlbumAsync(Album al)
+        {
+            try
+            {
+                Album album = al;
+                var jsonContent = JsonSerializer.Serialize(album);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}CreateAlbum", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            Album a = JsonSerializer.Deserialize<Album>(jsonContent);
+                            await Task.Delay(2000);
+                            return true;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return false;
+                        }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
 
 
         }
-
-
-
     }
-    }
+}
 
