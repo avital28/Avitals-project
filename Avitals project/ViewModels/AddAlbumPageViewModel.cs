@@ -36,6 +36,8 @@ namespace Avitals_project.ViewModels
             //
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
+            Albums = new ObservableCollection<Album>();
+            Albums.Add(new Album { AlbumTitle = "Album1", AlbumCover = "usericon.png" });
             LoadAlbums = new Command(async () =>
             {
                 try
@@ -43,9 +45,7 @@ namespace Avitals_project.ViewModels
                     Location l = Geolocation.GetLocationAsync().Result;
                     longtitude = l.Longitude.ToString();
                     latitude = l.Latitude.ToString();
-                    Albums = new ObservableCollection<Album>();
-                    Albums.Add(new Album { AlbumTitle = "Album1", AlbumCover = "usericon.png" });
-                    Album a = Albums[0];
+                    
                     //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
                     IsDoneLoading = true;
                     HeaderMessage = doneloadingmessage;
