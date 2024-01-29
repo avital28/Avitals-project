@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.AddAlbumPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             xmlns:models="clr-namespace:Avitals_project.Models"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:DataType="viewmodels:AddAlbumPageViewModel"
-             Title="AddAlbumPage">
+<ContentPage
+    x:Class="Avitals_project.Views.AddAlbumPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Avitals_project.Models"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="AddAlbumPage"
+    x:DataType="viewmodels:AddAlbumPageViewModel">
     <VerticalStackLayout>
-        <sf:SfPopup IsOpen="True"  >
+        <sf:SfPopup x:Name="popup_p" IsOpen="True">
             <sf:SfPopup.HeaderTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout>
-                        <Label Text="{Binding HeaderMessage}"></Label>
-                        <skia:SKLottieView VerticalOptions="Center"
-                          RepeatCount="-1"
-                          RepeatMode="Restart"
-                          Source="loadingdots.json" 
-                          HeightRequest="20"
-                          WidthRequest="20"   />
+                        <Label Text="{Binding HeaderMessage}" />
+                        <skia:SKLottieView
+                            HeightRequest="20"
+                            RepeatCount="-1"
+                            RepeatMode="Restart"
+                            Source="loadingdots.json"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
                     </HorizontalStackLayout>
                 </DataTemplate>
             </sf:SfPopup.HeaderTemplate>
             <sf:SfPopup.ContentTemplate>
-                
-                <DataTemplate>
-                    
-                    <FlexLayout 
-                      Wrap="Wrap"
-                     JustifyContent="SpaceAround" >
-                        
-                        <CollectionView ItemsSource="{Binding Albums}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Album">
-                                <VerticalStackLayout >
-                                     
-                                    <Image Source="{Binding AlbumCover}" HorizontalOptions="Center"></Image>
-                                    <Label Text="{Binding AlbumTitle}" HorizontalOptions="Center"></Label>
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
 
-                    </CollectionView>
-                </FlexLayout>
+                <DataTemplate>
+
+                    <VerticalStackLayout>
+
+                        <CollectionView ItemsSource="{Binding Albums}" IsVisible="{Binding IsFound}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Album">
+                                    <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap">
+                                        <Image HorizontalOptions="Center" Source="{Binding AlbumCover}" WidthRequest="20" HeightRequest="20">
+                                            <!--<Image.Behaviors>
+                                                <toolkit:AnimationBehavior Command="{}">
+
+                                                </toolkit:AnimationBehavior>
+                                            </Image.Behaviors>-->
+                                        </Image>
+
+                                        <Label HorizontalOptions="Center" Text="{Binding AlbumTitle}" />
+
+                                    </FlexLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                        <Line X1="90" Y1="0" X2="0" Y2="0"></Line>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
-        </sf:SfPopup> 
-        
-        
+        </sf:SfPopup>
+
+
     </VerticalStackLayout>
 </ContentPage>

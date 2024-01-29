@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Popup;
+using CommunityToolkit.Maui;
 namespace Avitals_project
 {
     public static class MauiProgram
@@ -14,6 +15,7 @@ namespace Avitals_project
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .UseSkiaSharp()
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>

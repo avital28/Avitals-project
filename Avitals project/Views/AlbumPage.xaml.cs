@@ -9,4 +9,5 @@ public partial class AlbumPage : ContentPage
 		this.BindingContext = vm;
 		InitializeComponent();
 	}
+	
 }
