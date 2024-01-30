@@ -14,5 +14,7 @@ public partial class AddAlbumPage : ContentPage
         base.OnAppearing();
 	    popup_p.Show();
 		
+	
+		
     }
 }

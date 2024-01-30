@@ -2,22 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.CreateAlbumPage"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             x:DataType="viewmodels:CreateAlbumPageViewModel"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             xmlns:sf2="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+            xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+            x:DataType="viewmodels:CreateAlbumPageViewModel"
              Title="CreateAlbumPage">
     <VerticalStackLayout>
         <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="True" 
                     AcceptCommand="{Binding CreateAlbum}" AcceptButtonText="Done"
-                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}">
+                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                        <Border WidthRequest="100" HeightRequest="100">
-                            <Image Source="{Binding Cover}" ></Image>
+                    <Grid RowDefinitions="*,*,*,*" VerticalOptions="Center" HorizontalOptions="Center">
+                      
+                        <Border WidthRequest="110" HeightRequest="110">
+                            
+                            <Image Source="{Binding Cover}" Grid.RowSpan="3" >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePhoto}"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            
                         </Border>
-                        <Label Text="{Binding Title}"></Label>
-                    </VerticalStackLayout>
+                        <Border>
+                            <Border.StrokeShape>
+                                <Rectangle WidthRequest="100" HeightRequest="100"></Rectangle>
+                            </Border.StrokeShape>
+                        </Border>
+                        <picker:SfPicker HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+                            <picker:SfPicker.Columns>
+                                <picker:PickerColumn 
+                         ItemsSource="{Binding DropDownData}"  />
+                            </picker:SfPicker.Columns>
+                        </picker:SfPicker>
+                        <Entry Text="{Binding Title}" Grid.Row="4" Placeholder="Album title" TextColor="Black" ></Entry>
+                    </Grid>
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
         </sf:SfPopup>

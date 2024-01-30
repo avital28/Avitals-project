@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Avitals_project.ViewModels
 {
-    public class AddAlbumPageViewModel:ViewModel
+    public class AddAlbumPageViewModel : ViewModel
     {
         #region Private fields
         private bool isfound;
@@ -19,10 +19,10 @@ namespace Avitals_project.ViewModels
         private string headermessage;
         #endregion
         #region Properties
-        public ICommand JoinAlbum {  get; set; }    
-        public ICommand LoadAlbums { get; set;}
+        public ICommand JoinAlbum { get; set; }
+        public ICommand LoadAlbums { get; set; }
         public ICommand CreateAlbum { get; set; }
-        
+
 
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
         public bool IsDoneLoading { get { return isdoneloading; } set { if (isdoneloading != value) { isdoneloading = value; OnPropertyChange(); } } }
@@ -31,46 +31,46 @@ namespace Avitals_project.ViewModels
         public ObservableCollection<Album> Albums { get; set; }
         #endregion
         #region Methods
-        
+
         #endregion
-        public AddAlbumPageViewModel(UserService service) 
+        public AddAlbumPageViewModel(UserService service)
         {
             //
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
             Albums.Add(new Album { AlbumTitle = "Album1", AlbumCover = "usericon.png" });
-            LoadAlbums = new Command(async () =>
+
+            try
             {
-                try
+                Location l = Geolocation.GetLocationAsync().Result;
+                longtitude = l.Longitude.ToString();
+                latitude = l.Latitude.ToString();
+
+                //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
+
+                IsDoneLoading = true;
+                HeaderMessage = doneloadingmessage;
+                if (Albums != null)
                 {
-                    Location l = Geolocation.GetLocationAsync().Result;
-                    longtitude = l.Longitude.ToString();
-                    latitude = l.Latitude.ToString();
+                    IsFound = true;
 
-                    //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
-                    
-                    IsDoneLoading = true;
-                    HeaderMessage = doneloadingmessage;
-                    if (Albums != null)
-                    {
-                        IsFound = true;
-
-
-                    }
-                    else
-                    {
-                        IsFound = false;
-
-                    }
 
                 }
-                catch (Exception ex)
+                else
                 {
+                    IsFound = false;
 
-                    Console.WriteLine(ex.Message);
                 }
-            });
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+        
+      
 
             CreateAlbum = new Command(async () =>
             {
@@ -81,7 +81,7 @@ namespace Avitals_project.ViewModels
             //{
             //    try 
             //})
-            LoadAlbums.Execute(null);
+            
 
         }
 
