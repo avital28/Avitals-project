@@ -17,23 +17,23 @@
                     
                     StrokeThickness="8"
                     Margin="0,0,0,0">
-                    <Image Source="emptyprofilepicture.jpg" WidthRequest="60" HeightRequest="60" ></Image>
+                    <Image Source="emptyprofilepicture.jpg" WidthRequest="80" HeightRequest="80" ></Image>
                 </Border>
                 <Label Text="Edit profile" TextColor="White" FontSize="Header"></Label>
             </HorizontalStackLayout>
         </Grid>
         <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
             <VerticalStackLayout>
-                <sf:SfTextInputLayout Hint="Username"  >
+                <sf:SfTextInputLayout Hint="Username" ContainerBackground="White"   ContainerType="Outlined" >
                     <Entry Text="{Binding Username}"/>
                 </sf:SfTextInputLayout>
-                <sf:SfTextInputLayout Hint="Password" EnablePasswordVisibilityToggle="True" >
+                <sf:SfTextInputLayout Hint="Password" EnablePasswordVisibilityToggle="True" ContainerBackground="White"   ContainerType="Outlined" >
                     <Entry Text="{Binding Password}"/>
                 </sf:SfTextInputLayout>
-                <sf:SfTextInputLayout  Hint="First Name" >
+                <sf:SfTextInputLayout  Hint="First Name" ContainerBackground="White"  ContainerType="Outlined" >
                     <Entry Text="{Binding Firstname}"/>
                 </sf:SfTextInputLayout>
-                <sf:SfTextInputLayout Hint="Last Name" >
+                <sf:SfTextInputLayout Hint="Last Name" ContainerBackground="White"   ContainerType="Outlined" >
                     <Entry Text="{Binding Lastname}" />
                 </sf:SfTextInputLayout>
                 

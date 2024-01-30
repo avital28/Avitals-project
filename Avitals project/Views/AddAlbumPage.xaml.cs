@@ -9,9 +9,10 @@ public partial class AddAlbumPage : ContentPage
 		this.BindingContext = vm;
 		InitializeComponent();
 	}
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-		popup_p.Show();	
+	    popup_p.Show();
+		
     }
 }

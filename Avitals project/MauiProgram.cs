@@ -38,7 +38,8 @@ namespace Avitals_project
             builder.Services.AddTransient<SettingsPage>();
             builder.Services.AddTransient<AddAlbumPage>();
             builder.Services.AddTransient<AddAlbumPageViewModel>();
-
+            builder.Services.AddTransient<CreateAlbumPage>();
+            builder.Services.AddTransient<CreateAlbumPageViewModel>();
 
 
 #endif

@@ -34,7 +34,7 @@
             <ShellContent 
                 x:Name="addalbum"
                 ContentTemplate="{DataTemplate views:AddAlbumPage}"
-                Route="AddAlbumPage">
+                Route="AddAlbumPage" >
             </ShellContent>
         </Tab>
         <Tab Icon="usericon">

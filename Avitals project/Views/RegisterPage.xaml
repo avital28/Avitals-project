@@ -14,19 +14,20 @@
             FontSize="Title"
             Text="Register"
             TextColor="{StaticResource MainColor}" />
-        <sf:SfTextInputLayout Hint="Username">
+        <sf:SfTextInputLayout Hint="Username"  ContainerBackground="White"  ContainerType="Outlined" >
+            
             <Entry Text="{Binding Username}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout EnablePasswordVisibilityToggle="True" Hint="Password">
+        <sf:SfTextInputLayout EnablePasswordVisibilityToggle="True" Hint="Password" ContainerBackground="White"   ContainerType="Outlined" >
             <Entry Text="{Binding Password}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="Email">
+        <sf:SfTextInputLayout Hint="Email" ContainerBackground="White" ContainerType="Outlined" >
             <Entry Text="{Binding Email}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="First Name">
+        <sf:SfTextInputLayout Hint="First Name" ContainerBackground="White" ContainerType="Outlined" >
             <Entry Text="{Binding Firstname}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="Last Name">
+        <sf:SfTextInputLayout Hint="Last Name" ContainerBackground="White" ContainerType="Outlined" >
             <Entry Text="{Binding Lastname}" />
         </sf:SfTextInputLayout>
         <Button

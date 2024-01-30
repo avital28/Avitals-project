@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\emptyalbumcover.jpg" />
 	  <None Remove="Resources\Images\emptyprofilepicture.jpg" />
 	  <None Remove="Resources\Images\plusicon.png" />
 	  <None Remove="Resources\Images\settings.png" />

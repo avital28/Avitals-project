@@ -3,11 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.CreateAlbumPage"
              xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             x:DataType="viewmodels:CreateAlbumPageViewModel"
              Title="CreateAlbumPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="True" 
+                    AcceptCommand="{Binding CreateAlbum}" AcceptButtonText="Done"
+                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}">
+            <sf:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Border WidthRequest="100" HeightRequest="100">
+                            <Image Source="{Binding Cover}" ></Image>
+                        </Border>
+                        <Label Text="{Binding Title}"></Label>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </sf:SfPopup.ContentTemplate>
+        </sf:SfPopup>
     </VerticalStackLayout>
 </ContentPage>

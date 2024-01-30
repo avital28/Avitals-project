@@ -14,7 +14,7 @@
         <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
         <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
         <sf:SfTextInputLayout
-Hint="Username" ContainerBackground="White"  HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
+Hint="Username" ContainerBackground="White"  ContainerType="Outlined" 
          >
             <Entry Text="{Binding Username}" />
         </sf:SfTextInputLayout>
