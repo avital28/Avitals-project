@@ -11,12 +11,22 @@
     Title="AddAlbumPage"
     x:DataType="viewmodels:AddAlbumPageViewModel">
     <VerticalStackLayout>
-        <sf:SfPopup x:Name="popup_p" IsOpen="True" HeightRequest="280" WidthRequest="350" ShowFooter="True"  >
+        <sf:SfPopup
+            x:Name="popup_p"
+            HeightRequest="280"
+            IsOpen="True"
+            ShowFooter="True"
+            WidthRequest="350">
             <sf:SfPopup.HeaderTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout>
                         <Label Text="{Binding HeaderMessage}" />
-                        <Button Command="{Binding LoadAlbums}" Text="Load albums" WidthRequest="100" HeightRequest="50" BackgroundColor="{StaticResource MainColor}"></Button>
+                        <Button
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding LoadAlbums}"
+                            HeightRequest="50"
+                            Text="Load albums"
+                            WidthRequest="100" />
                         <skia:SKLottieView
                             HeightRequest="120"
                             RepeatCount="10"
@@ -33,7 +43,7 @@
 
 
                     <FlexLayout>
-                        <CollectionView ItemsSource="{Binding Albums}" IsVisible="{Binding IsFound}" >
+                        <CollectionView IsVisible="{Binding IsFound}" ItemsSource="{Binding Albums}">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal" />
                             </CollectionView.ItemsLayout>
@@ -42,8 +52,12 @@
 
 
                                     <VerticalStackLayout>
-                                        <Border WidthRequest="50" HeightRequest="50">
-                                            <Image HorizontalOptions="Center" Source="{Binding AlbumCover}" WidthRequest="80" HeightRequest="80">
+                                        <Border HeightRequest="50" WidthRequest="50">
+                                            <Image
+                                                HeightRequest="80"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding AlbumCover}"
+                                                WidthRequest="80">
                                                 <!--<Image.Behaviors>
                                                 <toolkit:AnimationBehavior Command="{}">
 
@@ -52,7 +66,7 @@
 
                                             </Image>
                                         </Border>
-                                        <Label  Text="{Binding AlbumTitle}" />
+                                        <Label Text="{Binding AlbumTitle}" />
                                     </VerticalStackLayout>
 
 
@@ -70,16 +84,22 @@
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="viewmodels:AddAlbumPageViewModel">
                     <VerticalStackLayout>
-                        <Line BackgroundColor="Black" X1="90" Y1="0" X2="120" Y2="0"></Line>
-                    <Label Text=" + create new album">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-    </VerticalStackLayout>
-    </DataTemplate>
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding CreateAlbum}"
+                            Text="+ Create new album"
+                            TextColor="Black" />
+                        <Line
+                            BackgroundColor="Black"
+                            X1="90"
+                            X2="120"
+                            Y1="0"
+                            Y2="0" />
+
+                    </VerticalStackLayout>
+                </DataTemplate>
             </sf:SfPopup.FooterTemplate>
         </sf:SfPopup>
 

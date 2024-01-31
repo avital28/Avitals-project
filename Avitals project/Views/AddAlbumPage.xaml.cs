@@ -17,4 +17,9 @@ public partial class AddAlbumPage : ContentPage
 	
 		
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+		bool x= true;
+    }
 }

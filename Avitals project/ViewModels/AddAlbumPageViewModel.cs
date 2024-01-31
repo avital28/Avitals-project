@@ -43,8 +43,7 @@ namespace Avitals_project.ViewModels
             Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover5.jpg" });
-            LoadAlbums = new Command(async () =>
+            LoadAlbums = new Command(async () =>  
             {
                 try
                 {
@@ -52,7 +51,7 @@ namespace Avitals_project.ViewModels
                     //longtitude = l.Longitude.ToString();
                     //latitude = l.Latitude.ToString();
 
-                    //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
+                    //Albums = new ObservableCollection<Album>(service.GetAlbumsByLocation(longtitude, latitude).Result);
 
                     IsDoneLoading = true;
                     HeaderMessage = doneloadingmessage;
@@ -78,11 +77,6 @@ namespace Avitals_project.ViewModels
 
 
 
-                CreateAlbum = new Command(async () =>
-                {
-                    await Shell.Current.GoToAsync("CreateAlbumPage");
-
-                });
                 //JoinAlbum= new Command (async()=>
                 //{
                 //    try 
@@ -90,6 +84,11 @@ namespace Avitals_project.ViewModels
 
 
             });
+                CreateAlbum = new Command(async () =>
+                {
+                    await Shell.Current.GoToAsync("CreateAlbumPage");
+
+                });
 
 
         }
