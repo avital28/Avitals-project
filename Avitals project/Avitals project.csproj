@@ -49,6 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\cover1.jpg" />
+	  <None Remove="Resources\Images\cover2.jpg" />
+	  <None Remove="Resources\Images\cover3.jpg" />
+	  <None Remove="Resources\Images\cover4.jpg" />
+	  <None Remove="Resources\Images\cover5.jpg" />
 	  <None Remove="Resources\Images\emptyalbumcover.jpg" />
 	  <None Remove="Resources\Images\emptyprofilepicture.jpg" />
 	  <None Remove="Resources\Images\plusicon.png" />

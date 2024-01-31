@@ -27,7 +27,7 @@ namespace Avitals_project.Services
             try
             {
 
-                User user = new User() { Username = username, Passwrd = password };
+                User user = new User() { UserName = username, Passwrd = password };
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}Login", content);

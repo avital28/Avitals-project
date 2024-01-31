@@ -39,53 +39,60 @@ namespace Avitals_project.ViewModels
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
-            Albums.Add(new Album { AlbumTitle = "Album1", AlbumCover = "usericon.png" });
-
-            try
+            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover5.jpg" });
+            LoadAlbums = new Command(async () =>
             {
-                Location l = Geolocation.GetLocationAsync().Result;
-                longtitude = l.Longitude.ToString();
-                latitude = l.Latitude.ToString();
-
-                //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
-
-                IsDoneLoading = true;
-                HeaderMessage = doneloadingmessage;
-                if (Albums != null)
+                try
                 {
-                    IsFound = true;
+                    //Location l = Geolocation.GetLocationAsync().Result;
+                    //longtitude = l.Longitude.ToString();
+                    //latitude = l.Latitude.ToString();
 
+                    //Albums = new ObservableCollection<Album>( /*service.GetAlbumsByLocation(longtitude, latitude).Result*/);
+
+                    IsDoneLoading = true;
+                    HeaderMessage = doneloadingmessage;
+                    if (Albums != null)
+                    {
+                        IsFound = true;
+
+
+                    }
+                    else
+                    {
+                        IsFound = false;
+
+                    }
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    IsFound = false;
 
+                    Console.WriteLine(ex.Message);
                 }
 
-            }
-            catch (Exception ex)
-            {
 
-                Console.WriteLine(ex.Message);
-            }
-        
-      
 
-            CreateAlbum = new Command(async () =>
-            {
-                await Shell.Current.GoToAsync("CreateAlbumPage");
+
+                CreateAlbum = new Command(async () =>
+                {
+                    await Shell.Current.GoToAsync("CreateAlbumPage");
+
+                });
+                //JoinAlbum= new Command (async()=>
+                //{
+                //    try 
+                //})
+
 
             });
-            //JoinAlbum= new Command (async()=>
-            //{
-            //    try 
-            //})
-            
-
-        }
 
 
         }
     }
+}
 

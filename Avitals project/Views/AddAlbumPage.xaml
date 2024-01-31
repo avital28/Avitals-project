@@ -11,11 +11,12 @@
     Title="AddAlbumPage"
     x:DataType="viewmodels:AddAlbumPageViewModel">
     <VerticalStackLayout>
-        <sf:SfPopup x:Name="popup_p" IsOpen="True" HeightRequest="280" WidthRequest="350" >
+        <sf:SfPopup x:Name="popup_p" IsOpen="True" HeightRequest="280" WidthRequest="350" ShowFooter="True"  >
             <sf:SfPopup.HeaderTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout>
                         <Label Text="{Binding HeaderMessage}" />
+                        <Button Command="{Binding LoadAlbums}" Text="Load albums" WidthRequest="100" HeightRequest="50" BackgroundColor="{StaticResource MainColor}"></Button>
                         <skia:SKLottieView
                             HeightRequest="120"
                             RepeatCount="10"
@@ -30,43 +31,56 @@
 
                 <DataTemplate>
 
-                    <VerticalStackLayout>
 
-                        <CollectionView ItemsSource="{Binding Albums}" IsVisible="{Binding IsFound}">
+                    <FlexLayout>
+                        <CollectionView ItemsSource="{Binding Albums}" IsVisible="{Binding IsFound}" >
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:Album">
-                                    <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap">
-                                        <Border Opacity="0"  >
-                                            <Border.StrokeShape>
-                                                <Rectangle WidthRequest="20" HeightRequest="20">
-                                                </Rectangle>
-                                            </Border.StrokeShape>
-                                            <Image HorizontalOptions="Center" Source="{Binding AlbumCover}" WidthRequest="20" HeightRequest="20">
-                                            <!--<Image.Behaviors>
+
+
+                                    <VerticalStackLayout>
+                                        <Border WidthRequest="50" HeightRequest="50">
+                                            <Image HorizontalOptions="Center" Source="{Binding AlbumCover}" WidthRequest="80" HeightRequest="80">
+                                                <!--<Image.Behaviors>
                                                 <toolkit:AnimationBehavior Command="{}">
 
                                                 </toolkit:AnimationBehavior>
                                             </Image.Behaviors>-->
-                                               
+
                                             </Image>
                                         </Border>
-                                        <Label HorizontalOptions="Center" Text="{Binding AlbumTitle}" />
+                                        <Label  Text="{Binding AlbumTitle}" />
+                                    </VerticalStackLayout>
 
-                                    </FlexLayout>
+
+
 
                                 </DataTemplate>
+
                             </CollectionView.ItemTemplate>
 
                         </CollectionView>
-                        <Line BackgroundColor="Black" X1="90" Y1="0" X2="120" Y2="0"></Line>
-                        <Label Text=" + create new album">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </VerticalStackLayout>
+
+
+                    </FlexLayout>
+
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
+            <sf:SfPopup.FooterTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Line BackgroundColor="Black" X1="90" Y1="0" X2="120" Y2="0"></Line>
+                    <Label Text=" + create new album">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+    </VerticalStackLayout>
+    </DataTemplate>
+            </sf:SfPopup.FooterTemplate>
         </sf:SfPopup>
 
 

@@ -31,13 +31,9 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    #region Loading animation
-                    var lvm = new LoadingPageViewModel() { IsBusy = true };
-                    await AppShell.Current.Navigation.PushModalAsync(new LoadingPage(lvm));
-                    #endregion
+                   
                     var user = await service.LogInAsync(username, password);
-                    lvm.IsBusy = false;
-                    await Shell.Current.Navigation.PopModalAsync();
+                    
                     if (user is UserDto)
                     {
                         ErrorMessage = ((UserDto)user).Message;

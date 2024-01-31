@@ -23,11 +23,32 @@ namespace Avitals_project.ViewModels
         public ICommand CreateAlbum { get; set; }
         public ICommand Decline { get; set; }
         public ICommand ChangePhoto { get; set; }   
+        public ICommand TakePhoto { get; set; }
 
         #endregion
-
-        public CreateAlbumPageViewModel() 
+        #region Methods
+        public async void CapturePhoto()
         {
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+
+                if (photo != null)
+                {
+
+                    string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                    using Stream sourceStream = await photo.OpenReadAsync();
+                    using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                    await sourceStream.CopyToAsync(localFileStream);
+                    Cover = localFilePath;
+                }
+            }
+        }
+            #endregion
+            public CreateAlbumPageViewModel() 
+            {
             Cover = "emptyalbumcover.jpg";
             IsOpen = false;
             DropDownData = new ObservableCollection<string>() { "Take a picture", "Choose from gallery" };

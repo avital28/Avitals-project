@@ -15,7 +15,7 @@
                     DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="*,*,*,*" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid RowDefinitions="auto,auto,auto,*" VerticalOptions="Center" HorizontalOptions="Center">
                       
                         <Border WidthRequest="110" HeightRequest="110">
                             
@@ -31,7 +31,7 @@
                                 <Rectangle WidthRequest="100" HeightRequest="100"></Rectangle>
                             </Border.StrokeShape>
                         </Border>
-                        <picker:SfPicker HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+                        <picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
                             <picker:SfPicker.Columns>
                                 <picker:PickerColumn 
                          ItemsSource="{Binding DropDownData}"  />

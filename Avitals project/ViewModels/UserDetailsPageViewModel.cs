@@ -37,7 +37,7 @@ namespace Avitals_project.ViewModels
 
         public string Lastname { get { return lastname; } set { if (lastname != value) { lastname = value; OnPropertyChange(); if (ValidateName(lastname)) { ShowLNameError = false; updateduser.Lastname = lastname; } else { ShowLNameError = true; } } } }
 
-        public string Username { get { return username; } set { if (username != value) { username = value; OnPropertyChange(); updateduser.Username = username;  } } }
+        public string Username { get { return username; } set { if (username != value) { username = value; OnPropertyChange(); updateduser.UserName = username;  } } }
 
         public string Password { get { return password; } set { if (password != value) { password = value; OnPropertyChange(); updateduser.Passwrd = password; } } }
 
@@ -84,7 +84,7 @@ namespace Avitals_project.ViewModels
             {
                 Firstname=currentuser.Firstname; 
                 Lastname=currentuser.Lastname;
-                Username=currentuser.Username;
+                Username=currentuser.UserName;
                 Password = currentuser.Passwrd;
             }
 

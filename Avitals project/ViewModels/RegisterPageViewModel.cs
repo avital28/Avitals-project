@@ -109,7 +109,7 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                    var response = await service.RegisterAsync(new User() { Birthday = DateTime.Now, Email = email, Firstname = firstname, Lastname = lastname, Passwrd = password, Username = username });
+                    var response = await service.RegisterAsync(new User() {  Email = email, Firstname = firstname, Lastname = lastname, Passwrd = password, UserName = username });
                     if (response == true)
                     {
                         await AppShell.Current.GoToAsync("Login");
