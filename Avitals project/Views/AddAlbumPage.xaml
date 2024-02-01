@@ -86,17 +86,18 @@
             <sf:SfPopup.FooterTemplate>
                 <DataTemplate x:DataType="viewmodels:AddAlbumPageViewModel">
                     <VerticalStackLayout>
-                        <Button
-                            BackgroundColor="Transparent"
-                            Command="{Binding CreateAlbum}"
-                            Text="+ Create new album"
-                            TextColor="Black" />
+                       
                         <Line
                             BackgroundColor="Black"
                             X1="90"
                             X2="120"
                             Y1="0"
                             Y2="0" />
+                        <Label Text=" + create new album">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
 
                     </VerticalStackLayout>
                 </DataTemplate>

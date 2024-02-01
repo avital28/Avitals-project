@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Avitals_project.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+using Avitals_project.Models;
 namespace Avitals_project.ViewModels
 {
     public class CreateAlbumPageViewModel:ViewModel
@@ -47,7 +48,7 @@ namespace Avitals_project.ViewModels
             }
         }
             #endregion
-            public CreateAlbumPageViewModel() 
+            public CreateAlbumPageViewModel(UserService service) 
             {
             Cover = "emptyalbumcover.jpg";
             IsOpen = false;
@@ -56,7 +57,8 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-
+                     Album a= new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true };
+                    await service.CreateAlbumAsync(a);
                 }
                 catch (Exception e)
                 {

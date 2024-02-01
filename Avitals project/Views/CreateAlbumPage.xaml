@@ -41,6 +41,25 @@
                     </Grid>
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
+            <sf:SfPopup.FooterTemplate>
+    <DataTemplate x:DataType="viewmodels:AddAlbumPageViewModel">
+        <VerticalStackLayout>
+           
+            <Line
+                BackgroundColor="Black"
+                X1="90"
+                X2="120"
+                Y1="0"
+                Y2="0" />
+            <Label Text=" Done" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+    </DataTemplate>
+</sf:SfPopup.FooterTemplate>
         </sf:SfPopup>
     </VerticalStackLayout>
 </ContentPage>
