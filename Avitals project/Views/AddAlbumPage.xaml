@@ -84,7 +84,7 @@
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
-                <DataTemplate x:DataType="viewmodels:AddAlbumPageViewModel">
+                <DataTemplate >
                     <VerticalStackLayout>
                        
                         <Line
@@ -95,7 +95,7 @@
                             Y2="0" />
                         <Label Text=" + create new album">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding Create}"></TapGestureRecognizer>
                             </Label.GestureRecognizers>
                         </Label>
 

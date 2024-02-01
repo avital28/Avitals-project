@@ -30,8 +30,11 @@ namespace Avitals_project.ViewModels
         #region Methods
         public async void CapturePhoto()
         {
+           await MainThread.InvokeOnMainThreadAsync(async () =>
+        {
             if (MediaPicker.Default.IsCaptureSupported)
             {
+
                 FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
 
                 if (photo != null)
@@ -46,6 +49,7 @@ namespace Avitals_project.ViewModels
                     Cover = localFilePath;
                 }
             }
+        });
         }
             #endregion
             public CreateAlbumPageViewModel(UserService service) 
@@ -58,13 +62,24 @@ namespace Avitals_project.ViewModels
                 try
                 {
                      Album a= new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true };
-                    await service.CreateAlbumAsync(a);
+                     var response=await service.CreateAlbumAsync(a);
+                    if (response==true)
+                    {
+                        await Shell.Current.DisplayAlert("Album created successfuly", "", "אישור");
+
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Failed", "", "אישור");
+
+                    }
                 }
                 catch (Exception e)
                 {
 
                 }
             });
+            TakePhoto = new Command(CapturePhoto);
             Decline = new Command(async () =>
             {
                 try

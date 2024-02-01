@@ -12,37 +12,42 @@
     <VerticalStackLayout>
         <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="True" 
                     AcceptCommand="{Binding CreateAlbum}" AcceptButtonText="Done"
-                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True">
+                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True" ShowFooter="True" x:DataType="viewmodels:CreateAlbumPageViewModel">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="auto,auto,auto,*" VerticalOptions="Center" HorizontalOptions="Center">
-                      
+                    <Grid RowDefinitions="auto,auto,auto,100" VerticalOptions="Center" HorizontalOptions="Center">
+
                         <Border WidthRequest="110" HeightRequest="110">
-                            
+
                             <Image Source="{Binding Cover}" Grid.RowSpan="3" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePhoto}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
                             </Image>
-                            
+
                         </Border>
-                        <Border>
-                            <Border.StrokeShape>
-                                <Rectangle WidthRequest="100" HeightRequest="100"></Rectangle>
-                            </Border.StrokeShape>
-                        </Border>
-                        <picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+                        <VerticalStackLayout IsVisible="{Binding IsOpen}">
+                            <Button Command="{Binding ChangePhoto}" Text="Choose from gallery" WidthRequest="90" HeightRequest="40" BackgroundColor="{StaticResource MainColor}"></Button>
+                            <Button Command="{Binding TakePhoto}" Text="Take a picture " WidthRequest="90" HeightRequest="40"  BackgroundColor="{StaticResource MainColor}" ></Button>
+
+                        </VerticalStackLayout>
+
+
+
+
+                        <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
                             <picker:SfPicker.Columns>
                                 <picker:PickerColumn 
                          ItemsSource="{Binding DropDownData}"  />
                             </picker:SfPicker.Columns>
-                        </picker:SfPicker>
+                        </picker:SfPicker>-->
                         <Entry Text="{Binding Title}" Grid.Row="4" Placeholder="Album title" TextColor="Black" ></Entry>
                     </Grid>
+
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
-    <DataTemplate x:DataType="viewmodels:AddAlbumPageViewModel">
+    <DataTemplate >
         <VerticalStackLayout>
            
             <Line
@@ -53,7 +58,7 @@
                 Y2="0" />
             <Label Text=" Done" HorizontalOptions="End">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding CreateAlbum}"></TapGestureRecognizer>
+                    <TapGestureRecognizer Command="{Binding CreateAlbum}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
             </Label>
 

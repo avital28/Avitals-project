@@ -21,7 +21,7 @@ namespace Avitals_project.ViewModels
         #region Properties
         public ICommand JoinAlbum { get; set; }
         public ICommand LoadAlbums { get; set; }
-        public ICommand CreateAlbum { get; set; }
+        public ICommand Create { get; set; }
 
 
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
@@ -84,7 +84,7 @@ namespace Avitals_project.ViewModels
 
 
             });
-                CreateAlbum = new Command(async () =>
+                Create = new Command(async () =>
                 {
                     await Shell.Current.GoToAsync("CreateAlbumPage");
 
