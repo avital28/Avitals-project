@@ -15,6 +15,8 @@ namespace Avitals_project.ViewModels
         private string title;
         private string cover;
         private bool isopen;
+        private string longtitude;
+        private string latitude;
         #endregion
         #region Properties
         public string Title  { get => title; set { if (title != value) { title = value; OnPropertyChange(); } } }
@@ -47,6 +49,7 @@ namespace Avitals_project.ViewModels
 
                     await sourceStream.CopyToAsync(localFileStream);
                     Cover = localFilePath;
+                    IsOpen = false;
                 }
             }
         });
@@ -61,7 +64,10 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-                     Album a= new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true };
+                    Location l = await Geolocation.GetLocationAsync();
+                    longtitude = l.Longitude.ToString();
+                    latitude = l.Latitude.ToString();
+                    Album a = new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true, Latitude=latitude, Longitude=longtitude };
                      var response=await service.CreateAlbumAsync(a);
                     if (response==true)
                     {

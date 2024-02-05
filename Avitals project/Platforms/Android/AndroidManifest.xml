@@ -16,7 +16,11 @@
 	<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 	<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
   <uses-sdk android:targetSdkVersion="33" android:minSdkVersion="21" />
- 
+ <queries>
+  <intent>
+    <action android:name="android.media.action.IMAGE_CAPTURE" />
+  </intent>
+</queries>
 
 	
 </manifest>

@@ -36,22 +36,23 @@ namespace Avitals_project.ViewModels
         public AddAlbumPageViewModel(UserService service)
         {
             //
+            IsFound = false;
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
-            Albums = new ObservableCollection<Album>();
-            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            //Albums = new ObservableCollection<Album>();
+            //Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
             LoadAlbums = new Command(async () =>  
             {
                 try
                 {
-                    //Location l = Geolocation.GetLocationAsync().Result;
-                    //longtitude = l.Longitude.ToString();
-                    //latitude = l.Latitude.ToString();
+                    Location l = await Geolocation.GetLocationAsync();
+                    longtitude = l.Longitude.ToString();
+                    latitude = l.Latitude.ToString();
 
-                    //Albums = new ObservableCollection<Album>(service.GetAlbumsByLocation(longtitude, latitude).Result);
+                    Albums = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
 
                     IsDoneLoading = true;
                     HeaderMessage = doneloadingmessage;
@@ -61,9 +62,9 @@ namespace Avitals_project.ViewModels
 
 
                     }
-                    else
+                   else
                     {
-                        IsFound = false;
+                        await Shell.Current.DisplayAlert("There has been an error", "", "אישור");
 
                     }
 
