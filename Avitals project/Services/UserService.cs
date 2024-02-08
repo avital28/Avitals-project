@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Avitals_project.Services
@@ -20,7 +21,7 @@ namespace Avitals_project.Services
         public UserService()
         {
             httpClient = new HttpClient();
-            _serializerOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true, WriteIndented = true };
+            _serializerOptions = new JsonSerializerOptions() {  ReferenceHandler=ReferenceHandler.Preserve, PropertyNameCaseInsensitive = true, WriteIndented = true };
         }
         public async Task<User> LogInAsync(string username, string password)
         {

@@ -13,7 +13,13 @@ namespace Avitals_project.Models
         public bool IsPublic { get; set; }  
         public string Longitude { get; set; }
         public string Latitude { get; set; }
-        public int AdminID { get; set; } 
+        public int AdminId { get; set; } 
         public string AlbumTitle { get; set; }  
+        public int Id { get; set; }
+
+        public Album()
+        {
+            Media = new List<string>();
+        }
     }
 }
