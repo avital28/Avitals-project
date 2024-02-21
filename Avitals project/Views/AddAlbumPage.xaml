@@ -58,6 +58,9 @@
                                                 HorizontalOptions="Center"
                                                 Source="{Binding AlbumCover}"
                                                 WidthRequest="80">
+                                                <!--<Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Create}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>-->
                                                 <!--<Image.Behaviors>
                                                 <toolkit:AnimationBehavior Command="{}">
 
