@@ -43,7 +43,7 @@
 
 
                     <FlexLayout>
-                        <CollectionView IsVisible="{Binding IsFound}" ItemsSource="{Binding Albums}">
+                        <CollectionView  ItemsSource="{Binding Albums}">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal" />
                             </CollectionView.ItemsLayout>
@@ -52,24 +52,23 @@
 
 
                                     <VerticalStackLayout>
-                                        <Border HeightRequest="50" WidthRequest="50">
+                                        
                                             <Image
                                                 HeightRequest="80"
                                                 HorizontalOptions="Center"
                                                 Source="{Binding AlbumCover}"
                                                 WidthRequest="80">
-                                                <!--<Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Create}"></TapGestureRecognizer>
-                                                </Image.GestureRecognizers>-->
-                                                <!--<Image.Behaviors>
-                                                <toolkit:AnimationBehavior Command="{}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding  }"></TapGestureRecognizer>
+                                            </Image.GestureRecognizers>
+                                            <!--<Image.Behaviors>-->
+                                                <!--<toolkit:AnimationBehavior Command="{}">
 
                                                 </toolkit:AnimationBehavior>
                                             </Image.Behaviors>-->
 
                                             </Image>
-                                        </Border>
-                                        <Label Text="{Binding AlbumTitle}" />
+                                        <Label Text="{Binding AlbumTitle}" TextColor="Black" />
                                     </VerticalStackLayout>
 
 

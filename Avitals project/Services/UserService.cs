@@ -144,10 +144,24 @@ namespace Avitals_project.Services
             }
             return null;
         }
-        public async Task<bool> CreateAlbumAsync(Album al)
+        public async Task<bool> CreateAlbumAsync(Album al, FileResult file)
         {
             try
             {
+                byte[] bytes;
+
+                
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    var stream = await file.OpenReadAsync();
+                    stream.CopyTo(ms);
+                    bytes = ms.ToArray();
+                }
+                var multipartFormDataContent = new MultipartFormDataContent();
+
+                var imagecontent = new ByteArrayContent(bytes);
+                multipartFormDataContent.Add(imagecontent, "file", $"{}");
+
                 Album album = al;
                 var jsonContent = JsonSerializer.Serialize(album);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
