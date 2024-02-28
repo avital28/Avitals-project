@@ -160,12 +160,13 @@ namespace Avitals_project.Services
                 var multipartFormDataContent = new MultipartFormDataContent();
 
                 var imagecontent = new ByteArrayContent(bytes);
-                multipartFormDataContent.Add(imagecontent, "file", $"{}");
+                multipartFormDataContent.Add(imagecontent,"file", $"{file.FileName}");
 
                 Album album = al;
                 var jsonContent = JsonSerializer.Serialize(album);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}CreateAlbum", content);
+                multipartFormDataContent.Add(content, "album");
+                var response = await httpClient.PostAsync($"{URL}CreateAlbum", multipartFormDataContent);
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
