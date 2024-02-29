@@ -34,11 +34,11 @@ namespace Avitals_project.ViewModels
         public ObservableCollection<Album> Albums { get; set; }
         #endregion
         #region Methods
-        public Animation CreateAnimation ()
-        {
-            var animation = new Animation ();   
-            animation.
-        }
+        //public Animation CreateAnimation ()
+        //{
+        //    var animation = new Animation ();   
+        //    animation.
+        //}
         #endregion
         public AddAlbumPageViewModel(UserService service)
         {

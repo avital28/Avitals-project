@@ -30,7 +30,7 @@ namespace Avitals_project.ViewModels
 
         #endregion
         #region Methods
-        public async void CapturePhoto()
+        public async Task<FileResult> CapturePhoto()
         {
            await MainThread.InvokeOnMainThreadAsync(async () =>
         {
@@ -50,9 +50,14 @@ namespace Avitals_project.ViewModels
                     await sourceStream.CopyToAsync(localFileStream);
                     Cover = localFilePath;
                     IsOpen = false;
+                    
                 }
             }
-        });
+            
+        }
+        
+        
+        );
         }
             #endregion
             public CreateAlbumPageViewModel(UserService service) 

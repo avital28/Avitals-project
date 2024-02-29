@@ -187,6 +187,37 @@ namespace Avitals_project.Services
 
 
         }
+
+        //public async Task<User> UpdateAlbumCoverAsync(User User)
+        //{
+        //    try
+        //    {
+        //        User user = User;
+        //        var jsonContent = JsonSerializer.Serialize(user);
+        //        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        //        var response = await httpClient.PostAsync($"{URL}UpdateUser", content);
+        //        switch (response.StatusCode)
+        //        {
+        //            case (HttpStatusCode.OK):
+        //                {
+        //                    jsonContent = await response.Content.ReadAsStringAsync();
+        //                    User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+        //                    await Task.Delay(2000);
+        //                    return u;
+        //                }
+        //            case (HttpStatusCode.Unauthorized):
+        //                {
+        //                    return new UserDto() { Message = "Update failed" };
+
+        //                }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    return new UserDto() { Message = "Update failed" };
+        //}
     }
 }
 

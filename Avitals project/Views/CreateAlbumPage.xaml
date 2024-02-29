@@ -15,11 +15,11 @@
                     DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True" ShowFooter="True" x:DataType="viewmodels:CreateAlbumPageViewModel">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="auto,auto,auto,100" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid RowDefinitions="auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center">
 
-                        <Border WidthRequest="110" HeightRequest="110">
+                        <Border WidthRequest="140" HeightRequest="140">
 
-                            <Image Source="{Binding Cover}" Grid.RowSpan="3" >
+                            <Image Source="{Binding Cover}" Grid.RowSpan="3" WidthRequest="140" HeightRequest="140" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePhoto}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
