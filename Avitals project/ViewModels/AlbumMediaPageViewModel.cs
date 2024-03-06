@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Avitals_project.ViewModels
 {
-    public class AlbumPageViewModel:ViewModel
+    public class AlbumMediaPageViewModel:ViewModel
     {
        
         #region Properties
@@ -18,7 +18,7 @@ namespace Avitals_project.ViewModels
         public Album album;
         #endregion
 
-        public AlbumPageViewModel(UserService service)
+        public AlbumMediaPageViewModel(UserService service)
         {
             if (album != null)
             {

@@ -44,7 +44,12 @@ namespace Avitals_project.ViewModels
                         await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
                         //TODO p : move to X screen
                         await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
-                       isvisible = true;
+                        isvisible = true;
+                        var useralbums= await service.GetAlbumsByUserAsync(user.Id);
+                        foreach(var album in useralbums)
+                        {
+                            DisplayAlbumsPageViewModel.currentusersalbums.Add(album);
+                        }
                         await Shell.Current.GoToAsync("UserDetailsPage");
 
                     }

@@ -3,52 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Avitals_project.Models"
              x:Class="Avitals_project.Views.DisplayAlbumsPage"
+             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             x:DataType="viewmodels:DisplayAlbumsPageViewModel"
              Title="DisplayAlbumPage">
-    <ScrollView>
+    
         <VerticalStackLayout>
-            <Label Text="My albums" FontAttributes="Bold" FontSize="Subtitle"  TextColor="Black"/>
-            <FlexLayout>
-                    <CollectionView  ItemsSource="{Binding Albums}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Album">
+        <Label Text="My albums" FontAttributes="Bold" FontSize="Large"   TextColor="Black"/>
+        <ScrollView>
+            <FlexLayout Margin="0,30,0,0" 
+        AlignContent="Start"
+        AlignItems="Start"
+        AlignSelf="Start"
+        BindableLayout.ItemsSource="{Binding Albums}"
+        Direction="Row"
+        JustifyContent="SpaceAround"
+        Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:Album">
+                        <VerticalStackLayout Padding="0,25,0,0">
+                            
+                            <Image x:DataType="viewmodels:DisplayAlbumsPageViewModel"  Source="{Binding AlbumCover}" WidthRequest="150"
+                                   HeightRequest="150" Aspect="AspectFill">
+                                <Image.Shadow>
+                                    <Shadow Brush="Black"
+                                     Offset="20,20"
+                                     Radius="40"
+                                     Opacity="0.8" />
+                                </Image.Shadow>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShowAlbum}"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
 
-
-                                <VerticalStackLayout>
-
-                                <Image
-                                 HeightRequest="120"
-                                 HorizontalOptions="Center"
-                                 Source="{Binding AlbumCover}"
-                                 WidthRequest="120"
-                                    >
-                                    <Image.Shadow>
-                                        <Shadow Brush="Black"
-                                          Offset="20,20"
-                                          Radius="40"
-                                          Opacity="0.8" />
-                                    </Image.Shadow>
-                                    
-                                </Image>
-                                <Label Text="{Binding AlbumTitle}" TextColor="Black" />
-                                </VerticalStackLayout>
-
-
-
-
-                            </DataTemplate>
-
-                        </CollectionView.ItemTemplate>
-
-                    </CollectionView>
-
-
-                </FlexLayout>
-
-            
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>
