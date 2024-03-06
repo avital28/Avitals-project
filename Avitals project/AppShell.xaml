@@ -37,10 +37,10 @@
                 Route="AddAlbumPage" >
             </ShellContent>
         </Tab>
-        <Tab Icon="usericon">
+        <Tab Icon="albumicon.jpg">
             <ShellContent
-        x:Name="userdetails"
-        ContentTemplate="{DataTemplate views:UserDetailsPage}"
+        x:Name="albums"
+        ContentTemplate="{DataTemplate views:DisplayAlbumsPage}"
         Route="UserDetailsPage">
 
             </ShellContent>

@@ -17,6 +17,7 @@ namespace Avitals_project.ViewModels
         private bool isopen;
         private string longtitude;
         private string latitude;
+        private static FileResult currentfile=null;
         #endregion
         #region Properties
         public string Title  { get => title; set { if (title != value) { title = value; OnPropertyChange(); } } }
@@ -30,14 +31,15 @@ namespace Avitals_project.ViewModels
 
         #endregion
         #region Methods
-        public async Task<FileResult> CapturePhoto()
+        public async void CapturePhoto()
         {
+            FileResult photo = new FileResult("");
            await MainThread.InvokeOnMainThreadAsync(async () =>
         {
             if (MediaPicker.Default.IsCaptureSupported)
             {
 
-                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+                 photo = await MediaPicker.Default.CapturePhotoAsync();
 
                 if (photo != null)
                 {
@@ -50,14 +52,14 @@ namespace Avitals_project.ViewModels
                     await sourceStream.CopyToAsync(localFileStream);
                     Cover = localFilePath;
                     IsOpen = false;
-                    
+                    currentfile = photo;
                 }
             }
             
+            
         }
-        
-        
         );
+            
         }
             #endregion
             public CreateAlbumPageViewModel(UserService service) 
@@ -73,9 +75,10 @@ namespace Avitals_project.ViewModels
                     longtitude = l.Longitude.ToString();
                     latitude = l.Latitude.ToString();
                     Album a = new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true, Latitude=latitude, Longitude=longtitude };
-                     var response=await service.CreateAlbumAsync(a);
+                     var response=await service.CreateAlbumAsync(a, currentfile);
                     if (response==true)
                     {
+                        DisplayAlbumsPageViewModel.currentusersalbums.Add(a);
                         await Shell.Current.DisplayAlert("Album created successfuly", "", "אישור");
 
                     }

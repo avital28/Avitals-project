@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Avitals_project.Models"
+             x:Class="Avitals_project.Views.DisplayAlbumsPage"
+             Title="DisplayAlbumPage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="My albums" FontAttributes="Bold" FontSize="Subtitle"  TextColor="Black"/>
+            <FlexLayout>
+                    <CollectionView  ItemsSource="{Binding Albums}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Album">
+
+
+                                <VerticalStackLayout>
+
+                                <Image
+                                 HeightRequest="120"
+                                 HorizontalOptions="Center"
+                                 Source="{Binding AlbumCover}"
+                                 WidthRequest="120"
+                                    >
+                                    <Image.Shadow>
+                                        <Shadow Brush="Black"
+                                          Offset="20,20"
+                                          Radius="40"
+                                          Opacity="0.8" />
+                                    </Image.Shadow>
+                                    
+                                </Image>
+                                <Label Text="{Binding AlbumTitle}" TextColor="Black" />
+                                </VerticalStackLayout>
+
+
+
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+
+                </FlexLayout>
+
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

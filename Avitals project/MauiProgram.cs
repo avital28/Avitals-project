@@ -22,6 +22,7 @@ namespace Avitals_project
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("interfont.ttf", "interfont");
                 });
 
 #if DEBUG

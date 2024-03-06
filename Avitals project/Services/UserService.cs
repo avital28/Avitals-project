@@ -188,6 +188,36 @@ namespace Avitals_project.Services
 
         }
 
+        
+            public async Task<List<Album>> GetAlbumsByUserAsync(int id)
+            {
+            try
+            {
+                User user= new User { Id=id };
+                var jsonContent = JsonSerializer.Serialize(user);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}GetAlbumsByUser", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return albums;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
         //public async Task<User> UpdateAlbumCoverAsync(User User)
         //{
         //    try
