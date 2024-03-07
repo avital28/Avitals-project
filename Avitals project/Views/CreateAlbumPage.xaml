@@ -24,7 +24,7 @@
                                 </Image.GestureRecognizers>
                             </Image>
 
-                        </Border>
+             
                         <VerticalStackLayout IsVisible="{Binding IsOpen}" >
                             <Button Command="{Binding ChangePhoto}" Text="Choose from gallery" WidthRequest="90" HeightRequest="40" BackgroundColor="{StaticResource MainColor}"></Button>
                             <Button Command="{Binding TakePhoto}" Text="Take a picture " WidthRequest="90" HeightRequest="40"  BackgroundColor="{StaticResource MainColor}" ></Button>
