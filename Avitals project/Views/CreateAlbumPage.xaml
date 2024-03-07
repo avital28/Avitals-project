@@ -17,9 +17,8 @@
                 <DataTemplate>
                     <Grid RowDefinitions="auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center">
 
-                        <Border WidthRequest="140" HeightRequest="140">
 
-                            <Image Source="{Binding Cover}" Grid.RowSpan="3" WidthRequest="140" HeightRequest="140" >
+                            <Image Source="{Binding Cover}" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePhoto}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>

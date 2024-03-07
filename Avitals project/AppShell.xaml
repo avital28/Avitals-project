@@ -37,7 +37,7 @@
                 Route="AddAlbumPage" >
             </ShellContent>
         </Tab>
-        <Tab Icon="albumicon">
+        <Tab Icon="photoalbumicon.png">
             <ShellContent
         x:Name="albums"
         ContentTemplate="{DataTemplate views:DisplayAlbumsPage}"
