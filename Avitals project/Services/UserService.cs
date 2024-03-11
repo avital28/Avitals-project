@@ -150,36 +150,37 @@ namespace Avitals_project.Services
             {
                 byte[] bytes;
 
-                
+
                 using (MemoryStream ms = new MemoryStream())
                 {
                     var stream = await file.OpenReadAsync();
                     stream.CopyTo(ms);
                     bytes = ms.ToArray();
-                }
-                var multipartFormDataContent = new MultipartFormDataContent();
 
-                var imagecontent = new ByteArrayContent(bytes);
-                multipartFormDataContent.Add(imagecontent,"file", $"{file.FileName}");
+                    var multipartFormDataContent = new MultipartFormDataContent();
 
-                Album album = al;
-                var jsonContent = JsonSerializer.Serialize(album);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                multipartFormDataContent.Add(content, "album");
-                var response = await httpClient.PostAsync($"{URL}CreateAlbum", multipartFormDataContent);
-                switch (response.StatusCode)
-                {
-                    case (HttpStatusCode.OK):
-                        {
-                            jsonContent = await response.Content.ReadAsStringAsync();
-                            Album a = JsonSerializer.Deserialize<Album>(jsonContent);
-                            await Task.Delay(2000);
-                            return true;
-                        }
-                    case (HttpStatusCode.Unauthorized):
-                        {
-                            return false;
-                        }
+                    var imagecontent = new ByteArrayContent(bytes);
+                    multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
+
+                    Album album = al;
+                    var jsonContent = JsonSerializer.Serialize(album);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    multipartFormDataContent.Add(content, "album");
+                    var response = await httpClient.PostAsync($"{URL}CreateAlbum", multipartFormDataContent);
+                    switch (response.StatusCode)
+                    {
+                        case (HttpStatusCode.OK):
+                            {
+                                jsonContent = await response.Content.ReadAsStringAsync();
+                                Album a = JsonSerializer.Deserialize<Album>(jsonContent,_serializerOptions);
+                                await Task.Delay(2000);
+                                return true;
+                            }
+                        case (HttpStatusCode.Unauthorized):
+                            {
+                                return false;
+                            }
+                    }
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }

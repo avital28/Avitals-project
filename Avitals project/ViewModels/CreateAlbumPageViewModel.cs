@@ -33,7 +33,7 @@ namespace Avitals_project.ViewModels
         #region Methods
         public async void CapturePhoto()
         {
-            FileResult photo = new FileResult("");
+            FileResult photo = new FileResult("a");
            await MainThread.InvokeOnMainThreadAsync(async () =>
         {
             if (MediaPicker.Default.IsCaptureSupported)
@@ -75,7 +75,8 @@ namespace Avitals_project.ViewModels
                     longtitude = l.Longitude.ToString();
                     latitude = l.Latitude.ToString();
                     Album a = new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true, Latitude=latitude, Longitude=longtitude };
-                     var response=await service.CreateAlbumAsync(a, currentfile);
+                    FileResult f = currentfile;
+                    var response=await service.CreateAlbumAsync(a, f);
                     if (response==true)
                     {
                         DisplayAlbumsPageViewModel.currentusersalbums.Add(a);
