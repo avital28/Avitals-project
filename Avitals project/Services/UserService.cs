@@ -17,6 +17,7 @@ namespace Avitals_project.Services
         readonly HttpClient httpClient;
         readonly JsonSerializerOptions _serializerOptions;
         const string URL = @"https://n15c5b5t-7102.uks1.devtunnels.ms/CollectiveMomentsAPI/";
+        const string IMAGE_URL = @"https://n15c5b5t-7102.uks1.devtunnels.ms/images/";
 
         public UserService()
         {
@@ -129,6 +130,13 @@ namespace Avitals_project.Services
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
                             List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
+                            if(albums.Count>0)
+                            foreach(var al in albums)
+                            {
+                                    al.AlbumCover = $"{IMAGE_URL}{al.AlbumCover}";
+                                    //to do run on each photo in album update photo url
+                                    
+                            }
                             await Task.Delay(2000);
                             return albums;
                         }
