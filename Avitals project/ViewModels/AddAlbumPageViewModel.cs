@@ -44,7 +44,7 @@ namespace Avitals_project.ViewModels
         {
             nav.Clear();
             nav.Add("album", al);
-            await Shell.Current.GoToAsync("", nav);
+            await Shell.Current.GoToAsync("AddAlbumPage", nav);
         }
         #endregion
         public AddAlbumPageViewModel(UserService service)
@@ -54,13 +54,13 @@ namespace Avitals_project.ViewModels
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
-            //Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
-            //Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
+            Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
 
             LoadAlbums = new Command(async () =>  
             {
@@ -110,6 +110,7 @@ namespace Avitals_project.ViewModels
 
 
         }
+        public AddAlbumPageViewModel() { }
     }
 }
 
