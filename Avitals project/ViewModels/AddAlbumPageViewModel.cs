@@ -32,6 +32,7 @@ namespace Avitals_project.ViewModels
 
         public string NotFoundMessage { get { return notfoundmessage; } }
         public ObservableCollection<Album> Albums { get; set; }
+        public Dictionary<string, object> nav = new Dictionary<string, object>();
         #endregion
         #region Methods
         //public Animation CreateAnimation ()
@@ -39,6 +40,12 @@ namespace Avitals_project.ViewModels
         //    var animation = new Animation ();   
         //    animation.
         //}
+        private async void JoinAlbum1 (Album al)
+        {
+            nav.Clear();
+            nav.Add("album", al);
+            await Shell.Current.GoToAsync("", nav);
+        }
         #endregion
         public AddAlbumPageViewModel(UserService service)
         {
@@ -92,10 +99,8 @@ namespace Avitals_project.ViewModels
                
 
             });
-            //JoinAlbum= new Command (async()=>
-            //{
-            //    try 
-            //})
+            JoinAlbum = new Command<Album>(JoinAlbum1);
+
 
             Create = new Command(async () =>
                 {

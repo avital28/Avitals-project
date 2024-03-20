@@ -61,7 +61,7 @@
 	  <None Remove="Resources\Images\photoalbumicon.png" />
 	  <None Remove="Resources\Images\plusicon.png" />
 	  <None Remove="Resources\Images\settings.png" />
-	  <None Remove="Resources\Images\usericon.png" />
+	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Raw\loadingdots.json" />
 	</ItemGroup>
 
@@ -117,6 +117,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewAlbumDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WelcomePage.xaml">

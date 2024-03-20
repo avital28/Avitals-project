@@ -52,7 +52,7 @@ Wrap="Wrap">
                             <DataTemplate x:DataType="models:Album">
                                 <VerticalStackLayout Padding="0,10,0,0">
 
-                                    <Image Source="{Binding AlbumCover}" WidthRequest="50"
+                                    <Image  Source="{Binding AlbumCover}" WidthRequest="50"
                            HeightRequest="50" Aspect="AspectFill">
                                         <Image.Shadow>
                                             <Shadow Brush="Black"
@@ -60,8 +60,8 @@ Wrap="Wrap">
                              Radius="40"
                              Opacity="0.8" />
                                         </Image.Shadow>
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding  }"></TapGestureRecognizer>
+                                            <Image.GestureRecognizers >
+                                                <TapGestureRecognizer x:DataType="viewmodels:AddAlbumPageViewModel" NumberOfTapsRequired="1" Command="{Binding JoinAlbum }"></TapGestureRecognizer>
                                             </Image.GestureRecognizers>
                                             <!--<Image.Behaviors>-->
 
