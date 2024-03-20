@@ -9,13 +9,9 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="AddAlbumPage"
-    x:Name="AddAlbumPage"
+   x:Name="AddPage"
     x:DataType="viewmodels:AddAlbumPageViewModel">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <viewmodels:AddAlbumPageViewModel x:Key="ViewModel"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+   
     <VerticalStackLayout>
         <sf:SfPopup
             x:Name="popup_p"
@@ -53,28 +49,32 @@ AlignSelf="Start"
 BindableLayout.ItemsSource="{Binding Albums}"
 Direction="Row"
 JustifyContent="SpaceAround"
-Wrap="Wrap">
-                        <BindableLayout.ItemTemplate>
+Wrap="Wrap" >
+                        
+                        <BindableLayout.ItemTemplate >
+                            
                             <DataTemplate x:DataType="models:Album">
                                 <VerticalStackLayout Padding="0,10,0,0">
 
                                     <Image  Source="{Binding AlbumCover}" WidthRequest="70"
                            HeightRequest="70" Aspect="AspectFill">
                                         <Image.Shadow>
-                                            <Shadow Brush="Black"
+                                                <Shadow Brush="Black"
                              Offset="20,20"
                              Radius="40"
                              Opacity="0.8" />
-                                        </Image.Shadow>
-                                            <!--<Image.GestureRecognizers >
-                                                <TapGestureRecognizer x:DataType='viewmodels:AddAlbumPageViewModel' NumberOfTapsRequired="1" Command="{Binding BindingContext.JoinAlbum, Source={x:Reference AddAlbumPage} }" CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                            </Image.GestureRecognizers>-->
+                                            </Image.Shadow>
+                                            <Image.GestureRecognizers >
+                                                <TapGestureRecognizer x:DataType='viewmodels:AddAlbumPageViewModel' NumberOfTapsRequired="1" Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                            </Image.GestureRecognizers>
                                             <!--<Image.Behaviors>-->
 
                                         </Image>
                                     <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
                                 </VerticalStackLayout>
+                                
                             </DataTemplate>
+                            
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                 </ScrollView>

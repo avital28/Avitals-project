@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avitals_project.Views.ViewAlbumDetailsPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+             x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
              Title="ViewAlbumDetailsPage"
              BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
@@ -15,7 +16,7 @@
                 
                 StrokeThickness="8"
                 Margin="0,0,0,0">
-                   
+                    <Image Source="{Binding Album.AlbumCover }" WidthRequest="60" HeightRequest="60" Aspect="AspectFill"></Image>
                     </Border>
                 </HorizontalStackLayout>
             </Grid>

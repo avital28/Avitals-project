@@ -17,7 +17,9 @@ namespace Avitals_project
             Routing.RegisterRoute("AddAlbumPage", typeof(AddAlbumPage));
             Routing.RegisterRoute("CreateAlbumPage", typeof(CreateAlbumPage));
             Routing.RegisterRoute("DisplayAlbumsPage", typeof(DisplayAlbumsPage));
-            Routing.RegisterRoute("AlbumMediaPage", typeof (AlbumMediaPage));    
+            Routing.RegisterRoute("AlbumMediaPage", typeof (AlbumMediaPage));
+            Routing.RegisterRoute("ViewAlbumDetailsPage", typeof(ViewAlbumDetailsPage));
+
         }
         protected override async void OnAppearing()
         {

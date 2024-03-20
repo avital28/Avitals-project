@@ -23,7 +23,7 @@ namespace Avitals_project.ViewModels
         public ICommand JoinAlbum { get; set; }
         public ICommand LoadAlbums { get; set; }
         public ICommand Create { get; set; }
-
+        public Album album { get; set; }    
 
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
         public bool IsDoneLoading { get { return isdoneloading; } set { if (isdoneloading != value) { isdoneloading = value; OnPropertyChange(); } } }
@@ -44,7 +44,7 @@ namespace Avitals_project.ViewModels
         {
             nav.Clear();
             nav.Add("album", al);
-            await Shell.Current.GoToAsync("AddAlbumPage", nav);
+            await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);
         }
         #endregion
         public AddAlbumPageViewModel(UserService service)
