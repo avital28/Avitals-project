@@ -15,7 +15,7 @@
                 
                 StrokeThickness="8"
                 Margin="0,0,0,0">
-                    <Image Source=""
+                   
                     </Border>
                 </HorizontalStackLayout>
             </Grid>

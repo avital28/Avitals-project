@@ -61,7 +61,7 @@ Wrap="Wrap">
                              Opacity="0.8" />
                                         </Image.Shadow>
                                             <Image.GestureRecognizers >
-                                                <TapGestureRecognizer x:DataType="viewmodels:AddAlbumPageViewModel" NumberOfTapsRequired="1" Command="{Binding JoinAlbum }"></TapGestureRecognizer>
+                                                <TapGestureRecognizer x:DataType="viewmodels:AddAlbumPageViewModel" NumberOfTapsRequired="1" Command="{Binding JoinAlbum }" CommandParameter="{}"></TapGestureRecognizer>
                                             </Image.GestureRecognizers>
                                             <!--<Image.Behaviors>-->
 

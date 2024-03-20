@@ -31,7 +31,7 @@ namespace Avitals_project.ViewModels
             ShowAlbum = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("UserDetailsPage");
-
+                Albums = new ObservableCollection<Album>(currentusersalbums);
 
             });
 

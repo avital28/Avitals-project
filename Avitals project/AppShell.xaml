@@ -14,7 +14,7 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:WelcomePage}"
         Route="MainPage" />
-        <Tab Icon="usericon.png">
+        <Tab Icon="user.png">
             <ShellContent
                 x:Name="userdetails1"
                 ContentTemplate="{DataTemplate views:UserDetailsPage}"
