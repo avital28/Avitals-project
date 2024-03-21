@@ -14,7 +14,7 @@ namespace Avitals_project.ViewModels
         #region private fields
         private Album album;
         #endregion
-        #region
+        #region public properties
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
         #endregion
 

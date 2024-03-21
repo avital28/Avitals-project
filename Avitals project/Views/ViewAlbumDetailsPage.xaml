@@ -9,16 +9,13 @@
     <VerticalStackLayout>
         <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,30">
             <HorizontalStackLayout Grid.Row="0">
-                <Border HeightRequest="60" 
-                WidthRequest="60"
-                StrokeShape="RoundRectangle 30,30,30,30"
-                HorizontalOptions="Center"
-                
-                StrokeThickness="8"
-                Margin="0,0,0,0">
-                    <Image Source="{Binding Album.AlbumCover }" WidthRequest="60" HeightRequest="60" Aspect="AspectFill"></Image>
-                    </Border>
-                </HorizontalStackLayout>
-            </Grid>
+                <Label Text="{Binding Album.AlbumTitle}" TextColor="White" FontSize="Title"></Label>
+            </HorizontalStackLayout>
+        </Grid>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
+            <VerticalStackLayout>
+                <Image Source="{Binding Album.AlbumCover }" WidthRequest="200" HeightRequest="120" Aspect="AspectFill"></Image>
+            </VerticalStackLayout>
+            </Frame>
     </VerticalStackLayout>
 </ContentPage>

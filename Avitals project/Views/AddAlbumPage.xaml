@@ -16,7 +16,7 @@
         <sf:SfPopup
             x:Name="popup_p"
             HeightRequest="280"
-            IsOpen="True"
+            IsOpen="{Binding IsVisible}"
             ShowFooter="True"
             WidthRequest="350">
             <sf:SfPopup.HeaderTemplate>
