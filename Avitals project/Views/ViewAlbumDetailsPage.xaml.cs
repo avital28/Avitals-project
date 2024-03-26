@@ -9,7 +9,7 @@ public partial class ViewAlbumDetailsPage : ContentPage
 	{
 		this.BindingContext = vm;
 		InitializeComponent();
-		ViewAlbumDetailsPage= new NavigationPage(new ViewAlbumDetailsPage());
+	
 	}
 
     

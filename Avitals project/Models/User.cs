@@ -16,5 +16,11 @@ namespace Avitals_project.Models
         public string UserName { get; set; }
         public string Passwrd { get; set; }
         public string Email { get; set; }
+        public string ProfilePicture { get; set; }  
+
+        public User()
+        {
+            ProfilePicture = "emptyprofilepicture.jpg";
+        }
     }
 }

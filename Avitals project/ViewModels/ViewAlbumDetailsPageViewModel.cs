@@ -20,7 +20,8 @@ namespace Avitals_project.ViewModels
 
         public ViewAlbumDetailsPageViewModel(UserService service)
         {
-
+            
+            
         }
 
     }

@@ -4,18 +4,52 @@
              x:Class="Avitals_project.Views.ViewAlbumDetailsPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:models="clr-namespace:Avitals_project.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="ViewAlbumDetailsPage"
-             BackgroundColor="{StaticResource MainColor}">
-    <VerticalStackLayout>
-        <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,30">
-            <HorizontalStackLayout Grid.Row="0">
-                <Label Text="{Binding Album.AlbumTitle}" TextColor="White" FontSize="Title"></Label>
-            </HorizontalStackLayout>
-        </Grid>
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
-            <VerticalStackLayout>
-                <Image Source="{Binding Album.AlbumCover }" WidthRequest="200" HeightRequest="120" Aspect="AspectFill"></Image>
-            </VerticalStackLayout>
-            </Frame>
+             BackgroundColor="{StaticResource MainColor}"
+             >
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto" >
+        <VerticalStackLayout>
+            
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="1,0">
+                <GradientStop Color="{StaticResource MainColor}"
+       Offset="0.1" />
+                <GradientStop Color="#B5EEED"
+       Offset="1.0" />
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
+            
+            <Label Text="{Binding Album.AlbumTitle}" TextColor="White" FontSize="Title" Grid.Row="0"></Label>
+        
+        <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="200" HeightRequest="120" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
+
+        <Frame  Grid.Row="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
+                
+                <CarouselView  ItemsSource="{Binding Album.Memebers}">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal">
+                            
+                        </LinearItemsLayout>
+                    </CarouselView.ItemsLayout>
+
+                    <CarouselView.ItemTemplate>
+                        
+                        <DataTemplate x:DataType="models:User">
+                            <VerticalStackLayout>
+                                <toolkit:AvatarView ImageSource="{Binding ProfilePicture}"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    CornerRadius="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Firstname}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" ></Label>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                   
+                </CarouselView>
+        </Frame>
     </VerticalStackLayout>
+    </Grid>
 </ContentPage>

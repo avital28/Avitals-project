@@ -9,7 +9,7 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary>
-                    <Color x:Key="MainColor">#2BADAD</Color>
+                    <Color x:Key="MainColor">#5887A8</Color>
                 </ResourceDictionary>
                 <ResourceDictionary>
                     <Color x:Key="TextColor">#F3F3F3</Color>

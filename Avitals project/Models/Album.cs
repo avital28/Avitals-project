@@ -16,10 +16,12 @@ namespace Avitals_project.Models
         public int AdminId { get; set; } 
         public string AlbumTitle { get; set; }  
         public int Id { get; set; }
+        public List<User> Memebers { get; set; }
 
         public Album()
         {
             Media = new List<string>();
+            Memebers = new List<User>();
         }
     }
 }

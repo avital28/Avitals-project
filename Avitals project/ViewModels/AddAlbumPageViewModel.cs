@@ -1,5 +1,4 @@
-﻿using AndroidX.Navigation;
-using Avitals_project.Models;
+﻿using Avitals_project.Models;
 using Avitals_project.Services;
 using CommunityToolkit.Maui.Views;
 using System.Collections.ObjectModel;
@@ -46,9 +45,14 @@ namespace Avitals_project.ViewModels
         private async void JoinAlbum1 (Album al)
         {
             nav.Clear();
+            al.Memebers.Add(new User() { Firstname = "A" });
+            al.Memebers.Add(new User() { Firstname = "B" });
+            al.Memebers.Add(new User() { Firstname = "C" });
+            al.Memebers.Add(new User() { Firstname = "D" });
+            al.Memebers.Add(new User() { Firstname = "E" });
             IsVisible = false;
             nav.Add("album", al);
-            await Navigation.
+            await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);
         }
         #endregion
         public AddAlbumPageViewModel(UserService service)
