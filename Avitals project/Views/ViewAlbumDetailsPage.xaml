@@ -28,22 +28,22 @@
 
         <Frame  Grid.Row="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
                 
-                <CarouselView  ItemsSource="{Binding Album.Memebers}">
+                <CarouselView  ItemsSource="{Binding Album.Memebers}"
+                               PeekAreaInsets="100" ItemsUpdatingScrollMode="KeepLastItemInView" Loop="False">
                     <CarouselView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal">
-                            
-                        </LinearItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="End" />
                     </CarouselView.ItemsLayout>
-
                     <CarouselView.ItemTemplate>
                         
                         <DataTemplate x:DataType="models:User">
-                            <VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="StartAndExpand" >
                                 <toolkit:AvatarView ImageSource="{Binding ProfilePicture}"
                     HeightRequest="100"
                     WidthRequest="100"
-                    CornerRadius="50" VerticalOptions="Center"/>
-                                <Label Text="{Binding Firstname}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" ></Label>
+                    CornerRadius="50" />
+                                <Label Text="{Binding Firstname}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  ></Label>
                             </VerticalStackLayout>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
