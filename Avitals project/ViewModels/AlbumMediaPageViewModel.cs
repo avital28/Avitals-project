@@ -9,23 +9,25 @@ using System.Threading.Tasks;
 
 namespace Avitals_project.ViewModels
 {
+    [QueryProperty(nameof(Album), "album")]
     public class AlbumMediaPageViewModel:ViewModel
     {
+        #region private fields
+        private Album album;
        
-        #region Properties
-        public ObservableCollection<string> Images { get; set; }
-        //or
-        public Album album;
+#endregion
+        #region public properties
+        public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
         #endregion
 
         public AlbumMediaPageViewModel(UserService service)
         {
-            if (album != null)
-            {
-                Images = new ObservableCollection<string>(album.Media);
-            }
-            else
-            { Images = new ObservableCollection<string>(); }
+            //if (album != null)
+            //{
+            //    Images = new ObservableCollection<string>(album.Media);
+            //}
+            //else
+            //{ Images = new ObservableCollection<string>(); }
         }
         #region Capturing media methods
         public async void TakePhoto()

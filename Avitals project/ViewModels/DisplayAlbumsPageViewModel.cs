@@ -19,8 +19,16 @@ namespace Avitals_project.ViewModels
         public ObservableCollection<Album> Albums { get; set; }
         public string AlbumCover { get; set; }
         public ICommand ShowAlbum { get; set; }
+        public Dictionary<string, object> nav = new Dictionary<string, object>();
         #endregion
-
+        #region Methods
+        private async void ShowAlbum1(Album al)
+        {
+            nav.Clear();
+            nav.Add("album", al);
+            await Shell.Current.GoToAsync("AlbumMediaPage", nav);
+        }
+        #endregion
         public DisplayAlbumsPageViewModel(UserService service) 
         { 
             Albums = new ObservableCollection<Album>();
@@ -28,12 +36,8 @@ namespace Avitals_project.ViewModels
             Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            ShowAlbum = new Command(async () =>
-            {
-                await Shell.Current.GoToAsync("UserDetailsPage");
-                Albums = new ObservableCollection<Album>(currentusersalbums);
-
-            });
+            ShowAlbum = new Command<Album>(ShowAlbum1);
+          
 
         }
     }

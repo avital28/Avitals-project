@@ -30,8 +30,8 @@
                                      Radius="40"
                                      Opacity="0.8" />
                                 </Image.Shadow>
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                <Image.GestureRecognizers >
+                                    <TapGestureRecognizer x:DataType='viewmodels:DisplayAlbumsPageViewModel' NumberOfTapsRequired="1" Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
                             </Image>
                             <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
