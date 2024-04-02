@@ -24,6 +24,9 @@ namespace Avitals_project.ViewModels
         #region Methods
         private async void ShowAlbum1(Album al)
         {
+            al.Media.Add("cover2.jpg");
+            al.Media.Add("cover3.jpg");
+            al.Media.Add("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
             nav.Clear();
             nav.Add("album", al);
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);

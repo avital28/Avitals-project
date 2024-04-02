@@ -4,46 +4,53 @@
              x:Class="Avitals_project.Views.AlbumMediaPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              x:DataType="viewmodels:AlbumMediaPageViewModel"
-             xmlns:models="clr-namespace:Avitals_project.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="AlbumMediaPage">
-    <!--<ScrollView>
-        <FlexLayout Margin="0,20,0,0" 
+    <ScrollView>
+        <FlexLayout 
 AlignContent="Start"
 AlignItems="Start"
 AlignSelf="Start"
 BindableLayout.ItemsSource="{Binding Album.Media}"
 Direction="Row"
-JustifyContent="SpaceAround"
 Wrap="Wrap" >
 
-            <BindableLayout.ItemTemplate >
+            <BindableLayout.ItemTemplate  >
 
-                <DataTemplate x:DataType="models:Album">
-                    <VerticalStackLayout Padding="0,10,0,0">
+                <DataTemplate >
+                    <StackLayout>
+                        <Border HeightRequest="121" WidthRequest="121">
 
-                        <Image  Source="{Binding AlbumCover}" WidthRequest="70"
-                           HeightRequest="70" Aspect="AspectFill">
+                        <Image  Source="{Binding .}" WidthRequest="120"
+       HeightRequest="120" Aspect="AspectFill" IsVisible="{Binding IsVisiblePic}">
                             <Image.Shadow>
                                 <Shadow Brush="Black"
+         Offset="20,20"
+         Radius="40"
+         Opacity="0.8" />
+                            </Image.Shadow>
+
+                        </Image>
+                    </Border>
+                    <Border HeightRequest="121" WidthRequest="121">
+
+                        <toolkit:MediaElement  Source="{Binding .}" IsVisible="{Binding IsVisibleVideo}" WidthRequest="120"
+                           HeightRequest="120" Aspect="AspectFill">
+                        <toolkit:MediaElement.Shadow>
+                            <Shadow Brush="Black"
                              Offset="20,20"
                              Radius="40"
                              Opacity="0.8" />
-                            </Image.Shadow>
-                            <Image.GestureRecognizers >
-                                <TapGestureRecognizer x:DataType='viewmodels:AddAlbumPageViewModel' NumberOfTapsRequired="1" Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                            --><!--<Image.Behaviors>--><!--
+                        </toolkit:MediaElement.Shadow>
 
-                        </Image>
-                        <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
-                    </VerticalStackLayout>
-
+                    </toolkit:MediaElement>
+                    </Border>
+                    </StackLayout>
                 </DataTemplate>
 
             </BindableLayout.ItemTemplate>
         </FlexLayout>
-        </ScrollView>-->
-    <VerticalStackLayout>
-        <Label Text="hello"></Label>
-    </VerticalStackLayout>
+        </ScrollView>
+
+    
 </ContentPage>

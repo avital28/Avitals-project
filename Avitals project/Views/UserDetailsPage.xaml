@@ -19,7 +19,7 @@
                     Margin="0,0,0,0">
                     <Image Aspect="AspectFill" Source="emptyprofilepicture.jpg" WidthRequest="100" HeightRequest="100" ></Image>
                 </Border>
-                <Label Text="Edit profile" TextColor="White" FontSize="Header"></Label>
+                <Label Text="Edit profile" TextColor="#FFFFFF" FontSize="Header"></Label>
             </HorizontalStackLayout>
         </Grid>
         <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">
