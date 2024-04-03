@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Avitals_project.ViewModels
 {
@@ -14,37 +15,25 @@ namespace Avitals_project.ViewModels
     {
         #region private fields
         private Album album;
-        private bool isvisiblepic;
-        private bool isvisiblevideo;
-        private static int index = 0;
+
+        
 #endregion
         #region public properties
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
-        public bool IsVisiblePic { get { IsVisible1(); return isvisiblepic; } set { if (isvisiblepic != value) { isvisiblepic = value; OnPropertyChange(); } } }
-        public bool IsVisibleVideo { get { IsVisible1(); return isvisiblevideo; } set { if (isvisiblevideo != value) { isvisiblepic = value; OnPropertyChange(); } } }
-
+ 
+        public ICommand AddMedia { get; set; }
         #endregion
         #region Methods
-        private void IsVisible1()
-        {
-            if (index%2==0)
-            {
-                IsVisiblePic= true;
-                IsVisibleVideo = false;
-
-            }
-            else
-            {
-                IsVisiblePic = false;
-                IsVisibleVideo = true;
-            }
-            index++;
-            //check using index
-            // if it's a picture - isvisiblepic=true, isvisiblevideo=false
-        }
+        
         #endregion
         public AlbumMediaPageViewModel(UserService service)
         {
+
+            AddMedia = new Command(async () =>
+            {
+
+            });
+
             //if (album != null)
             //{
             //    Images = new ObservableCollection<string>(album.Media);

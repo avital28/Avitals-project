@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.AlbumMediaPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             x:DataType="viewmodels:AlbumMediaPageViewModel"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="AlbumMediaPage">
+<ContentPage
+    x:Class="Avitals_project.Views.AlbumMediaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="AlbumMediaPage"
+    x:DataType="viewmodels:AlbumMediaPageViewModel"
+    xmlns:models="clr-namespace:Avitals_project.Models">
     <ScrollView>
-        <FlexLayout 
-AlignContent="Start"
-AlignItems="Start"
-AlignSelf="Start"
-BindableLayout.ItemsSource="{Binding Album.Media}"
-Direction="Row"
-Wrap="Wrap" >
+        <FlexLayout
+            AlignContent="Start"
+            AlignItems="Start"
+            AlignSelf="Start"
+            BindableLayout.ItemsSource="{Binding Album.Media}"
+            Direction="Row"
+            Wrap="Wrap" Margin="2,2,2,2" HorizontalOptions="Center">
 
-            <BindableLayout.ItemTemplate  >
+            <BindableLayout.ItemTemplate>
 
-                <DataTemplate >
+                <DataTemplate x:DataType="models:MediaItem">
                     <StackLayout>
-                        <Border HeightRequest="121" WidthRequest="121">
+                        <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsImage}">
 
-                        <Image  Source="{Binding .}" WidthRequest="120"
-       HeightRequest="120" Aspect="AspectFill" IsVisible="{Binding IsVisiblePic}">
-                            <Image.Shadow>
-                                <Shadow Brush="Black"
-         Offset="20,20"
-         Radius="40"
-         Opacity="0.8" />
-                            </Image.Shadow>
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="128"
+                                IsVisible="{Binding IsImage }"
+                                Source="{Binding Sources}"
+                                WidthRequest="128">
+                                <Image.Shadow>
+                                    <Shadow
+                                        Brush="Black"
+                                        Opacity="0.8"
+                                        Radius="40"
+                                        Offset="20,20" />
+                                </Image.Shadow>
 
-                        </Image>
-                    </Border>
-                    <Border HeightRequest="121" WidthRequest="121">
+                            </Image>
+                        </Border>
+                        <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsVideo}">
 
-                        <toolkit:MediaElement  Source="{Binding .}" IsVisible="{Binding IsVisibleVideo}" WidthRequest="120"
-                           HeightRequest="120" Aspect="AspectFill">
-                        <toolkit:MediaElement.Shadow>
-                            <Shadow Brush="Black"
-                             Offset="20,20"
-                             Radius="40"
-                             Opacity="0.8" />
-                        </toolkit:MediaElement.Shadow>
+                            <toolkit:MediaElement
+                                Aspect="AspectFill"
+                                HeightRequest="128"
+                                IsVisible="{Binding IsVideo}"
+                                Source="{Binding Sources}"
+                                WidthRequest="128">
+                                <toolkit:MediaElement.Shadow>
+                                    <Shadow
+                                        Brush="Black"
+                                        Opacity="0.8"
+                                        Radius="40"
+                                        Offset="20,20" />
+                                </toolkit:MediaElement.Shadow>
 
-                    </toolkit:MediaElement>
-                    </Border>
+                            </toolkit:MediaElement>
+                        </Border>
                     </StackLayout>
                 </DataTemplate>
 
             </BindableLayout.ItemTemplate>
-        </FlexLayout>
-        </ScrollView>
 
-    
+        </FlexLayout>
+    </ScrollView>
+
+
 </ContentPage>

@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.ViewAlbumDetailsPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-             xmlns:models="clr-namespace:Avitals_project.Models"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:drawable="clr-namespace:Avitals_project.Controls"
-             Title="ViewAlbumDetailsPage"
-             BackgroundColor="{StaticResource MainColor}"
-             >
-    <ContentPage.Resources>
-        <drawable:TriangleDrawable x:Key="triangle"></drawable:TriangleDrawable>
-    </ContentPage.Resources>
-  
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto" >
-      
-        <VerticalStackLayout>
-            
-        <!--<VerticalStackLayout.Background>
+<ContentPage
+    x:Class="Avitals_project.Views.ViewAlbumDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:Avitals_project.Controls"
+    xmlns:models="clr-namespace:Avitals_project.Models"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="ViewAlbumDetailsPage"
+    x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
+    BackgroundColor="{StaticResource MainColor}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+
+            <VerticalStackLayout>
+
+                <!--<VerticalStackLayout.Background>
             <LinearGradientBrush EndPoint="1,0">
                 <GradientStop Color="{StaticResource MainColor}"
        Offset="0.1" />
@@ -27,54 +24,86 @@
        Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>-->
-            <Label Text="{Binding Album.AlbumTitle}" TextColor="White" FontSize="Title" Grid.Row="0"></Label>
-        
+                <Label
+                    Grid.Row="0"
+                    FontSize="Title"
+                    Text="{Binding Album.AlbumTitle}"
+                    TextColor="White" />
 
-        <Frame  HeightRequest="700" BackgroundColor="White" CornerRadius="45" Margin="0,110,0,0" Padding="0,150,0,0">
-                <VerticalStackLayout>
 
-                    <Grid RowDefinitions="auto" WidthRequest="300">
+                <Frame
+                    Margin="0,110,0,0"
+                    Padding="0,150,0,0"
+                    BackgroundColor="White"
+                    CornerRadius="45"
+                    HeightRequest="700">
+                    <VerticalStackLayout>
 
-                        <Label  Grid.Row="0" Text="Users" TextColor="{Binding TextColorLabel1}" FontSize="Subtitle" Margin="10,0,0,0" HorizontalOptions="Start"  FontAttributes="Bold">
+                        <!--<Grid RowDefinitions="auto" WidthRequest="300">
+
+                        <Label
+                            Grid.Row="0"
+                            Margin="10,0,0,0"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            HorizontalOptions="Start"
+                            Text="Users"
+                            TextColor="{Binding TextColorLabel1}">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SwitchColors}"></TapGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding SwitchColors}" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Grid.Row="0" HorizontalOptions="End" Text="Media" TextColor="{Binding TextColorLabel2}" FontSize="Subtitle"  FontAttributes="Bold" Margin="0,0,10,0">
+                        <Label
+                            Grid.Row="0"
+                            Margin="0,0,10,0"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            HorizontalOptions="End"
+                            Text="Media"
+                            TextColor="{Binding TextColorLabel2}">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SwitchColors}"></TapGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding SwitchColors}" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
-                        </Label>
-    </Grid>
-    <CarouselView  ItemsSource="{Binding Album.Memebers}"
-                               PeekAreaInsets="130" ItemsUpdatingScrollMode="KeepLastItemInView" Loop="False" Margin="-10,20,0,0">
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal"
-                           SnapPointsType="MandatorySingle"
-                           SnapPointsAlignment="End" />
-                        </CarouselView.ItemsLayout>
-                        <CarouselView.ItemTemplate>
+                        </Label>-->
+                    <!--</Grid>-->
+                        <CarouselView
+                            Margin="-10,20,0,0"
+                            ItemsSource="{Binding Album.Memebers}"
+                            ItemsUpdatingScrollMode="KeepLastItemInView"
+                            Loop="False"
+                            PeekAreaInsets="130">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Horizontal"
+                                    SnapPointsAlignment="End"
+                                    SnapPointsType="MandatorySingle" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
 
-                            <DataTemplate x:DataType="models:User">
-                                <VerticalStackLayout HorizontalOptions="StartAndExpand" >
-                                    <toolkit:AvatarView ImageSource="{Binding ProfilePicture}"
-                    HeightRequest="100"
-                    WidthRequest="100"
-                    CornerRadius="50" />
-                                    <Label Text="{Binding Firstname}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  ></Label>
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
+                                <DataTemplate x:DataType="models:User">
+                                    <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                                        <toolkit:AvatarView
+                                            CornerRadius="50"
+                                            HeightRequest="100"
+                                            ImageSource="{Binding ProfilePicture}"
+                                            WidthRequest="100" />
+                                        <Label
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding Firstname}"
+                                            VerticalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
 
-                    </CarouselView>
-                    <Button BackgroundColor="{StaticResource MainColor}" TextColor="{StaticResource TextColor}" FontAttributes="Bold"></Button>
-                </VerticalStackLayout>
+                        </CarouselView>
 
-            </Frame>
-            <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="270" HeightRequest="140" Margin="0,-800,0,0" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
-            <GraphicsView Drawable="{StaticResource triangle }" Margin="0,-10,0,0"></GraphicsView>
+                    </VerticalStackLayout>
 
-        </VerticalStackLayout>
-            
-    </Grid>
+                </Frame>
+                <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="270" HeightRequest="140" Margin="0,-800,0,0" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
 </ContentPage>

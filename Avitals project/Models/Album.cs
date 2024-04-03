@@ -9,7 +9,7 @@ namespace Avitals_project.Models
     public class Album
     {
         public string AlbumCover { get; set; }
-        public List<string> Media { get; set; }
+        public List<MediaItem> Media { get; set; }
         public bool IsPublic { get; set; }  
         public string Longitude { get; set; }
         public string Latitude { get; set; }
@@ -20,7 +20,7 @@ namespace Avitals_project.Models
 
         public Album()
         {
-            Media = new List<string>();
+            Media = new List<MediaItem>();
             Memebers = new List<User>();
         }
     }
