@@ -24,9 +24,9 @@ namespace Avitals_project.ViewModels
         #region Methods
         private async void ShowAlbum1(Album al)
         {
-            al.Media.Add(new MediaItem { IsImage = true, IsVideo=false, Sources= "cover2.jpg" });
-            al.Media.Add(new MediaItem { IsImage = true, IsVideo=false, Sources = "cover3.jpg" });
-            al.Media.Add(new MediaItem { IsVideo = true, IsImage=false, Sources = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" });
+            al.Media.Add(new MediaItem() { Sources= "cover2.jpg" });
+            al.Media.Add(new MediaItem() { Sources = "cover3.jpg" });
+            al.Media.Add(new MediaItem() { Sources = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" });
             //al.Media.Add("cover2.jpg");
             //al.Media.Add("cover3.jpg");
             //al.Media.Add("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
