@@ -11,7 +11,7 @@
     Title="ViewAlbumDetailsPage"
     x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
     BackgroundColor="{StaticResource MainColor}">
-    <ScrollView>
+  
         <Grid RowDefinitions="Auto,Auto,Auto,Auto">
 
             <VerticalStackLayout>
@@ -37,67 +37,41 @@
                     BackgroundColor="White"
                     CornerRadius="45"
                     HeightRequest="700">
-                    <VerticalStackLayout>
 
-                        <!--<Grid RowDefinitions="auto" WidthRequest="300">
 
-                        <Label
-                            Grid.Row="0"
-                            Margin="10,0,0,0"
-                            FontAttributes="Bold"
-                            FontSize="Subtitle"
-                            HorizontalOptions="Start"
-                            Text="Users"
-                            TextColor="{Binding TextColorLabel1}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SwitchColors}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Label
-                            Grid.Row="0"
-                            Margin="0,0,10,0"
-                            FontAttributes="Bold"
-                            FontSize="Subtitle"
-                            HorizontalOptions="End"
-                            Text="Media"
-                            TextColor="{Binding TextColorLabel2}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SwitchColors}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>-->
-                    <!--</Grid>-->
-                        <CarouselView
+
+                    <CarouselView
                             Margin="-10,20,0,0"
                             ItemsSource="{Binding Album.Memebers}"
                             ItemsUpdatingScrollMode="KeepLastItemInView"
                             Loop="False"
                             PeekAreaInsets="130">
-                            <CarouselView.ItemsLayout>
-                                <LinearItemsLayout
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout
                                     Orientation="Horizontal"
                                     SnapPointsAlignment="End"
                                     SnapPointsType="MandatorySingle" />
-                            </CarouselView.ItemsLayout>
-                            <CarouselView.ItemTemplate>
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
 
-                                <DataTemplate x:DataType="models:User">
-                                    <VerticalStackLayout HorizontalOptions="StartAndExpand">
-                                        <toolkit:AvatarView
+                            <DataTemplate x:DataType="models:User">
+                                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                                    <toolkit:AvatarView
                                             CornerRadius="50"
                                             HeightRequest="100"
                                             ImageSource="{Binding ProfilePicture}"
                                             WidthRequest="100" />
-                                        <Label
+                                    <Label
                                             HorizontalOptions="StartAndExpand"
                                             Text="{Binding Firstname}"
                                             VerticalOptions="Center" />
-                                    </VerticalStackLayout>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
 
-                        </CarouselView>
+                    </CarouselView>
 
-                    </VerticalStackLayout>
+
 
                 </Frame>
                 <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="270" HeightRequest="140" Margin="0,-800,0,0" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
@@ -105,5 +79,4 @@
             </VerticalStackLayout>
 
         </Grid>
-    </ScrollView>
 </ContentPage>

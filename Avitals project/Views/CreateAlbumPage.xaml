@@ -19,17 +19,17 @@
 
 
                             <Image Source="{Binding Cover}" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" >
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePhoto}"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Take a photo" Command="{Binding TakePhoto}"/>
+                                    <MenuFlyoutSeparator/>
+                                    <MenuFlyoutItem Text="Choose from gallery" Command="{Binding ChooseFromGallery}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
                             </Image>
 
              
-                        <VerticalStackLayout IsVisible="{Binding IsOpen}" >
-                            <Button Command="{Binding ChangePhoto}" Text="Choose from gallery" WidthRequest="90" HeightRequest="40" BackgroundColor="{StaticResource MainColor}"></Button>
-                            <Button Command="{Binding TakePhoto}" Text="Take a picture " WidthRequest="90" HeightRequest="40"  BackgroundColor="{StaticResource MainColor}" ></Button>
-
-                        </VerticalStackLayout>
+                        
 
 
 

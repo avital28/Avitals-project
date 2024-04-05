@@ -27,8 +27,8 @@ namespace Avitals_project.ViewModels
         public ICommand CreateAlbum { get; set; }
         public ICommand Decline { get; set; }
         public ICommand ChangePhoto { get; set; }   
-        public ICommand TakePhoto { get; set; }
-
+        public ICommand TakePhoto { get; set; }       
+        public ICommand ChooseFromGallery { get; set; }
         #endregion
         #region Methods
         public async void CapturePhoto()
@@ -41,7 +41,7 @@ namespace Avitals_project.ViewModels
 
                  photo = await MediaPicker.Default.CapturePhotoAsync();
 
-                if (photo != null)
+                if (photo.FullPath != "")
                 {
 
                     string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
@@ -59,7 +59,30 @@ namespace Avitals_project.ViewModels
             
         }
         );
-            
+        }
+        private async void ChooseFromGallery1()
+        {
+            FileResult photo = new FileResult("a");
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+         {
+             if (MediaPicker.Default.IsCaptureSupported)
+             {
+
+                 photo = await MediaPicker.Default.PickPhotoAsync();
+                 if (photo != null)
+                 {
+                     string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                     using Stream sourceStream = await photo.OpenReadAsync();
+                     using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                     await sourceStream.CopyToAsync(localFileStream);
+                     Cover = localFilePath;
+                     IsOpen = false;
+                     currentfile = photo;
+                 }
+             }
+         });
         }
             #endregion
             public CreateAlbumPageViewModel(UserService service) 
@@ -104,10 +127,12 @@ namespace Avitals_project.ViewModels
                 catch (Exception e)
                 { }
             });
+            ChooseFromGallery = new Command(ChooseFromGallery1);
             ChangePhoto = new Command(async () =>
             {
                 IsOpen = true;
             });
+
         }   
     }
 
