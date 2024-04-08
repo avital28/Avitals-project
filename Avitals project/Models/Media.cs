@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Avitals_project.Models
 {
-    public class MediaItem
+    public class Media
+
     {
         public string Sources { get; set; }
         public bool IsImage { get; set; }
         public bool IsVideo { get; set; }
 
-        public MediaItem(string source)
+        public Media(string source)
         {
             Sources = source;
             MediaTypeCheck(source);

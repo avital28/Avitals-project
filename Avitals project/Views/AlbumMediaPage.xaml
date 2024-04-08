@@ -21,7 +21,7 @@
 
                 <BindableLayout.ItemTemplate>
 
-                    <DataTemplate x:DataType="models:MediaItem">
+                    <DataTemplate x:DataType="models:Media">
                         <StackLayout>
                             <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsImage}">
 
@@ -74,7 +74,7 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
             <VerticalStackLayout>
-                <Image Source="{Binding Cover}">
+                <Image Source="{Binding Cover}" WidthRequest="128" HeightRequest="128">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Tapped}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Image.GestureRecognizers>

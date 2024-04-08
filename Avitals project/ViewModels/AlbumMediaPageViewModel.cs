@@ -15,14 +15,14 @@ namespace Avitals_project.ViewModels
     {
         #region private fields
         private Album album;
-        private MediaItem current;
+        private Media current;
         private static FileResult currentfile = null;
         private string cover;
         private bool isopen;
         #endregion
         #region public properties
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
-        public MediaItem Current { get { return current; } set { if (current != value) { current = value; OnPropertyChange(); } } }
+        public Media Current { get { return current; } set { if (current != value) { current = value; OnPropertyChange(); } } }
         public ICommand AddMedia { get; set; }
         public ICommand TakePhoto { get; set; }
         public ICommand ChooseFromGallery { get; set; }
@@ -33,8 +33,8 @@ namespace Avitals_project.ViewModels
         public bool IsOpen { get => isopen; set { if (isopen != value) { isopen = value; OnPropertyChange(); } } }
 
 
-        public static ObservableCollection<MediaItem> Media { get; set; } = new ObservableCollection<MediaItem>();
-        public  ObservableCollection<MediaItem> Displayed { get; set; } = new ObservableCollection<MediaItem>();
+        public static ObservableCollection<Media> Media { get; set; } = new ObservableCollection<Media>();
+        public  ObservableCollection<Media> Displayed { get; set; } = new ObservableCollection<Media>();
 
         #endregion
         #region Methods
@@ -57,8 +57,9 @@ namespace Avitals_project.ViewModels
                         using FileStream localFileStream = File.OpenWrite(localFilePath);
 
                         await sourceStream.CopyToAsync(localFileStream);
-                        Current = new MediaItem(localFilePath);
-                        currentfile = photo;    
+                        Current = new Media(localFilePath);
+                        currentfile = photo;
+                        Cover = localFilePath;
                        
                     }
                 }
@@ -85,8 +86,9 @@ namespace Avitals_project.ViewModels
                         using FileStream localFileStream = File.OpenWrite(localFilePath);
 
                         await sourceStream.CopyToAsync(localFileStream);
-                        Current = new MediaItem(localFilePath);
+                        Current = new Media(localFilePath);
                         currentfile=video;
+                        Cover = localFilePath;
                     }
                 }
             });
@@ -108,7 +110,7 @@ namespace Avitals_project.ViewModels
                         using FileStream localFileStream = File.OpenWrite(localFilePath);
 
                         await sourceStream.CopyToAsync(localFileStream);
-                        Current = new MediaItem(localFilePath);
+                        Current = new Media(localFilePath);
 
                     }
                 }
@@ -159,7 +161,7 @@ namespace Avitals_project.ViewModels
             });
             if (Media != null)
             {
-                Displayed = new ObservableCollection<MediaItem>();
+                Displayed = new ObservableCollection<Media>();
                 foreach (var item in Media)
                 {
                     Displayed.Add(item);

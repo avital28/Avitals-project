@@ -48,7 +48,7 @@ namespace Avitals_project
             builder.Services.AddTransient<AlbumMediaPageViewModel>();
             builder.Services.AddTransient<ViewAlbumDetailsPage>();
             builder.Services.AddTransient<ViewAlbumDetailsPageViewModel>();
-            builder.Services.AddTransient<NewPage1>();
+            
 #endif
 
             return builder.Build();

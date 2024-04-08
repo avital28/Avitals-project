@@ -45,7 +45,7 @@ namespace Avitals_project.ViewModels
                         //TODO p : move to X screen
                         await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
                         isvisible = true;
-                        var useralbums= await service.GetAlbumsByUserAsync(user.Id);
+                        var useralbums= await service.GetAlbumsByUserAsync(user);
                         foreach(var album in useralbums)
                         {
                             DisplayAlbumsPageViewModel.currentusersalbums.Add(album);

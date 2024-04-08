@@ -1,69 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.CreateAlbumPage"
-             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-             xmlns:sf2="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-            xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
-            x:DataType="viewmodels:CreateAlbumPageViewModel"
-             Title="CreateAlbumPage">
+<ContentPage
+    x:Class="Avitals_project.Views.CreateAlbumPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:sf2="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="CreateAlbumPage"
+    x:DataType="viewmodels:CreateAlbumPageViewModel">
     <VerticalStackLayout>
-        <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="True" 
-                    AcceptCommand="{Binding CreateAlbum}" AcceptButtonText="Done"
-                    DeclineButtonText="Cancel" DeclineCommand="{Binding Decline}" ShowHeader="True" ShowFooter="True" x:DataType="viewmodels:CreateAlbumPageViewModel">
+        <sf:SfPopup
+            x:DataType="viewmodels:CreateAlbumPageViewModel"
+            AcceptButtonText="Done"
+            AcceptCommand="{Binding CreateAlbum}"
+            DeclineButtonText="Cancel"
+            DeclineCommand="{Binding Decline}"
+            HeightRequest="280"
+            IsOpen="True"
+            ShowFooter="True"
+            ShowHeader="True"
+            WidthRequest="350">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid
+                        HorizontalOptions="Center"
+                        RowDefinitions="auto,auto,auto,auto"
+                        VerticalOptions="Center">
 
 
-                            <Image Source="{Binding Cover}" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" >
-                            <FlyoutBase.ContextFlyout>
+                        <Image
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill"
+                            HeightRequest="140"
+                            Source="{Binding Cover}"
+                            WidthRequest="140">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                            <!--<FlyoutBase.ContextFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem Text="Take a photo" Command="{Binding TakePhoto}"/>
                                     <MenuFlyoutSeparator/>
                                     <MenuFlyoutItem Text="Choose from gallery" Command="{Binding ChooseFromGallery}"/>
                                 </MenuFlyout>
-                            </FlyoutBase.ContextFlyout>
-                            </Image>
+                            </FlyoutBase.ContextFlyout>-->
+                        </Image>
+                        <HorizontalStackLayout IsVisible="{Binding IsOpen}">
+                            <Button
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding ChangePhoto}"
+                                HeightRequest="40"
+                                Text="Choose from gallery"
+                                WidthRequest="90" />
+                            <Button
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding TakePhoto}"
+                                HeightRequest="40"
+                                Text="Take a picture "
+                                WidthRequest="90" />
+                        </HorizontalStackLayout>
 
-             
-                        
+
+
 
 
 
 
                         <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
                             <picker:SfPicker.Columns>
-                                <picker:PickerColumn 
+                                <picker:PickerColumn
                          ItemsSource="{Binding DropDownData}"  />
                             </picker:SfPicker.Columns>
                         </picker:SfPicker>-->
-                        <Entry Text="{Binding Title}" Grid.Row="4" Placeholder="Album title" TextColor="Black" ></Entry>
+                        <Entry
+                            Grid.Row="4"
+                            Placeholder="Album title"
+                            Text="{Binding Title}"
+                            TextColor="Black" />
                     </Grid>
 
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
-    <DataTemplate >
-        <VerticalStackLayout>
-           
-            <Line
-                BackgroundColor="Black"
-                X1="90"
-                X2="120"
-                Y1="0"
-                Y2="0" />
-            <Label Text=" Done" HorizontalOptions="End">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding CreateAlbum}" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                </Label.GestureRecognizers>
-            </Label>
+                <DataTemplate>
+                    <VerticalStackLayout>
 
-        </VerticalStackLayout>
-    </DataTemplate>
-</sf:SfPopup.FooterTemplate>
+                        <Line
+                            BackgroundColor="Black"
+                            X1="90"
+                            X2="120"
+                            Y1="0"
+                            Y2="0" />
+                        <Label HorizontalOptions="End" Text=" Done">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CreateAlbum}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </sf:SfPopup.FooterTemplate>
         </sf:SfPopup>
     </VerticalStackLayout>
 </ContentPage>

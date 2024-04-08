@@ -22,11 +22,17 @@ namespace Avitals_project.ViewModels
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         #endregion
         #region Methods
+        private static async void AddToCollection1(Album al)
+        {
+            
+        }
+        
+
         private async void ShowAlbum1(Album al)
         {
-            al.Media.Add(new MediaItem("cover2.jpg") );
-            al.Media.Add(new MediaItem("cover3.jpg") );
-            al.Media.Add(new MediaItem("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") );
+            al.Media.Add(new Media("cover2.jpg") );
+            al.Media.Add(new Media("cover3.jpg") );
+            al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") );
             foreach (var item in al.Media)
             {
                 AlbumMediaPageViewModel.Media.Add(item);
@@ -42,11 +48,8 @@ namespace Avitals_project.ViewModels
         #endregion
         public DisplayAlbumsPageViewModel(UserService service) 
         { 
-            Albums = new ObservableCollection<Album>();
-            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            Albums = new ObservableCollection<Album>(currentusersalbums);
+            
             ShowAlbum = new Command<Album>(ShowAlbum1);
           
 

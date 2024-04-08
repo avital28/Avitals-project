@@ -181,6 +181,7 @@ namespace Avitals_project.Services
                             {
                                 jsonContent = await response.Content.ReadAsStringAsync();
                                 Album a = JsonSerializer.Deserialize<Album>(jsonContent,_serializerOptions);
+                                al.Id = a.Id;   
                                 await Task.Delay(2000);
                                 return true;
                             }
@@ -198,11 +199,11 @@ namespace Avitals_project.Services
         }
 
         
-            public async Task<List<Album>> GetAlbumsByUserAsync(int id)
+            public async Task<List<Album>> GetAlbumsByUserAsync(User u)
             {
             try
             {
-                User user= new User { Id=id };
+                User user= new User { Id=u.Id, UserName=u.UserName, Passwrd=u.Passwrd  };
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync($"{URL}GetAlbumsByUser", content);
@@ -227,7 +228,7 @@ namespace Avitals_project.Services
             }
             return null;
         }
-        public async Task<bool> UploadMedia(Album al, MediaItem media, FileResult file)
+        public async Task<bool> UploadMedia(Album al, Media media, FileResult file)
         {
             try
             {

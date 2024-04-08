@@ -97,13 +97,14 @@ namespace Avitals_project.ViewModels
                     Location l = await Geolocation.GetLocationAsync();
                     longtitude = l.Longitude.ToString();
                     latitude = l.Latitude.ToString();
-                    Album a = new Album() {AlbumCover=Cover, AlbumTitle=Title, IsPublic=true, Latitude=latitude, Longitude=longtitude };
+                    Album a = new Album() { AlbumCover=Cover, AlbumTitle=Title, IsPublic=true, Latitude=latitude, Longitude=longtitude };
                     FileResult f = currentfile;
                     var response=await service.CreateAlbumAsync(a, f);
                     if (response==true)
                     {
                         DisplayAlbumsPageViewModel.currentusersalbums.Add(a);
                         await Shell.Current.DisplayAlert("Album created successfuly", "", "אישור");
+                        
 
                     }
                     else
