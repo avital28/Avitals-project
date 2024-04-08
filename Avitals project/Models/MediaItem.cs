@@ -8,14 +8,20 @@ namespace Avitals_project.Models
 {
     public class MediaItem
     {
-        public string Sources { get; set; }  
-        public bool IsImage { get; set; }   
+        public string Sources { get; set; }
+        public bool IsImage { get; set; }
         public bool IsVideo { get; set; }
 
-        public MediaItem()
+        public MediaItem(string source)
         {
-            string str = Sources.Substring(Sources.Length - 3);
-            if (str=="jpg" || str=="png"|| str=="svg")
+            Sources = source;
+            MediaTypeCheck(source);
+        }
+
+        public void MediaTypeCheck(string src)
+        {
+            string str = src.Substring(src.Length - 3);
+            if (str == "jpg" || str == "png" || str == "svg")
             {
                 IsImage = true;
                 IsVideo = false;
@@ -23,7 +29,7 @@ namespace Avitals_project.Models
             else
             {
                 IsImage = false;
-                IsVideo= true;  
+                IsVideo = true;
             }
         }
     }

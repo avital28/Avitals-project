@@ -24,15 +24,20 @@ namespace Avitals_project.ViewModels
         #region Methods
         private async void ShowAlbum1(Album al)
         {
-            al.Media.Add(new MediaItem() { Sources= "cover2.jpg" });
-            al.Media.Add(new MediaItem() { Sources = "cover3.jpg" });
-            al.Media.Add(new MediaItem() { Sources = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" });
+            al.Media.Add(new MediaItem("cover2.jpg") );
+            al.Media.Add(new MediaItem("cover3.jpg") );
+            al.Media.Add(new MediaItem("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") );
+            foreach (var item in al.Media)
+            {
+                AlbumMediaPageViewModel.Media.Add(item);
+            }
             //al.Media.Add("cover2.jpg");
             //al.Media.Add("cover3.jpg");
             //al.Media.Add("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
             nav.Clear();
             nav.Add("album", al);
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);
+            //await Shell.Current.GoToAsync("Upload");
         }
         #endregion
         public DisplayAlbumsPageViewModel(UserService service) 

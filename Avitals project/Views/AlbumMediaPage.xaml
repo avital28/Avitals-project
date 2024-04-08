@@ -7,62 +7,130 @@
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="AlbumMediaPage"
     x:DataType="viewmodels:AlbumMediaPageViewModel"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:models="clr-namespace:Avitals_project.Models">
     <ScrollView>
-        <FlexLayout
+        <VerticalStackLayout>
+            <FlexLayout
             AlignContent="Start"
             AlignItems="Start"
             AlignSelf="Start"
-            BindableLayout.ItemsSource="{Binding Album.Media}"
+            BindableLayout.ItemsSource="{Binding Displayed}"
             Direction="Row"
             Wrap="Wrap" Margin="2,2,2,2" HorizontalOptions="Center">
 
-            <BindableLayout.ItemTemplate>
+                <BindableLayout.ItemTemplate>
 
-                <DataTemplate x:DataType="models:MediaItem">
-                    <StackLayout>
-                        <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsImage}">
+                    <DataTemplate x:DataType="models:MediaItem">
+                        <StackLayout>
+                            <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsImage}">
 
-                            <Image
+                                <Image
                                 Aspect="AspectFill"
                                 HeightRequest="128"
                                 IsVisible="{Binding IsImage }"
                                 Source="{Binding Sources}"
                                 WidthRequest="128">
-                                <Image.Shadow>
-                                    <Shadow
+                                    <Image.Shadow>
+                                        <Shadow
                                         Brush="Black"
                                         Opacity="0.8"
                                         Radius="40"
                                         Offset="20,20" />
-                                </Image.Shadow>
+                                    </Image.Shadow>
 
-                            </Image>
-                        </Border>
-                        <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsVideo}">
+                                </Image>
+                            </Border>
+                            <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsVideo}">
 
-                            <toolkit:MediaElement
+                                <toolkit:MediaElement
                                 Aspect="AspectFill"
                                 HeightRequest="128"
                                 IsVisible="{Binding IsVideo}"
                                 Source="{Binding Sources}"
                                 WidthRequest="128">
-                                <toolkit:MediaElement.Shadow>
-                                    <Shadow
+                                    <toolkit:MediaElement.Shadow>
+                                        <Shadow
                                         Brush="Black"
                                         Opacity="0.8"
                                         Radius="40"
                                         Offset="20,20" />
-                                </toolkit:MediaElement.Shadow>
+                                    </toolkit:MediaElement.Shadow>
 
-                            </toolkit:MediaElement>
-                        </Border>
-                    </StackLayout>
-                </DataTemplate>
+                                </toolkit:MediaElement>
+                            </Border>
 
-            </BindableLayout.ItemTemplate>
+                            <!--<Button Text="Upload" BackgroundColor="Aqua" >
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Take a photo" Command="{Binding TakePhoto}"/>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem Text="Choose from gallery" Command="{Binding ChooseFromGallery}"/>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Button>-->
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            <VerticalStackLayout>
+                <Image Source="{Binding Cover}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Tapped}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="{Binding IsOpen}" 
+                    ShowHeader="True" ShowFooter="True" >
+                    <sf:SfPopup.ContentTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center">
 
-        </FlexLayout>
+
+                                <Image Source="{Binding Cover}" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" >
+                                    
+                                </Image>
+                                <VerticalStackLayout IsVisible="{Binding IsOpen}" >
+                                    <Button Command="{Binding ChangePhoto}" Text="Choose from gallery" WidthRequest="90" HeightRequest="40" BackgroundColor="{StaticResource MainColor}"></Button>
+                                    <Button Command="{Binding TakePhoto}" Text="Take a picture " WidthRequest="90" HeightRequest="40"  BackgroundColor="{StaticResource MainColor}" ></Button>
+                                </VerticalStackLayout>
+
+
+
+
+
+
+                                <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+                            <picker:SfPicker.Columns>
+                                <picker:PickerColumn 
+                         ItemsSource="{Binding DropDownData}"  />
+                            </picker:SfPicker.Columns>
+                        </picker:SfPicker>-->
+                            </Grid>
+
+                        </DataTemplate>
+                    </sf:SfPopup.ContentTemplate>
+                    <sf:SfPopup.FooterTemplate>
+                        <DataTemplate >
+                            <VerticalStackLayout>
+
+                                <Line
+                BackgroundColor="Black"
+                X1="90"
+                X2="120"
+                Y1="0"
+                Y2="0" />
+                                <Label Text=" Done" HorizontalOptions="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AddMedia}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </sf:SfPopup.FooterTemplate>
+                </sf:SfPopup>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 
 

@@ -227,6 +227,53 @@ namespace Avitals_project.Services
             }
             return null;
         }
+        public async Task<bool> UploadMedia(Album al, MediaItem media, FileResult file)
+        {
+            try
+            {
+                byte[] bytes;
+
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    var stream = await file.OpenReadAsync();
+                    stream.CopyTo(ms);
+                    bytes = ms.ToArray();
+
+                    var multipartFormDataContent = new MultipartFormDataContent();
+
+                    var imagecontent = new ByteArrayContent(bytes);
+                    multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
+
+                    Album album = al;
+                    var jsonContent = JsonSerializer.Serialize(album);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    var jsonContent2 = JsonSerializer.Serialize(media);
+                    var content2 = new StringContent(jsonContent2, Encoding.UTF8, "application/json");
+                    multipartFormDataContent.Add(content, "album");
+                    multipartFormDataContent.Add(content2, "photo");
+                    var response = await httpClient.PostAsync($"{URL}UploadMedia", multipartFormDataContent);
+                    switch (response.StatusCode)
+                    {
+                        case (HttpStatusCode.OK):
+                            {
+                                jsonContent = await response.Content.ReadAsStringAsync();
+                                Album a = JsonSerializer.Deserialize<Album>(jsonContent, _serializerOptions);
+                                await Task.Delay(2000);
+                                return true;
+                            }
+                        case (HttpStatusCode.Unauthorized):
+                            {
+                                return false;
+                            }
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
+
+
+        }
         //public async Task<User> UpdateAlbumCoverAsync(User User)
         //{
         //    try
