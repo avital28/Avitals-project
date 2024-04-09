@@ -16,20 +16,19 @@
  AlignSelf="Start"
  BindableLayout.ItemsSource="{Binding Albums}"
  Direction="Row"
- Wrap="Wrap" Margin="2,2,2,2" HorizontalOptions="Center">
+ Wrap="Wrap" Margin="10,30,10,0" HorizontalOptions="Center">
 
                 <BindableLayout.ItemTemplate>
 
                     <DataTemplate x:DataType="models:Album">
-                        <StackLayout>
-                            <Border HeightRequest="151" WidthRequest="151">
-
-                                <Image
+                        <StackLayout Padding="0,25,0,0"
+                            >
+                            <Image
                      Aspect="AspectFill"
                      HeightRequest="150"
                      Source="{Binding AlbumCover}"
                      WidthRequest="150">
-                                    <Image.Shadow>
+                                <Image.Shadow>
                                         <Shadow
                              Brush="Black"
                              Opacity="0.8"
@@ -40,7 +39,7 @@
                                         <TapGestureRecognizer x:DataType='viewmodels:DisplayAlbumsPageViewModel' NumberOfTapsRequired="1" Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                     </Image.GestureRecognizers>
                                 </Image>
-                            </Border>
+                       
                             <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
                         </StackLayout>
                     </DataTemplate>

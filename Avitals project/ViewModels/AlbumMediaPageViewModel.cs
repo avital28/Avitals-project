@@ -126,25 +126,12 @@ namespace Avitals_project.ViewModels
                 try
                 {
 
-                    var user = await service.UploadMedia(Album, Current, currentfile);
-
-                    //if (user is UserDto)
-                    //{
-                    //    ErrorMessage = ((UserDto)user).Message;
-                    //}
-                    //else
-                    //{
-                    //    ((AppShell)AppShell.Current).user = user;
-                    //    await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
-                    //    //TODO p : move to X screen
-                    //    await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
-                    //    isvisible = true;
-                    //    var useralbums = await service.GetAlbumsByUserAsync(user.Id);
-                    //    foreach (var album in useralbums)
-                    //    {
-                    //        DisplayAlbumsPageViewModel.currentusersalbums.Add(album);
-                    //    }
-                    //    await Shell.Current.GoToAsync("UserDetailsPage");
+                    var response = await service.UploadMedia(Album, Current, currentfile);
+                    if (response!=null)
+                    {
+                        Displayed.Add(new Media(response));
+                    }
+                    
 
                     
                 }

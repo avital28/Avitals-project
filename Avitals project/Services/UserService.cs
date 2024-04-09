@@ -228,7 +228,7 @@ namespace Avitals_project.Services
             }
             return null;
         }
-        public async Task<bool> UploadMedia(Album al, Media media, FileResult file)
+        public async Task<string> UploadMedia(Album al, Media media, FileResult file)
         {
             try
             {
@@ -261,17 +261,21 @@ namespace Avitals_project.Services
                                 jsonContent = await response.Content.ReadAsStringAsync();
                                 Album a = JsonSerializer.Deserialize<Album>(jsonContent, _serializerOptions);
                                 await Task.Delay(2000);
-                                return true;
+                                a.Media.Last().Sources = $"{IMAGE_URL}{a.Media.Last().Sources}";
+                                return a.Media.Last().Sources;
+
+
                             }
                         case (HttpStatusCode.Unauthorized):
                             {
-                                return false;
+                                return null;
                             }
                     }
+                
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            return false;
+            return null;
 
 
         }
