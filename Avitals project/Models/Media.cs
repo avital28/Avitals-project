@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Avitals_project.Models
@@ -9,7 +10,9 @@ namespace Avitals_project.Models
     public class Media
 
     {
+       
         public string Sources { get; set; }
+        
         public bool IsImage { get; set; }
         public bool IsVideo { get; set; }
 
@@ -33,5 +36,6 @@ namespace Avitals_project.Models
                 IsVideo = true;
             }
         }
+        public Media() { }
     }
 }

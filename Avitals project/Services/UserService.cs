@@ -276,8 +276,36 @@ namespace Avitals_project.Services
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return null;
+        }
 
-
+        public async Task<List<Media>> GetMediaByAlbumAsync(Album a)
+        {
+            try
+            {
+                Album album = new Album { Id=a.Id};
+                var jsonContent = JsonSerializer.Serialize(album);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}GetAlbumsByUser", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Media> m = JsonSerializer.Deserialize<List<Media>>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return m;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
         //public async Task<User> UpdateAlbumCoverAsync(User User)
         //{

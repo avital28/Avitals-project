@@ -13,18 +13,27 @@ namespace Avitals_project.ViewModels
     public class DisplayAlbumsPageViewModel:ViewModel
     {
         #region private fields
-        public static List<Album> currentusersalbums= new List<Album>();
+        public static List<Album> currentusersalbums  = new List<Album>();
         #endregion
         #region Properties
         public ObservableCollection<Album> Albums { get; set; }
         public string AlbumCover { get; set; }
         public ICommand ShowAlbum { get; set; }
+        public ICommand AddAlbum { get; set; }
+
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         #endregion
         #region Methods
-        private static async void AddToCollection1(Album al)
+        public async void AddToCollection()
         {
-            
+            Albums.Clear(); 
+            if (currentusersalbums != null)
+            {
+                foreach (var item in currentusersalbums)
+                {
+                    Albums.Add(item);
+                }
+            }
         }
         
 
@@ -51,7 +60,11 @@ namespace Avitals_project.ViewModels
             Albums = new ObservableCollection<Album>(currentusersalbums);
             
             ShowAlbum = new Command<Album>(ShowAlbum1);
-          
+            AddAlbum = new Command(async =>
+            {
+               
+
+            });
 
         }
     }

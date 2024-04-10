@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:Avitals_project.Models"
-             x:Class="Avitals_project.Views.DisplayAlbumsPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             x:DataType="viewmodels:DisplayAlbumsPageViewModel"
-             Title="DisplayAlbumPage">
-    
-        <VerticalStackLayout>
-        <Label Text="My albums" FontAttributes="Bold" FontSize="Large"   TextColor="Black"/>
+<ContentPage
+    x:Class="Avitals_project.Views.DisplayAlbumsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Avitals_project.Models"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="DisplayAlbumPage"
+    x:DataType="viewmodels:DisplayAlbumsPageViewModel">
+
+    <VerticalStackLayout>
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="My albums"
+            TextColor="Black" />
         <VerticalStackLayout>
             <FlexLayout
- AlignContent="Start"
- AlignItems="Start"
- AlignSelf="Start"
- BindableLayout.ItemsSource="{Binding Albums}"
- Direction="Row"
- Wrap="Wrap" Margin="10,30,10,0" HorizontalOptions="Center">
+                Margin="10,30,10,0"
+                AlignContent="Start"
+                AlignItems="Start"
+                AlignSelf="Start"
+                BindableLayout.ItemsSource="{Binding Albums}"
+                Direction="Row"
+                HorizontalOptions="Center"
+                Wrap="Wrap">
 
                 <BindableLayout.ItemTemplate>
 
                     <DataTemplate x:DataType="models:Album">
-                        <StackLayout Padding="0,25,0,0"
-                            >
+                        <StackLayout Padding="15,10,15,0">
                             <Image
-                     Aspect="AspectFill"
-                     HeightRequest="150"
-                     Source="{Binding AlbumCover}"
-                     WidthRequest="150">
+                                Aspect="AspectFill"
+                                HeightRequest="150"
+                                Source="{Binding AlbumCover}"
+                                WidthRequest="150">
                                 <Image.Shadow>
-                                        <Shadow
-                             Brush="Black"
-                             Opacity="0.8"
-                             Radius="40"
-                             Offset="20,20" />
-                                    </Image.Shadow>
-                                    <Image.GestureRecognizers >
-                                        <TapGestureRecognizer x:DataType='viewmodels:DisplayAlbumsPageViewModel' NumberOfTapsRequired="1" Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
-                                </Image>
-                       
-                            <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
+                                    <Shadow
+                                        Brush="Black"
+                                        Opacity="0.8"
+                                        Radius="40"
+                                        Offset="20,20" />
+                                </Image.Shadow>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        x:DataType="viewmodels:DisplayAlbumsPageViewModel"
+                                        Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Label
+                                Padding="0,10,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Subtitle"
+                                Text="{Binding AlbumTitle}" />
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

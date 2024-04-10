@@ -25,6 +25,7 @@ namespace Avitals_project.ViewModels
         public Media Current { get { return current; } set { if (current != value) { current = value; OnPropertyChange(); } } }
         public ICommand AddMedia { get; set; }
         public ICommand TakePhoto { get; set; }
+        public ICommand TakeVideo { get; set; }
         public ICommand ChooseFromGallery { get; set; }
         public ICommand LoadMedia { get; set; }
         public ICommand ChangePhoto { get; set; }
@@ -60,6 +61,7 @@ namespace Avitals_project.ViewModels
                         Current = new Media(localFilePath);
                         currentfile = photo;
                         Cover = localFilePath;
+                        IsOpen = false;
                        
                     }
                 }
@@ -89,6 +91,8 @@ namespace Avitals_project.ViewModels
                         Current = new Media(localFilePath);
                         currentfile=video;
                         Cover = localFilePath;
+                        IsOpen = false;
+
                     }
                 }
             });
@@ -111,6 +115,7 @@ namespace Avitals_project.ViewModels
 
                         await sourceStream.CopyToAsync(localFileStream);
                         Current = new Media(localFilePath);
+                        IsOpen = false;
 
                     }
                 }
@@ -120,7 +125,7 @@ namespace Avitals_project.ViewModels
         public AlbumMediaPageViewModel(UserService service)
         {
             IsOpen = false;
-            Cover = "plus2.png";
+            Cover = "photoalbumicon.png";
             AddMedia = new Command(async () =>
             {
                 try
@@ -156,6 +161,7 @@ namespace Avitals_project.ViewModels
             }
            
             TakePhoto = new Command(CapturePhoto);
+            TakeVideo= new Command(CaptureVideo);   
             ChooseFromGallery = new Command(ChooseFromGallery1);
             ChangePhoto = new Command(async () =>
             {

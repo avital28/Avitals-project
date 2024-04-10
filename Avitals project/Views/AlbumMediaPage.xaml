@@ -3,58 +3,66 @@
     x:Class="Avitals_project.Views.AlbumMediaPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Avitals_project.Models"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="AlbumMediaPage"
-    x:DataType="viewmodels:AlbumMediaPageViewModel"
-    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-    xmlns:models="clr-namespace:Avitals_project.Models">
+    x:DataType="viewmodels:AlbumMediaPageViewModel">
     <ScrollView>
         <VerticalStackLayout>
             <FlexLayout
-            AlignContent="Start"
-            AlignItems="Start"
-            AlignSelf="Start"
-            BindableLayout.ItemsSource="{Binding Displayed}"
-            Direction="Row"
-            Wrap="Wrap" Margin="2,2,2,2" HorizontalOptions="Center">
+                Margin="2,2,2,2"
+                AlignContent="Start"
+                AlignItems="Start"
+                AlignSelf="Start"
+                BindableLayout.ItemsSource="{Binding Displayed}"
+                Direction="Row"
+                HorizontalOptions="Center"
+                Wrap="Wrap">
 
                 <BindableLayout.ItemTemplate>
 
                     <DataTemplate x:DataType="models:Media">
                         <StackLayout>
-                            <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsImage}">
+                            <Border
+                                HeightRequest="129"
+                                IsVisible="{Binding IsImage}"
+                                WidthRequest="129">
 
                                 <Image
-                                Aspect="AspectFill"
-                                HeightRequest="128"
-                                IsVisible="{Binding IsImage }"
-                                Source="{Binding Sources}"
-                                WidthRequest="128">
+                                    Aspect="AspectFill"
+                                    HeightRequest="128"
+                                    IsVisible="{Binding IsImage}"
+                                    Source="{Binding Sources}"
+                                    WidthRequest="128">
                                     <Image.Shadow>
                                         <Shadow
-                                        Brush="Black"
-                                        Opacity="0.8"
-                                        Radius="40"
-                                        Offset="20,20" />
+                                            Brush="Black"
+                                            Opacity="0.8"
+                                            Radius="40"
+                                            Offset="20,20" />
                                     </Image.Shadow>
 
                                 </Image>
                             </Border>
-                            <Border HeightRequest="129" WidthRequest="129" IsVisible="{Binding IsVideo}">
+                            <Border
+                                HeightRequest="129"
+                                IsVisible="{Binding IsVideo}"
+                                WidthRequest="129">
 
                                 <toolkit:MediaElement
-                                Aspect="AspectFill"
-                                HeightRequest="128"
-                                IsVisible="{Binding IsVideo}"
-                                Source="{Binding Sources}"
-                                WidthRequest="128">
+                                    Aspect="AspectFill"
+                                    HeightRequest="128"
+                                    IsVisible="{Binding IsVideo}"
+                                    Source="{Binding Sources}"
+                                    WidthRequest="128">
                                     <toolkit:MediaElement.Shadow>
                                         <Shadow
-                                        Brush="Black"
-                                        Opacity="0.8"
-                                        Radius="40"
-                                        Offset="20,20" />
+                                            Brush="Black"
+                                            Opacity="0.8"
+                                            Radius="40"
+                                            Offset="20,20" />
                                     </toolkit:MediaElement.Shadow>
 
                                 </toolkit:MediaElement>
@@ -74,25 +82,56 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
             <VerticalStackLayout>
-                <Image Source="plus2.png"  WidthRequest="128" HeightRequest="128" HorizontalOptions="StartAndExpand">
+                <Image
+                    HeightRequest="128"
+                    HorizontalOptions="StartAndExpand"
+                    Source="plus2.png"
+                    WidthRequest="128">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Tapped}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding Tapped}" NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-                <sf:SfPopup HeightRequest="280" WidthRequest="350" IsOpen="{Binding IsOpen}" 
-                    ShowHeader="True" ShowFooter="True" >
+                <sf:SfPopup
+                    HeightRequest="280"
+                    IsOpen="{Binding IsOpen}"
+                    ShowFooter="True"
+                    ShowHeader="True"
+                    WidthRequest="350">
                     <sf:SfPopup.ContentTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid
+                                HorizontalOptions="Center"
+                                RowDefinitions="auto,auto,auto,auto"
+                                VerticalOptions="Center">
 
 
-                                <Image Source="{Binding Cover}" Grid.RowSpan="3" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" >
-                                    
-                                </Image>
-                                <VerticalStackLayout IsVisible="{Binding IsOpen}" >
-                                    <Button Command="{Binding ChangePhoto}" Text="Choose from gallery" WidthRequest="90" HeightRequest="40" BackgroundColor="{StaticResource MainColor}"></Button>
-                                    <Button Command="{Binding TakePhoto}" Text="Take a picture " WidthRequest="90" HeightRequest="40"  BackgroundColor="{StaticResource MainColor}" ></Button>
-                                </VerticalStackLayout>
+                                <Image
+                                    Grid.RowSpan="3"
+                                    Aspect="AspectFill"
+                                    HeightRequest="140"
+                                    Source="{Binding Cover}"
+                                    WidthRequest="140" />
+                                <HorizontalStackLayout IsVisible="{Binding IsOpen}">
+                                    <Button
+                                        BackgroundColor="{StaticResource MainColor}"
+                                        Command="{Binding ChangePhoto}"
+                                        HeightRequest="40"
+                                        Text="Choose from gallery"
+                                        WidthRequest="70" />
+                                    <Button
+                                        BackgroundColor="{StaticResource MainColor}"
+                                        Command="{Binding TakePhoto}"
+                                        HeightRequest="40"
+                                        Text="picture "
+                                        WidthRequest="70" />
+                                    <Button
+                                        BackgroundColor="{StaticResource MainColor}"
+                                        Command="{Binding TakeVideo}"
+                                        HeightRequest="40"
+                                        Text="video "
+                                        WidthRequest="70" />
+
+                                </HorizontalStackLayout>
 
 
 
@@ -101,7 +140,7 @@
 
                                 <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
                             <picker:SfPicker.Columns>
-                                <picker:PickerColumn 
+                                <picker:PickerColumn
                          ItemsSource="{Binding DropDownData}"  />
                             </picker:SfPicker.Columns>
                         </picker:SfPicker>-->
@@ -110,18 +149,18 @@
                         </DataTemplate>
                     </sf:SfPopup.ContentTemplate>
                     <sf:SfPopup.FooterTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <VerticalStackLayout>
 
                                 <Line
-                BackgroundColor="Black"
-                X1="90"
-                X2="120"
-                Y1="0"
-                Y2="0" />
-                                <Label Text=" Done" HorizontalOptions="End">
+                                    BackgroundColor="Black"
+                                    X1="90"
+                                    X2="120"
+                                    Y1="0"
+                                    Y2="0" />
+                                <Label HorizontalOptions="End" Text=" Done">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding AddMedia}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                        <TapGestureRecognizer Command="{Binding AddMedia}" NumberOfTapsRequired="1" />
                                     </Label.GestureRecognizers>
                                 </Label>
 

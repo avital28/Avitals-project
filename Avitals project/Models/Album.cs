@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Avitals_project.Models
@@ -9,6 +10,7 @@ namespace Avitals_project.Models
     public class Album
     {
         public string AlbumCover { get; set; }
+        [JsonPropertyName("Media")]
         public List<Media> Media { get; set; }
         public bool IsPublic { get; set; }  
         public string Longitude { get; set; }

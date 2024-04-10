@@ -62,13 +62,13 @@ namespace Avitals_project.ViewModels
             IsDoneLoading = false;
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
-            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
+            //Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
 
             LoadAlbums = new Command(async () =>  
             {
@@ -78,13 +78,17 @@ namespace Avitals_project.ViewModels
                     longtitude = l.Longitude.ToString();
                     latitude = l.Latitude.ToString();
 
-                    Albums = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
+                    ObservableCollection<Album> a = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
 
                     IsDoneLoading = true;
                     HeaderMessage = doneloadingmessage;
-                    if (Albums != null)
+                    if (a != null)
                     {
                         IsFound = true;
+                        foreach(var item in a)
+                        {
+                            Albums.Add(item);
+                        }
                         await Shell.Current.DisplayAlert("Albums were found", "", "אישור");
 
                     }

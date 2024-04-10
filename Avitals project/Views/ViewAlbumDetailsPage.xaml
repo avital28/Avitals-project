@@ -39,7 +39,7 @@
                     HeightRequest="700">
 
 
-
+                <ScrollView>
                     <CarouselView
                             Margin="-10,20,0,0"
                             ItemsSource="{Binding Album.Memebers}"
@@ -70,10 +70,10 @@
                         </CarouselView.ItemTemplate>
 
                     </CarouselView>
+                </ScrollView>
 
 
-
-                </Frame>
+            </Frame>
                 <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="270" HeightRequest="140" Margin="0,-800,0,0" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
 
             </VerticalStackLayout>
