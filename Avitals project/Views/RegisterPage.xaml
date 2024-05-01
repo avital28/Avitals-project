@@ -16,7 +16,7 @@
             FontSize="Title"
             Text="Register"
             TextColor="{StaticResource MainColor}" />
-       <dataForm:SfDataForm LayoutType="TextInputLayout"  
+        <dataForm:SfDataForm LayoutType="TextInputLayout"></dataForm:SfDataForm>  
         <sf:SfTextInputLayout Hint="Username"  ContainerBackground="White"  ContainerType="Outlined" >
             
             <Entry Text="{Binding Username}" />

@@ -11,12 +11,12 @@
     Title="ViewAlbumDetailsPage"
     x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
     BackgroundColor="{StaticResource MainColor}">
-  
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
 
-            <VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto">
 
-                <!--<VerticalStackLayout.Background>
+        <VerticalStackLayout>
+
+            <!--<VerticalStackLayout.Background>
             <LinearGradientBrush EndPoint="1,0">
                 <GradientStop Color="{StaticResource MainColor}"
        Offset="0.1" />
@@ -24,28 +24,75 @@
        Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>-->
-                <Label
-                    Grid.Row="0"
-                    FontSize="Title"
-                    Text="{Binding Album.AlbumTitle}"
-                    TextColor="White" />
+            <Label
+                Grid.Row="0"
+                FontSize="Title"
+                Text="{Binding Album.AlbumTitle}"
+                TextColor="White" />
 
 
-                <Frame
-                    Margin="0,110,0,0"
-                    Padding="0,150,0,0"
-                    BackgroundColor="White"
-                    CornerRadius="-45"
-                    HeightRequest="700">
+            <Frame
+                Margin="0,110,0,0"
+                Padding="0,150,0,0"
+                BackgroundColor="White"
+                CornerRadius="-45"
+                HeightRequest="700">
+                <VerticalStackLayout>
+                    <Label
+                        Margin="5,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        HorizontalOptions="Start"
+                        Text="Members"
+                        TextColor="{StaticResource MainColor}" />
+                    <CarouselView
+                        Margin="-10,20,0,0"
+                        ItemsSource="{Binding Album.Memebers}"
+                        ItemsUpdatingScrollMode="KeepLastItemInView"
+                        Loop="False"
+                        PeekAreaInsets="130">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Horizontal"
+                                SnapPointsAlignment="End"
+                                SnapPointsType="MandatorySingle" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
 
+                            <DataTemplate x:DataType="models:User">
+                                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                                    <toolkit:AvatarView
+                                        CornerRadius="50"
+                                        HeightRequest="100"
+                                        ImageSource="{Binding ProfilePicture}"
+                                        WidthRequest="100" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Firstname}"
+                                        VerticalOptions="Center" />
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
 
-                
+                    </CarouselView>
+                </VerticalStackLayout>
+
 
 
             </Frame>
-                <Image   Source="{Binding Album.AlbumCover }" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" WidthRequest="270" HeightRequest="140" Margin="0,-800,0,0" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Image>
 
-            </VerticalStackLayout>
 
-        </Grid>
+        </VerticalStackLayout>
+        <Image
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Margin="0,-800,0,0"
+            Aspect="AspectFill"
+            HeightRequest="140"
+            HorizontalOptions="Center"
+            Source="{Binding Album.AlbumCover}"
+            VerticalOptions="StartAndExpand"
+            WidthRequest="270" />
+    </Grid>
 </ContentPage>

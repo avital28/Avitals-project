@@ -24,10 +24,10 @@ Hint="Username" ContainerBackground="White"  ContainerType="Outlined"
         </sf:SfTextInputLayout>
         <Label Text="Don't have an account yet? Sign up!" FontSize="Small" TextColor="{StaticResource MainColor}">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer x:DataType="viewmodels:WelcomePageViewModel" Command="{Binding ToRegister}"></TapGestureRecognizer>
+                <TapGestureRecognizer x:DataType="viewmodels:WelcomePageViewModel" Command="{Binding ToLogin}"></TapGestureRecognizer>
             </Label.GestureRecognizers>
         </Label>
-        <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center" Margin="0,20,0,0" FontAttributes="Bold"
+        <Button Text="Log in" x:DataType="viewmodels:LoginPageViewModel" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center" Margin="0,20,0,0" FontAttributes="Bold"
           CornerRadius="38" HeightRequest="50" WidthRequest="125" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
 
     </VerticalStackLayout>

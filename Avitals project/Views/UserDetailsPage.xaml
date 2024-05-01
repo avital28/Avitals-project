@@ -27,6 +27,7 @@
                         <TapGestureRecognizer x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding UpdateProfilePicture }"></TapGestureRecognizer>
                     </sf:SfBadgeView.GestureRecognizers>
                 </sf:SfBadgeView>
+              
                 <Label Text="Edit profile" TextColor="#FFFFFF" FontSize="Header"></Label>
             </HorizontalStackLayout>
         </Grid>

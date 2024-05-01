@@ -109,7 +109,7 @@
                                     Grid.RowSpan="3"
                                     Aspect="AspectFill"
                                     HeightRequest="140"
-                                    Source="{Binding Cover}"
+                                    Source="albumicon.jpg"
                                     WidthRequest="140" />
                                 <HorizontalStackLayout IsVisible="{Binding IsOpen}">
                                     <Button
