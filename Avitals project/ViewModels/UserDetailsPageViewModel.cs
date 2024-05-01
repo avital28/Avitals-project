@@ -20,6 +20,7 @@ namespace Avitals_project.ViewModels
         private string lastname;
         private string username;
         private string password;
+        private string profilepicture;
         private string errormessageupdate;
         #region error messages
         private bool showfnameerror;
@@ -40,6 +41,9 @@ namespace Avitals_project.ViewModels
         public string Username { get { return username; } set { if (username != value) { username = value; OnPropertyChange(); updateduser.UserName = username;  } } }
 
         public string Password { get { return password; } set { if (password != value) { password = value; OnPropertyChange(); updateduser.Passwrd = password; } } }
+        
+        public string ProfilePicture { get { return profilepicture; } set { if (profilepicture != value) { profilepicture = value; OnPropertyChange(); updateduser.ProfilePicture = profilepicture; } } }
+
 
         public string ErrorMessage { get { return errormessage; } }
         public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
@@ -51,6 +55,7 @@ namespace Avitals_project.ViewModels
         public bool ShowLNameError { get { return showlnameerror; } set { if (showlnameerror != value) { showlnameerror = value; OnPropertyChange(); } } }
 
         public ICommand UpdateUserCommand { get; set; }
+        public ICommand UpdateProfilePicture { get; set; }
         #endregion
 
         #region Validation methods
@@ -87,7 +92,20 @@ namespace Avitals_project.ViewModels
                 Username=currentuser.UserName;
                 Password = currentuser.Passwrd;
             }
+            ProfilePicture = "emptyprofilepicture.jpg";
+            UpdateProfilePicture = new Command(async () =>
+            {
+                try
+                {
 
+                }
+
+                catch
+                {
+
+                }
+
+            });
             UpdateUserCommand = new Command(async ()  =>
             {
                 try

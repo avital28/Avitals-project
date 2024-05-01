@@ -8,6 +8,7 @@
     xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:sf2="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    xmlns:apes="http://apes.ge"
     Title="CreateAlbumPage"
     x:DataType="viewmodels:CreateAlbumPageViewModel">
     <VerticalStackLayout>

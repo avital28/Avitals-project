@@ -13,15 +13,16 @@ namespace Avitals_project.ViewModels
     public class DisplayAlbumsPageViewModel:ViewModel
     {
         #region private fields
-        public static List<Album> currentusersalbums  = new List<Album>();
+        private int mediacount;
         #endregion
         #region Properties
+        public static List<Album> currentusersalbums = new List<Album>();
         public ObservableCollection<Album> Albums { get; set; }
         public string AlbumCover { get; set; }
         public ICommand ShowAlbum { get; set; }
         public ICommand AddAlbum { get; set; }
-
         public Dictionary<string, object> nav = new Dictionary<string, object>();
+        public int MediaCount { get { return mediacount; }  }
         #endregion
         #region Methods
         public async void AddToCollection()

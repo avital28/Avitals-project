@@ -6,6 +6,7 @@ using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Popup;
 using CommunityToolkit.Maui;
+
 namespace Avitals_project
 {
     public static class MauiProgram
@@ -19,11 +20,12 @@ namespace Avitals_project
                 .UseMauiCommunityToolkitMediaElement()
                 .UseSkiaSharp()
                 .ConfigureSyncfusionCore()
+                
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("interfont.ttf", "interfont");
+                    fonts.AddFont("Kendofonticons.ttf", "FontIcons");
                 });
 
 #if DEBUG

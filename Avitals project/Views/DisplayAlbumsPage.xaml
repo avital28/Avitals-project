@@ -54,7 +54,12 @@
                                 Padding="0,10,0,0"
                                 FontAttributes="Bold"
                                 FontSize="Subtitle"
-                                Text="{Binding AlbumTitle}" />
+                                Text="{Binding AlbumTitle}" TextColor="Black" />
+                            <Label
+     Padding="0,10,0,0"
+     FontAttributes="Bold"
+     FontSize="Subtitle"
+     Text="{Binding AlbumTitle}" TextColor="Black" />
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

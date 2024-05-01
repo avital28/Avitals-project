@@ -5,20 +5,28 @@
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:icons="clr-namespace:Avitals_project.Enums"
              x:DataType="viewmodels:UserDetailsPageViewModel"
              BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
         <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,30">
             <HorizontalStackLayout Grid.Row="0">
-                <Border HeightRequest="60" 
-                    WidthRequest="60"
-                    StrokeShape="RoundRectangle 30,30,30,30"
-                    HorizontalOptions="Center"
-                    
-                    StrokeThickness="8"
-                    Margin="0,0,0,0">
-                    <Image Aspect="AspectFill" Source="emptyprofilepicture.jpg" WidthRequest="100" HeightRequest="100" ></Image>
-                </Border>
+                <sf:SfBadgeView x:DataType="icons:Icons" BadgeText="{x:Static icons:Icons.Pencil }" WidthRequest="120" HeightRequest="80"  >
+                    <sf:SfBadgeView.Content>
+                        <Border WidthRequest="90" HeightRequest="90"
+                    StrokeShape="RoundRectangle 45,45,45,45"
+                    HorizontalOptions="Center" StrokeThickness="8"
+                    >
+                            <Image x:DataType="viewmodels:UserDetailsPageViewModel" Source="{Binding ProfilePicture}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"></Image>
+                        </Border>
+                    </sf:SfBadgeView.Content>
+                    <sf:SfBadgeView.BadgeSettings >
+                        <sf:BadgeSettings Type="None" Position="BottomRight" Offset="-20,-5" Background="Gray"  FontFamily="FontIcons"></sf:BadgeSettings>
+                    </sf:SfBadgeView.BadgeSettings>
+                    <sf:SfBadgeView.GestureRecognizers>
+                        <TapGestureRecognizer x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding UpdateProfilePicture }"></TapGestureRecognizer>
+                    </sf:SfBadgeView.GestureRecognizers>
+                </sf:SfBadgeView>
                 <Label Text="Edit profile" TextColor="#FFFFFF" FontSize="Header"></Label>
             </HorizontalStackLayout>
         </Grid>

@@ -6,7 +6,8 @@ public partial class CreateAlbumPage : ContentPage
 {
 	public CreateAlbumPage(CreateAlbumPageViewModel vm)
 	{
-		this.BindingContext = vm;
+        
+        this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

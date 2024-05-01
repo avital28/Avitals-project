@@ -35,42 +35,11 @@
                     Margin="0,110,0,0"
                     Padding="0,150,0,0"
                     BackgroundColor="White"
-                    CornerRadius="45"
+                    CornerRadius="-45"
                     HeightRequest="700">
 
 
-                <ScrollView>
-                    <CarouselView
-                            Margin="-10,20,0,0"
-                            ItemsSource="{Binding Album.Memebers}"
-                            ItemsUpdatingScrollMode="KeepLastItemInView"
-                            Loop="False"
-                            PeekAreaInsets="130">
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout
-                                    Orientation="Horizontal"
-                                    SnapPointsAlignment="End"
-                                    SnapPointsType="MandatorySingle" />
-                        </CarouselView.ItemsLayout>
-                        <CarouselView.ItemTemplate>
-
-                            <DataTemplate x:DataType="models:User">
-                                <VerticalStackLayout HorizontalOptions="StartAndExpand">
-                                    <toolkit:AvatarView
-                                            CornerRadius="50"
-                                            HeightRequest="100"
-                                            ImageSource="{Binding ProfilePicture}"
-                                            WidthRequest="100" />
-                                    <Label
-                                            HorizontalOptions="StartAndExpand"
-                                            Text="{Binding Firstname}"
-                                            VerticalOptions="Center" />
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-
-                    </CarouselView>
-                </ScrollView>
+                
 
 
             </Frame>

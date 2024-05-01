@@ -4,19 +4,31 @@
              x:Class="Avitals_project.Views.WelcomePage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
-             x:DataType="viewmodels:WelcomePageViewModel"
+             x:DataType="viewmodels:LoginPageViewModel"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              Shell.TabBarIsVisible="False"
              Title="WelcomePage"
              >
-    <VerticalStackLayout>
-       
-                <Label Text="Welcome back!" FontSize="Title" TextColor="{StaticResource MainColor}" Grid.Row="0" Grid.ColumnSpan="2"></Label>
-        <Label Text="Sign in to create your collective moments" TextColor="Black" FontSize="Subtitle"></Label>
-     
-        <Button Text="Log in" Command="{Binding ToLogin}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"
-         CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
-                <Button Text="Register" Command="{Binding ToRegister}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"
-         CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
-        
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label FontSize="Title" Text="Welcome back" HorizontalOptions="Center" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
+        <Label FontSize="Subtitle" Text="Sign in to create your collective moments" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
+        <sf:SfTextInputLayout
+Hint="Username" ContainerBackground="White"  ContainerType="Outlined" 
+         >
+            <Entry Text="{Binding Username}" />
+        </sf:SfTextInputLayout>
+        <sf:SfTextInputLayout
+   Hint="Password" ContainerBackground="White" EnablePasswordVisibilityToggle="True" HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
+            >
+            <Entry Text="{Binding Password}"/>
+        </sf:SfTextInputLayout>
+        <Label Text="Don't have an account yet? Sign up!" FontSize="Small" TextColor="{StaticResource MainColor}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer x:DataType="viewmodels:WelcomePageViewModel" Command="{Binding ToRegister}"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label>
+        <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center" Margin="0,20,0,0" FontAttributes="Bold"
+          CornerRadius="38" HeightRequest="50" WidthRequest="125" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
+
     </VerticalStackLayout>
 </ContentPage>

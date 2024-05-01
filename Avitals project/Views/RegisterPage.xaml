@@ -5,6 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
     xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
+
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="RegisterPage"
     x:DataType="viewmodels:RegisterPageViewModel"
@@ -14,6 +16,7 @@
             FontSize="Title"
             Text="Register"
             TextColor="{StaticResource MainColor}" />
+       <dataForm:SfDataForm LayoutType="TextInputLayout"  
         <sf:SfTextInputLayout Hint="Username"  ContainerBackground="White"  ContainerType="Outlined" >
             
             <Entry Text="{Binding Username}" />
