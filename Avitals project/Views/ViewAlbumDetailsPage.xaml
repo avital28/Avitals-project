@@ -94,5 +94,6 @@
             Source="{Binding Album.AlbumCover}"
             VerticalOptions="StartAndExpand"
             WidthRequest="270" />
+        
     </Grid>
 </ContentPage>

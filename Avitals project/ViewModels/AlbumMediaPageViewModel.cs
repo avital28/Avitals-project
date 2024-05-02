@@ -61,7 +61,7 @@ namespace Avitals_project.ViewModels
                         Current = new Media(localFilePath);
                         currentfile = photo;
                         Cover = localFilePath;
-                        IsOpen = false;
+                        
                        
                     }
                 }
@@ -72,7 +72,7 @@ namespace Avitals_project.ViewModels
         }
         public async void CaptureVideo()
         {
-            FileResult photo = new FileResult("a");
+            
             await MainThread.InvokeOnMainThreadAsync(async () =>
             {
                 if (MediaPicker.Default.IsCaptureSupported)
@@ -84,7 +84,7 @@ namespace Avitals_project.ViewModels
 
                         string localFilePath = Path.Combine(FileSystem.CacheDirectory, video.FileName);
 
-                        using Stream sourceStream = await photo.OpenReadAsync();
+                        using Stream sourceStream = await video.OpenReadAsync();
                         using FileStream localFileStream = File.OpenWrite(localFilePath);
 
                         await sourceStream.CopyToAsync(localFileStream);
