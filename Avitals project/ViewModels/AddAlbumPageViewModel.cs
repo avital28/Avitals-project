@@ -50,6 +50,11 @@ namespace Avitals_project.ViewModels
             al.Memebers.Add(new User() { Firstname = "C" });
             al.Memebers.Add(new User() { Firstname = "D" });
             al.Memebers.Add(new User() { Firstname = "E" });
+
+            al.Media.Add(new Media("cover2.jpg"));
+            al.Media.Add(new Media("cover3.jpg"));
+            al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
+
             IsVisible = false;
             nav.Add("album", al);
             await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);

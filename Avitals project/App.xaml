@@ -12,17 +12,12 @@
                 <ResourceDictionary>
                     <Color x:Key="MainColor">#1E7B85</Color>
                 </ResourceDictionary>
-                <ResourceDictionary>
-                    <Color x:Key="TextColor">#F3F3F3</Color>
-                    </ResourceDictionary>
-                <ResourceDictionary>
-                    
-                    <Color x:Key="TextColorDark">#000000</Color>
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
 
         
+           
         <!--<ResourceDictionary >
             <x:String x:Key="IconIcon1">&#x20;</x:String>
             <x:String x:Key="IconCaretTr">&#xe000;</x:String>

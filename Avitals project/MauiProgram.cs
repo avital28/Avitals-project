@@ -7,6 +7,7 @@ using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Popup;
 using CommunityToolkit.Maui;
 using Xe.AcrylicView;
+using Sharpnado.MaterialFrame;
 
 namespace Avitals_project
 {
@@ -21,6 +22,7 @@ namespace Avitals_project
                 .UseMauiCommunityToolkitMediaElement()
                 .UseSkiaSharp()
                 .UseAcrylicView()
+                .UseSharpnadoMaterialFrame(loggerEnable: false)
                 .ConfigureSyncfusionCore()
                 
                 .ConfigureFonts(fonts =>

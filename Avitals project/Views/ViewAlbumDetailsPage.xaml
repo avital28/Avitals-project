@@ -8,6 +8,7 @@
     xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+     xmlns:rv="http://sharpnado.com"
      xmlns:ui="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     Title="ViewAlbumDetailsPage"
     x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
@@ -16,20 +17,60 @@
         <VerticalStackLayout>
 
             <Image Aspect="AspectFill" HorizontalOptions="Start"  HeightRequest="470" Source="{Binding Album.AlbumCover}" Grid.Column="0" WidthRequest="400"></Image>
+            <Button Margin="0,300,0,0" CornerRadius="38" HeightRequest="50" WidthRequest="125" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
+
             <Frame Margin="-10,-20,0,0" Grid.Column="0"  HeightRequest="300" Grid.ColumnSpan="3" BackgroundColor="White" CornerRadius="45">
-                <Label Text="Hello"></Label>
-            </Frame >
+
+                <VerticalStackLayout HorizontalOptions="Start">
+                    <Label Text="Gallery" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"></Label>
+                    <CarouselView
+        Margin="-10,20,0,0"
+        ItemsSource="{Binding Album.Media}"
+        ItemsUpdatingScrollMode="KeepLastItemInView"
+        Loop="False"
+        PeekAreaInsets="130" HorizontalOptions="Start">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout
+                Orientation="Horizontal"
+                SnapPointsAlignment="End"
+                SnapPointsType="MandatorySingle" />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+
+                        <DataTemplate x:DataType="models:Media">
+                            <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                                    <Border StrokeShape="RoundRectangle, 20"  WidthRequest="80" HeightRequest="80">
+                                        <Image Source="{Binding Sources }" Aspect="AspectFill" ></Image>
+                                    </Border>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+
+                </CarouselView>
+        </VerticalStackLayout>
+        </Frame >
             <!--<Rectangle Margin="0,-500,0,0" BackgroundColor="LightGrey" Opacity=".5" WidthRequest="350" HeightRequest="150" ></Rectangle>-->
-                <ui:AcrylicView Opacity=".85" EffectStyle="Light" WidthRequest="375" HeightRequest="150" Margin="0,-475,0,0" CornerRadius="40">
+                <!--<ui:AcrylicView  EffectStyle="Light" WidthRequest="375" HeightRequest="150" Margin="0,-475,0,0" CornerRadius="40">
                     <VerticalStackLayout>
                         <Label TextColor="White" Text="{Binding Album.AlbumTitle}" HorizontalOptions="Start" FontAttributes="Bold" Padding="10,5,0,0" FontSize="Title"></Label>
                     <Label Text="{Binding CreatedAt}" TextColor="White"></Label>
                     </VerticalStackLayout>
-                </ui:AcrylicView>
+                </ui:AcrylicView>-->
+
+            <!--<rv:MaterialFrame AcrylicGlowColor="Gray" AndroidBlurOverlayColor="Gray" MaterialBlurStyle="Dark" Margin="0,-500,0,0">
+                <VerticalStackLayout>
+                    <Label TextColor="White" Text="{Binding Album.AlbumTitle}" HorizontalOptions="Start" FontAttributes="Bold" Padding="10,5,0,0" FontSize="Title"></Label>
+                    <Label Text="{Binding CreatedAt}" TextColor="White"></Label>
+                </VerticalStackLayout>
+            </rv:MaterialFrame>-->
             
-            <!--<Frame Margin="0,-600,0,0"  HeightRequest="100" WidthRequest="300" BackgroundColor="#FFFFFF" CornerRadius="40">
-                <Label Text="Hello"></Label>
+            <!--<Frame Margin="0,-600,0,0" Opacity=".5" BackgroundColor="LightGray" HeightRequest="100" WidthRequest="300"  CornerRadius="40">
+                <VerticalStackLayout Opacity=".9">
+                    <Label Opacity=".9" TextColor="White" Text="{Binding Album.AlbumTitle}" HorizontalOptions="Start" FontAttributes="Bold" Padding="10,5,0,0" FontSize="Title"></Label>
+                    <Label Text="{Binding CreatedAt}" TextColor="White"></Label>
+                </VerticalStackLayout>
             </Frame>-->
+          
 
         </VerticalStackLayout>
     </Grid>
