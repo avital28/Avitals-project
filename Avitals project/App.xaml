@@ -16,6 +16,7 @@
                     <Color x:Key="TextColor">#F3F3F3</Color>
                     </ResourceDictionary>
                 <ResourceDictionary>
+                    
                     <Color x:Key="TextColorDark">#000000</Color>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

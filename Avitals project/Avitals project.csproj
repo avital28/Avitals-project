@@ -68,6 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AcrylicView.Maui" Version="2.1.1" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">

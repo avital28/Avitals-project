@@ -48,8 +48,34 @@
                                 </MenuFlyout>
                             </FlyoutBase.ContextFlyout>-->
                         </Image>
-                        <HorizontalStackLayout IsVisible="{Binding IsOpen}">
-                            <Button
+  
+                                <sf:SfPopup Margin="110,50,0,0" Padding="110,50,0,0" BackgroundColor="White" WidthRequest="140" HeightRequest="50" IsOpen="{Binding IsOpen}" ShowFooter="False" ShowHeader="False" ShowOverlayAlways="False">
+                            <sf:SfPopup.ContentTemplate>
+                                    <DataTemplate>
+               
+                                </DataTemplate>
+                            </sf:SfPopup.ContentTemplate>
+                        </sf:SfPopup>
+                         
+                        <!--<Frame Opacity="80" BackgroundColor="White" Margin="110,50,0,0" WidthRequest="140" HeightRequest="50" Grid.Column="1" Grid.Row="1" IsVisible="{Binding IsOpen}" >
+                            <VerticalStackLayout WidthRequest="140" Padding="0,4,0,0">
+                                <Frame BackgroundColor="Transparent"  WidthRequest="150" HeightRequest="25" >
+                                <Label Text="Take a picture" FontAttributes="Bold" FontSize="Micro"   TextColor="Black"  >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TakePhoto}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent"  WidthRequest="150" HeightRequest="25" >
+                                <Label Text="Choose from gallery" FontAttributes="Bold" FontSize="Micro"  TextColor="Black"  >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TakePhoto}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>-->
+                           
+                        <!--<HorizontalStackLayout IsVisible="{Binding IsOpen}">
+                            --><!--<Button
                                 BackgroundColor="{StaticResource MainColor}"
                                 Command="{Binding ChangePhoto}"
                                 HeightRequest="40"
@@ -60,8 +86,8 @@
                                 Command="{Binding TakePhoto}"
                                 HeightRequest="40"
                                 Text="Take a picture "
-                                WidthRequest="90" />
-                        </HorizontalStackLayout>
+                                WidthRequest="90" />--><!--
+                        </HorizontalStackLayout>-->
 
 
 

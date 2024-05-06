@@ -6,6 +6,7 @@ using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Popup;
 using CommunityToolkit.Maui;
+using Xe.AcrylicView;
 
 namespace Avitals_project
 {
@@ -19,6 +20,7 @@ namespace Avitals_project
                 .UseMauiCommunityToolkit()
                 .UseMauiCommunityToolkitMediaElement()
                 .UseSkiaSharp()
+                .UseAcrylicView()
                 .ConfigureSyncfusionCore()
                 
                 .ConfigureFonts(fonts =>
