@@ -21,22 +21,22 @@
             HeightRequest="280"
             IsOpen="True"
             ShowFooter="True"
-            ShowHeader="True"
+            ShowHeader="False"
             WidthRequest="350">
-            <sf:SfPopup.ContentTemplate>
-                <DataTemplate>
-                    <Grid
+            <sf:SfPopup.ContentTemplate >
+                <DataTemplate >
+                    <Grid Margin="0,-50,0,0"
                         HorizontalOptions="Center"
                         RowDefinitions="auto,auto,auto,auto"
                         VerticalOptions="Center">
+                        <VerticalStackLayout>
 
-
-                        <Image
+                            <Image
                             Grid.RowSpan="3"
                             Aspect="AspectFill"
                             HeightRequest="140"
                             Source="{Binding Cover}"
-                            WidthRequest="140">
+                            WidthRequest="140" Margin="0,-50,0,0" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
@@ -49,13 +49,13 @@
                             </FlyoutBase.ContextFlyout>-->
                         </Image>
   
-                                <sf:SfPopup Margin="110,50,0,0" Padding="110,50,0,0" BackgroundColor="White" WidthRequest="140" HeightRequest="50" IsOpen="{Binding IsOpen}" ShowFooter="False" ShowHeader="False" ShowOverlayAlways="False">
+                                <!--<sf:SfPopup Margin="110,50,0,0" Padding="110,50,0,0" BackgroundColor="White" WidthRequest="140" HeightRequest="50" IsOpen="{Binding IsOpen}" ShowFooter="False" ShowHeader="False" ShowOverlayAlways="False">
                             <sf:SfPopup.ContentTemplate>
                                     <DataTemplate>
                
                                 </DataTemplate>
                             </sf:SfPopup.ContentTemplate>
-                        </sf:SfPopup>
+                        </sf:SfPopup>-->
                          
                         <!--<Frame Opacity="80" BackgroundColor="White" Margin="110,50,0,0" WidthRequest="140" HeightRequest="50" Grid.Column="1" Grid.Row="1" IsVisible="{Binding IsOpen}" >
                             <VerticalStackLayout WidthRequest="140" Padding="0,4,0,0">
@@ -102,10 +102,11 @@
                             </picker:SfPicker.Columns>
                         </picker:SfPicker>-->
                         <Entry
-                            Grid.Row="4"
+                            Grid.Row="4" Margin="0,50,0,0"
                             Placeholder="Album title"
                             Text="{Binding Title}"
                             TextColor="Black" />
+                        </VerticalStackLayout>
                     </Grid>
 
                 </DataTemplate>
