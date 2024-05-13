@@ -61,7 +61,7 @@ namespace Avitals_project.ViewModels
                         Current = new Media(localFilePath);
                         currentfile = photo;
                         Cover = localFilePath;
-                        
+                        Album.MediaCount++;
                        
                     }
                 }

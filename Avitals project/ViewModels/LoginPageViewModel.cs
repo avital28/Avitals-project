@@ -48,7 +48,13 @@ namespace Avitals_project.ViewModels
                         var useralbums= await service.GetAlbumsByUserAsync(user);
                         foreach(var album in useralbums)
                         {
-                            DisplayAlbumsPageViewModel.currentusersalbums.Add(album);
+                            DisplayAlbumsPageViewModel.AllUserssAlbums.Add(album);
+                           if (album.AdminId==user.Id)
+                                DisplayAlbumsPageViewModel.CurrentAdminsAlbums.Add(album);
+                           else
+                                DisplayAlbumsPageViewModel.CurrentMembersAlbums.Add(album);
+
+
                         }
                         await Shell.Current.GoToAsync("UserDetailsPage");
 

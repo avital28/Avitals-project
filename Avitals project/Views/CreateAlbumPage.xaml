@@ -11,7 +11,7 @@
     xmlns:apes="http://apes.ge"
     Title="CreateAlbumPage"
     x:DataType="viewmodels:CreateAlbumPageViewModel">
-    <VerticalStackLayout>
+    <VerticalStackLayout> 
         <sf:SfPopup
             x:DataType="viewmodels:CreateAlbumPageViewModel"
             AcceptButtonText="Done"

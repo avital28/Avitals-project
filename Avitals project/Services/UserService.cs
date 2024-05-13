@@ -152,6 +152,42 @@ namespace Avitals_project.Services
             }
             return null;
         }
+        public async Task<List<Media>> GetMediaByAlbumm(int id)
+        {
+            try
+            {
+                Album album = new Album { Id=id };
+                var jsonContent = JsonSerializer.Serialize(album);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}GetMediaByAlbum", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Media> albummedia = JsonSerializer.Deserialize<List<Media>>(jsonContent, _serializerOptions);
+                            if (albummedia.Count > 0)
+                                foreach (var al in albummedia)
+                                {
+                                    al.Sources = $"{IMAGE_URL}{al.Sources}";
+                                    //to do run on each photo in album update photo url
+
+                                }
+                            await Task.Delay(2000);
+                            return albummedia;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
         public async Task<bool> CreateAlbumAsync(Album al, FileResult file)
         {
             try
@@ -282,10 +318,10 @@ namespace Avitals_project.Services
         {
             try
             {
-                Album album = new Album { Id=a.Id};
+                Album album = new Album() { Id=a.Id, AdminId=a.AdminId};
                 var jsonContent = JsonSerializer.Serialize(album);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}GetAlbumsByUser", content);
+                var response = await httpClient.PostAsync($"{URL}GetMediaByAlbum", content);
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):

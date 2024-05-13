@@ -10,6 +10,7 @@
     Title="AlbumMediaPage"
     x:DataType="viewmodels:AlbumMediaPageViewModel">
     <ScrollView>
+        
         <VerticalStackLayout>
             <FlexLayout
                 Margin="2,2,2,2"

@@ -19,7 +19,7 @@ namespace Avitals_project.ViewModels
         #endregion
         #region public properties
         public Album Album { get { return album; } set { if (album != value) { album = value; /*PopulateList();*/ OnPropertyChange(); } } }
-        public int CreatedAt { get { return (DateTime.Now.Hour - album.CreationDate.Hour); } }
+        //public int CreatedAt { get { return (DateTime.Now.Hour - album.CreationDate.Hour); } }
        public ObservableCollection<Media> Medias { get; set; } = new ObservableCollection<Media>();
         public ICommand SwitchColors { get; set; }
         public ICommand JoinAlbum { get; set; }
@@ -42,6 +42,9 @@ namespace Avitals_project.ViewModels
             JoinAlbum = new Command(async () =>
             {
                 Album.Memebers.Add(((AppShell)Shell.Current).user);
+                DisplayAlbumsPageViewModel.AllUserssAlbums.Add(Album);
+                DisplayAlbumsPageViewModel.CurrentMembersAlbums.Add(Album);
+
                 await Shell.Current.GoToAsync("AlbumMediaPage");
             });
             

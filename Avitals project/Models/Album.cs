@@ -12,14 +12,13 @@ namespace Avitals_project.Models
         public string AlbumCover { get; set; }
         [JsonPropertyName("Media")]
         public List<Media> Media { get; set; }
-        public bool IsPublic { get; set; }  
         public string Longitude { get; set; }
         public string Latitude { get; set; }
         public int AdminId { get; set; } 
         public string AlbumTitle { get; set; }  
         public int Id { get; set; }
         public List<User> Memebers { get; set; }
-        public DateTime CreationDate { get; set; }
+        public int MediaCount { get; set; }
 
         public Album()
         {
