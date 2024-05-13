@@ -85,10 +85,26 @@ namespace Avitals_project.Services
             return false;
         }
 
-        public async Task<User> UpdateUserAsync(User User)
+        public async Task<User> UpdateUserAsync(User User,  FileResult? file)
         {
             try
             {
+                if (file!=null)
+                {
+                    byte[] bytes;
+
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        var stream = await file.OpenReadAsync();
+                        stream.CopyTo(ms);
+                        bytes = ms.ToArray();
+
+                        var multipartFormDataContent = new MultipartFormDataContent();
+
+                        var imagecontent = new ByteArrayContent(bytes);
+                        multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
+                    }  }
                 User user = User;
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -234,20 +250,63 @@ namespace Avitals_project.Services
 
         }
 
-        
-            public async Task<List<Album>> GetAlbumsByUserAsync(User u)
+        public async Task<bool> UpadAsync(Album al, FileResult file)
+        {
+            try
+            {
+                byte[] bytes;
+
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    var stream = await file.OpenReadAsync();
+                    stream.CopyTo(ms);
+                    bytes = ms.ToArray();
+
+                    var multipartFormDataContent = new MultipartFormDataContent();
+
+                    var imagecontent = new ByteArrayContent(bytes);
+                    multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
+
+                    Album album = al;
+                    var jsonContent = JsonSerializer.Serialize(album);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    multipartFormDataContent.Add(content, "album");
+                    var response = await httpClient.PostAsync($"{URL}CreateAlbum", multipartFormDataContent);
+                    switch (response.StatusCode)
+                    {
+                        case (HttpStatusCode.OK):
+                            {
+                                jsonContent = await response.Content.ReadAsStringAsync();
+                                Album a = JsonSerializer.Deserialize<Album>(jsonContent, _serializerOptions);
+                                al.Id = a.Id;
+                                await Task.Delay(2000);
+                                return true;
+                            }
+                        case (HttpStatusCode.Unauthorized):
+                            {
+                                return false;
+                            }
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
+
+
+        }
+        public async Task<List<Album>> GetAlbumsByUserAsync(User u)
             {
             try
             {
-                User user= new User { Id=u.Id, UserName=u.UserName, Passwrd=u.Passwrd  };
-                var jsonContent = JsonSerializer.Serialize(user);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}GetAlbumsByUser", content);
+                
+                
+                var response = await httpClient.GetAsync($"{URL}GetAlbumsByUser?userId={u.Id}");
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
                         {
-                            jsonContent = await response.Content.ReadAsStringAsync();
+                           var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
                             return albums;
@@ -318,15 +377,13 @@ namespace Avitals_project.Services
         {
             try
             {
-                Album album = new Album() { Id=a.Id, AdminId=a.AdminId};
-                var jsonContent = JsonSerializer.Serialize(album);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}GetMediaByAlbum", content);
+               
+                var response = await httpClient.GetAsync($"{URL}GetMediaByAlbum?albumId={a.Id}");
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
                         {
-                            jsonContent = await response.Content.ReadAsStringAsync();
+                            var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Media> m = JsonSerializer.Deserialize<List<Media>>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
                             return m;

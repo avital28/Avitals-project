@@ -6,6 +6,7 @@
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
              xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:icons="clr-namespace:Avitals_project.Enums"
+             xmlns:sf2="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
              x:DataType="viewmodels:UserDetailsPageViewModel"
              BackgroundColor="{StaticResource MainColor}">
     <VerticalStackLayout>
@@ -24,11 +25,22 @@
                         <sf:BadgeSettings Type="None" Position="BottomRight" Offset="-20,-5" Background="Gray"  FontFamily="FontIcons"></sf:BadgeSettings>
                     </sf:SfBadgeView.BadgeSettings>
                     <sf:SfBadgeView.GestureRecognizers>
-                        <TapGestureRecognizer x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding UpdateProfilePicture }"></TapGestureRecognizer>
+                        <TapGestureRecognizer x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding ChangePhoto }"></TapGestureRecognizer>
                     </sf:SfBadgeView.GestureRecognizers>
                 </sf:SfBadgeView>
               
                 <Label Text="Edit profile" TextColor="#FFFFFF" FontSize="Header"></Label>
+                <sf2:SfPopup IsOpen="{Binding IsOpen}" WidthRequest="350" HeightRequest="280">
+                    <sf2:SfPopup.ContentTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Button Text="Take picture" Command="{Binding TakePhoto }"></Button>
+                                <Button Text="Take picture" Command="{Binding ChooseFromGallery }"></Button>
+
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </sf2:SfPopup.ContentTemplate>
+                </sf2:SfPopup>
             </HorizontalStackLayout>
         </Grid>
         <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="700" BackgroundColor="White" CornerRadius="45">

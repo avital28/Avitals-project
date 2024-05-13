@@ -77,13 +77,27 @@ namespace Avitals_project.ViewModels
         public async void ComboBoxSelectionChanged(object obj)
         {
             var selectionChangedArgs = obj as SelectionChangedEventArgs;
-
+            FilteredAlbums.Clear();
             if (SelectedItem == "My albums")
             {
-                FilteredAlbums = AdminAlbums;
+                if (AdminAlbums != null)
+                {
+                    foreach (var item in AdminAlbums)
+                    {
+                        FilteredAlbums.Add(item);
+                    }
+                }
             }
             else
-                FilteredAlbums = MembersAlbums;
+            {
+                if (MembersAlbums != null)
+                {
+                    foreach (var item in MembersAlbums)
+                    {
+                        FilteredAlbums.Add(item);
+                    }
+                }
+            }
         }
 
         private async void ShowAlbum1(Album al)

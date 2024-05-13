@@ -21,7 +21,10 @@ namespace Avitals_project.ViewModels
         private string username;
         private string password;
         private string profilepicture;
+        private bool isopen;
         private string errormessageupdate;
+        private static FileResult currentfile = null;
+
         #region error messages
         private bool showfnameerror;
         private bool showlnameerror;
@@ -43,7 +46,10 @@ namespace Avitals_project.ViewModels
         public string Password { get { return password; } set { if (password != value) { password = value; OnPropertyChange(); updateduser.Passwrd = password; } } }
         
         public string ProfilePicture { get { return profilepicture; } set { if (profilepicture != value) { profilepicture = value; OnPropertyChange(); updateduser.ProfilePicture = profilepicture; } } }
+        public bool IsOpen { get { return isopen; } set { if (isopen != value) { isopen = value; OnPropertyChange(); updateduser.ProfilePicture = profilepicture; } } }
 
+        public ICommand TakePhoto { get; set; }
+        public ICommand ChooseFromGallery { get; set; }
 
         public string ErrorMessage { get { return errormessage; } }
         public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
@@ -56,6 +62,8 @@ namespace Avitals_project.ViewModels
 
         public ICommand UpdateUserCommand { get; set; }
         public ICommand UpdateProfilePicture { get; set; }
+        public ICommand ChangePhoto { get; set; }
+
         #endregion
 
         #region Validation methods
@@ -80,10 +88,67 @@ namespace Avitals_project.ViewModels
         {
             return new EmailAddressAttribute().IsValid(email);
         }
-
-        #endregion
-        public UserDetailsPageViewModel(UserService service)
+        public async void CapturePhoto()
         {
+            FileResult photo = new FileResult("a");
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                if (MediaPicker.Default.IsCaptureSupported)
+                {
+
+                    photo = await MediaPicker.Default.CapturePhotoAsync();
+
+                    if (photo.FullPath != "")
+                    {
+
+                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                        using Stream sourceStream = await photo.OpenReadAsync();
+                        using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                        await sourceStream.CopyToAsync(localFileStream);
+                        currentfile = photo;
+                        ProfilePicture = localFilePath;
+                        IsOpen = false;
+                        
+                    }
+                }
+
+
+            }
+         );
+        }
+
+        private async void ChooseFromGallery1()
+        {
+            FileResult photo = new FileResult("a");
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                if (MediaPicker.Default.IsCaptureSupported)
+                {
+
+                    photo = await MediaPicker.Default.PickPhotoAsync();
+                    if (photo != null)
+                    {
+                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                        using Stream sourceStream = await photo.OpenReadAsync();
+                        using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                        await sourceStream.CopyToAsync(localFileStream);
+                        ProfilePicture = localFilePath;
+                        IsOpen = false;
+                        currentfile = photo;
+
+                    }
+                }
+            });
+        }
+
+            #endregion
+            public UserDetailsPageViewModel(UserService service)
+        {
+            IsOpen= false;  
             currentuser = ((AppShell)Shell.Current).user;
             if (currentuser != null)
             {
@@ -113,7 +178,7 @@ namespace Avitals_project.ViewModels
                     if (updateduser != null)
                     {
                         updateduser.Id = currentuser.Id;    
-                        var user = await service.UpdateUserAsync(updateduser);
+                        var user = await service.UpdateUserAsync(updateduser, currentfile?);
                         if (user is UserDto)
                         {
                             ErrorMessageUpdate = ((UserDto)user).Message;
@@ -127,6 +192,7 @@ namespace Avitals_project.ViewModels
                     }
 
                 }
+                
                 catch (Exception ex)
                 {
 
@@ -134,6 +200,13 @@ namespace Avitals_project.ViewModels
                 }
 
             });
+            TakePhoto = new Command(CapturePhoto);
+            ChooseFromGallery = new Command(ChooseFromGallery1);
+            ChangePhoto = new Command(async () =>
+            {
+                IsOpen = true;
+            });
+
         }
     }
 }
