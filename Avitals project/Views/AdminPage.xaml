@@ -5,6 +5,7 @@
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              Title="AdminPage"
              BackgroundColor="#FAFAFA"
+             Shell.BackgroundColor="#FAFAFA"
             Shell.NavBarIsVisible="True"
              Shell.TabBarIsVisible="False"
             xmlns:controls="clr-namespace:Avitals_project.Controls"             x:DataType="viewmodels:AdminPageViewModel"

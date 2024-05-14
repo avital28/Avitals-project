@@ -10,10 +10,12 @@
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="AddAlbumPage"
     Shell.NavBarIsVisible="False"
+    BackgroundColor="#FAFAFA"
+Shell.BackgroundColor="#FAFAFA"
    x:Name="AddPage"
     x:DataType="viewmodels:AddAlbumPageViewModel">
     <VerticalStackLayout>
-        <Frame BackgroundColor="LightGray" CornerRadius="30" WidthRequest="350" HeightRequest="120">
+        <Frame Margin="0,30,0,0" BackgroundColor="LightBlue" CornerRadius="30" WidthRequest="370" HeightRequest="120">
         <Grid ColumnDefinitions=".35*,.65*" HeightRequest="60" WidthRequest="160">
             <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
                 <Label Margin="10,0,0,0" HorizontalTextAlignment="Start" Text="My location"  VerticalTextAlignment="Center"></Label>
@@ -27,12 +29,31 @@
             
         </Grid>
     </Frame>
-        <CarouselView ItemsSource="{Binding Albums}">
+        <Label Margin="0,100,0,0" Text="Albums in my location"></Label>
+        <CarouselView Margin="0,50,0,0" PeekAreaInsets="30" ItemsSource="{Binding Albums}" IndicatorView="indicatorview" Loop="False">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" SnapPointsAlignment="Center" SnapPointsType="MandatorySingle"></LinearItemsLayout>
+            </CarouselView.ItemsLayout>
             <CarouselView.ItemTemplate>
-                
+                <DataTemplate x:DataType="models:Album">
+                    <Grid RowDefinitions=".2*,.6*,.2*">
+                        <Frame  WidthRequest="300" HeightRequest="300" Grid.RowSpan="3" CornerRadius="30">
+                            <Image Aspect="AspectFill" HeightRequest="400" WidthRequest="400" Source="{Binding AlbumCover}"></Image>
+                            
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </VerticalStackLayout>
+        <IndicatorView HorizontalOptions="Center" IndicatorColor="LightGray" IndicatorSize="8" SelectedIndicatorColor="Black"
+                           VerticalOptions="Center" x:Name="indicatorview"></IndicatorView>
+        <Frame Margin="0,70,0,0" CornerRadius="45" BackgroundColor="#FFFFFF" WidthRequest="300" HeightRequest="100">
+            <VerticalStackLayout HorizontalOptions="CenterAndExpand">
+                <Label Text="Didn't find what you were looking for?"/>
+                <Button Text="Create album" Command="{Binding Create}" BackgroundColor="Black"></Button>
+            </VerticalStackLayout>
+        </Frame>
+</VerticalStackLayout>
     <!--<VerticalStackLayout>
         <sf:SfPopup
             x:Name="popup_p"
