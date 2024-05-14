@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    Shell.TabBarIsVisible="False"
     x:Class="Avitals_project.Views.ViewAlbumDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -13,36 +14,36 @@
     Title="ViewAlbumDetailsPage"
     x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
    >
-    <Grid RowDefinitions="auto,auto,auto,*" ColumnDefinitions="auto,*,auto">
+    <!--<Grid RowDefinitions="auto,auto,auto,*" ColumnDefinitions="auto,*,auto">-->
         <VerticalStackLayout>
             <Frame CornerRadius="45" Margin="-7,-20,0,0" HeightRequest="490" WidthRequest="405"  HorizontalOptions="Start" >
                 <Image Aspect="AspectFill" Margin="-17,-20,0,0" HorizontalOptions="Start"  HeightRequest="510" Source="{Binding Album.AlbumCover}" WidthRequest="405"></Image>
             </Frame> 
             <Label Text="Gallery" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"></Label>
-                    <CarouselView
-        Margin="-10,20,0,0"
+            <CarouselView
+
         ItemsSource="{Binding Album.Media}"
         ItemsUpdatingScrollMode="KeepLastItemInView"
         Loop="False"
-        PeekAreaInsets="130" HorizontalOptions="Start">
-                    <CarouselView.ItemsLayout>
-                        <LinearItemsLayout
+        PeekAreaInsets="220" HorizontalOptions="Start">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout
                 Orientation="Horizontal"
-                SnapPointsAlignment="End"
+                SnapPointsAlignment="Start"
                 SnapPointsType="MandatorySingle" />
-                    </CarouselView.ItemsLayout>
-                    <CarouselView.ItemTemplate>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
 
-                        <DataTemplate x:DataType="models:Media">
-                            <VerticalStackLayout HorizontalOptions="StartAndExpand">
-                                    <Border StrokeShape="RoundRectangle, 20"  WidthRequest="80" HeightRequest="80">
-                                        <Image Source="{Binding Sources }" Aspect="AspectFill" ></Image>
-                                    </Border>
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Media">
+                        <VerticalStackLayout  HorizontalOptions="Start">
+                            <Border StrokeShape="RoundRectangle, 20"  WidthRequest="80" HeightRequest="80">
+                                <Image Source="{Binding Sources }" Aspect="AspectFill" ></Image>
+                            </Border>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
 
-                </CarouselView>
+            </CarouselView>
             <Button Text="press" Command="{Binding JoinAlbum}"></Button>
         </VerticalStackLayout>
             <!--<Rectangle Margin="0,-500,0,0" BackgroundColor="LightGrey" Opacity=".5" WidthRequest="350" HeightRequest="150" ></Rectangle>-->
@@ -68,7 +69,7 @@
             </Frame>-->
           
 
-    </Grid>
+    <!--</Grid>-->
 
     <!--<Grid RowDefinitions="Auto,Auto,Auto,Auto">
 

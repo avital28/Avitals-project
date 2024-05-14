@@ -9,10 +9,31 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="AddAlbumPage"
+    Shell.NavBarIsVisible="False"
    x:Name="AddPage"
     x:DataType="viewmodels:AddAlbumPageViewModel">
-   
     <VerticalStackLayout>
+        <Frame BackgroundColor="LightGray" CornerRadius="30" WidthRequest="350" HeightRequest="120">
+        <Grid ColumnDefinitions=".35*,.65*" HeightRequest="60" WidthRequest="160">
+            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                <Label Margin="10,0,0,0" HorizontalTextAlignment="Start" Text="My location"  VerticalTextAlignment="Center"></Label>
+                <Label Grid.Column="0" Margin="10,0,0,0" VerticalOptions="Start" FontSize="12" Text="location"></Label>
+
+            </VerticalStackLayout>
+            <Border Grid.Column="1" Margin="5,0,0,0" HeightRequest="50" HorizontalOptions="Start"
+            StrokeShape="RoundRectangle 80, 80, 80, 80" StrokeThickness="0" WidthRequest="50">
+                <Image HeightRequest="50" Source="location.png" ></Image>
+            </Border>
+            
+        </Grid>
+    </Frame>
+        <CarouselView ItemsSource="{Binding Albums}">
+            <CarouselView.ItemTemplate>
+                
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </VerticalStackLayout>
+    <!--<VerticalStackLayout>
         <sf:SfPopup
             x:Name="popup_p"
             HeightRequest="280"
@@ -67,7 +88,7 @@ Wrap="Wrap" >
                                             <Image.GestureRecognizers >
                                                 <TapGestureRecognizer x:DataType='viewmodels:AddAlbumPageViewModel' NumberOfTapsRequired="1" Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                             </Image.GestureRecognizers>
-                                            <!--<Image.Behaviors>-->
+                                            --><!--<Image.Behaviors>--><!--
 
                                         </Image>
                                     <Label Padding="0,10,0,0" Text="{Binding AlbumTitle}" FontAttributes="Bold" FontSize="Subtitle"></Label>
@@ -105,5 +126,5 @@ Wrap="Wrap" >
         </sf:SfPopup>
 
 
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
 </ContentPage>

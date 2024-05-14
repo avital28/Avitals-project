@@ -136,7 +136,7 @@ TextColor="Gray" HorizontalOptions="End" Margin="100,0,0,0" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                     x:DataType="viewmodels:DisplayAlbumsPageViewModel"
-                                    Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
+                                    Command="{Binding DisplayAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
                                     CommandParameter="{Binding .}"
                                     NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>

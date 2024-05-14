@@ -59,6 +59,7 @@
 	  <None Remove="Resources\Images\editicon.png" />
 	  <None Remove="Resources\Images\emptyalbumcover.jpg" />
 	  <None Remove="Resources\Images\emptyprofilepicture.jpg" />
+	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\photoalbumicon.png" />
 	  <None Remove="Resources\Images\plus2.png" />
 	  <None Remove="Resources\Images\plusicon.png" />
@@ -100,6 +101,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AddAlbumPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AlbumMediaPage.xaml">

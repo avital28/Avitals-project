@@ -126,6 +126,16 @@ namespace Avitals_project.ViewModels
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);
             //await Shell.Current.GoToAsync("Upload");
         }
+        private async void DisplayAdmin(Album al)
+        {
+            al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
+            al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
+
+            nav.Clear();
+            nav.Add("album", al);
+            await Shell.Current.GoToAsync("AdminPage", nav);
+            //await Shell.Current.GoToAsync("Upload");
+        }
 
         private async Task<List<Media>> GetMedia  (Album al)
         {
@@ -163,7 +173,7 @@ namespace Avitals_project.ViewModels
             FilteredAlbums = AdminAlbums;
             SelectionChnagedCommand = new Command<object>(ComboBoxSelectionChanged);
             ShowAlbum = new Command<Album>(ShowAlbum1);
-            DisplayAlbum = new Command(DisplayAlbums1);
+            DisplayAlbum = new Command<Album>(DisplayAdmin);
             AddAlbum = new Command(async =>
             {
                

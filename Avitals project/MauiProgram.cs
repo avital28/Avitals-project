@@ -56,7 +56,8 @@ namespace Avitals_project
             builder.Services.AddTransient<ViewAlbumDetailsPageViewModel>();
             builder.Services.AddTransient<ShowAllAlbums>();
             builder.Services.AddTransient<ShowAllAlbumsViewModel>();
-
+            builder.Services.AddTransient<AdminPage>();
+            builder.Services.AddTransient<AdminPageViewModel>();    
 
 #endif
 

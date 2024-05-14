@@ -308,6 +308,13 @@ namespace Avitals_project.Services
                         {
                            var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
+                            if (albums!=null)
+                            {
+                                foreach (var al in albums)
+                                {
+                                    al.AlbumCover = $"{IMAGE_URL}{al.AlbumCover}";
+                                }
+                            }
                             await Task.Delay(2000);
                             return albums;
                         }

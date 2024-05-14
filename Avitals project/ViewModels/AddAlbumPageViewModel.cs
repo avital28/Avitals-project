@@ -1,6 +1,7 @@
 ﻿using Avitals_project.Models;
 using Avitals_project.Services;
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Devices.Sensors;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,6 +13,7 @@ namespace Avitals_project.ViewModels
         private bool isfound;
         private bool isvisible;
         private bool isdoneloading;
+        private string location;
         private String longtitude;
         private String latitude;
         private const string notfoundmessage = "No albums were found nearby";
@@ -26,7 +28,7 @@ namespace Avitals_project.ViewModels
         public ICommand Create { get; set; }
         public Album album { get; set; }
         public bool IsVisible { get { return isvisible; } set { if (isvisible != value) { isvisible = value; OnPropertyChange(); } } }
-
+        public string Location_ { get { return location; } set { if (location != value) { location = value; OnPropertyChange(); } }}
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
         public bool IsDoneLoading { get { return isdoneloading; } set { if (isdoneloading != value) { isdoneloading = value; OnPropertyChange(); } } }
         public string HeaderMessage { get { return headermessage; } set { if (headermessage != value) { headermessage = value; OnPropertyChange(); } } }
@@ -59,9 +61,29 @@ namespace Avitals_project.ViewModels
             nav.Add("album", al);
             await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);
         }
-        #endregion
+        private async void GetLocation()
+        {
+            Location l = await Geolocation.GetLocationAsync();
+            GetGeocodeReverseData(l.Longitude, l.Latitude); 
+        }
+        private async void GetGeocodeReverseData(double longitude, double latitude)
+        {
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
+
+                Placemark placemark = placemarks?.FirstOrDefault();
+
+                if (placemark != null)
+                {
+                    Location_ = placemark.Thoroughfare.ToString();
+                }
+            });
+        }
+                #endregion
         public AddAlbumPageViewModel(UserService service)
         {
+            
             IsVisible = true;
             IsFound = false;
             IsDoneLoading = false;
@@ -74,7 +96,7 @@ namespace Avitals_project.ViewModels
             Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
-
+            //GetLocation();  
             LoadAlbums = new Command(async () =>  
             {
                 try

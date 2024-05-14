@@ -5,7 +5,7 @@
             xmlns:handlers="clr-namespace:Avitals_project.Handlers"
              x:Name="this"       
             x:Class="Avitals_project.Controls.OutlinedEntryControl">
-    <Frame Grid.Row="0" Padding="8,2,8,2" BorderColor="{StaticResource MainColor}">
+    <Frame Grid.Row="0" Margin="0,-90,0,0" Padding="8,2,8,2" BorderColor="Transparent">
         <handlers:BorderlessEntry x:Name="txtEntry" 
                Focused="txtEntry_Focused" 
                Unfocused="txtEntry_Unfocused"
