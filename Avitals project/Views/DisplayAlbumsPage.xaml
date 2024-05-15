@@ -31,7 +31,7 @@ FontSize="Subtitle"
 Text="See all"
 TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
                         <Label.GestureRecognizers >
-                            <TapGestureRecognizer Command="{Binding DisplayAlbum}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding DisplayAllAlbums}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
@@ -99,9 +99,9 @@ TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
 FontAttributes="Bold"
 FontSize="Subtitle"
 Text="See all"
-TextColor="Gray" HorizontalOptions="End" Margin="100,0,0,0" >
+TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
                     <Label.GestureRecognizers >
-                        <TapGestureRecognizer Command="{Binding DisplayAlbum}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding DisplaySelectedAlbums}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
                 </Label>
 
@@ -136,7 +136,7 @@ TextColor="Gray" HorizontalOptions="End" Margin="100,0,0,0" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                     x:DataType="viewmodels:DisplayAlbumsPageViewModel"
-                                    Command="{Binding DisplayAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
+                                    Command="{Binding DisplayAdmin, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
                                     CommandParameter="{Binding .}"
                                     NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>

@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:Avitals_project.Models"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              Title="DisplayAlbumPage"
-             x:DataType="viewmodels:DisplayAlbumsPageViewModel">
+             x:DataType="viewmodels:ShowAllAlbumsViewModel">
     <VerticalStackLayout>
         <Label
             FontAttributes="Bold"
@@ -42,7 +42,7 @@
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                         x:DataType="viewmodels:DisplayAlbumsPageViewModel"
-                                        Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:DisplayAlbumsPageViewModel}}}"
+                                        Command="{Binding ShowAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:ShowAllAlbumsViewModel}}}"
                                         CommandParameter="{Binding .}"
                                         NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>
@@ -57,7 +57,7 @@
      Padding="0,10,0,0"
      FontAttributes="Bold"
      FontSize="Subtitle"
-     Text="{Binding AlbumTitle}" TextColor="Black" />
+     Text="{Binding MediaCount}" TextColor="Black" />
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

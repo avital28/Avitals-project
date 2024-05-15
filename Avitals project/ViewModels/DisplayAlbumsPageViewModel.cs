@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Avitals_project.Models;
 using Avitals_project.Services;
 
+
 namespace Avitals_project.ViewModels
 {
     public class DisplayAlbumsPageViewModel:ViewModel
@@ -38,7 +39,10 @@ namespace Avitals_project.ViewModels
         public ICommand ShowAlbum { get; set; }
         public ICommand GetAdminAlbums { get; set; }
         public ICommand AddAlbum { get; set; }
-        public ICommand DisplayAlbum { get; set; }
+        public ICommand DisplayAllAlbums { get; set; }
+        public ICommand DisplayAdmin { get;set; }
+        public ICommand DisplaySelectedAlbums { get; set; }
+
         public ICommand SelectionChnagedCommand { get; set; }
         #endregion
         #endregion
@@ -108,7 +112,7 @@ namespace Avitals_project.ViewModels
                 foreach (var item in m)
                 {
                     al.Media.Add(item);
-                    al.MediaCount++;
+                    
                 }
             }
             //al.Media.Add(new Media("cover2.jpg") );
@@ -126,14 +130,19 @@ namespace Avitals_project.ViewModels
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);
             //await Shell.Current.GoToAsync("Upload");
         }
-        private async void DisplayAdmin(Album al)
+        private async void DisplayAdmin1(Album al)
         {
-            al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
-            al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
+            if (SelectedItem == "My albums")
+            {
+                al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
+                al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
 
-            nav.Clear();
-            nav.Add("album", al);
-            await Shell.Current.GoToAsync("AdminPage", nav);
+                nav.Clear();
+                nav.Add("album", al);
+
+                AdminPageViewModel.albumcover = al.AlbumCover;
+                await Shell.Current.GoToAsync("AdminPage", nav);
+            }
             //await Shell.Current.GoToAsync("Upload");
         }
 
@@ -142,7 +151,48 @@ namespace Avitals_project.ViewModels
             UserService s = new UserService();
             return await s.GetMediaByAlbumAsync(al);
         }
-        private async void DisplayAlbums1()
+        private async void DisplaySelectedAlbums1()
+        {
+            
+            //nav2.Clear();
+            //List<object> al = new List<object>();
+            //if (AllUserssAlbums.Count != 0)
+            //{
+            //    for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
+            //    {
+            //        al.Add(AllUserssAlbums.ElementAt(i) as object);
+            //    }
+            //}
+            //nav2.Add("Albums", al);
+
+
+            // Dictionary<string, object> paramaters = new Dictionary<string, object>();
+            //paramaters.Add("Albums", nav2); 
+            ShowAllAlbumsViewModel.album.Clear();
+            if (SelectedItem == "My albums")
+            {
+                if (CurrentAdminsAlbums != null)
+                {
+                    foreach (var item in CurrentAdminsAlbums)
+                    {
+                        ShowAllAlbumsViewModel.album.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                if (CurrentMembersAlbums != null)
+                {
+                    foreach (var item in CurrentMembersAlbums)
+                    {
+                        ShowAllAlbumsViewModel.album.Add(item);
+                    }
+                }
+            }
+            await Shell.Current.GoToAsync("ShowAllAlbums" );
+
+        }
+        private async void DisplayAllAlbums1()
         {
             //nav2.Clear();
             //List<object> al = new List<object>();
@@ -150,12 +200,24 @@ namespace Avitals_project.ViewModels
             //{
             //    for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
             //    {
-            //        al.Add(AllUserssAlbums.ElementAt(i) as object);   
+            //        al.Add(AllUserssAlbums.ElementAt(i) as object);
             //    }
             //}
             //nav2.Add("Albums", al);
-            //await Shell.Current.GoToAsync("ShowAllAlbums", nav2);
-            
+
+
+            // Dictionary<string, object> paramaters = new Dictionary<string, object>();
+            //paramaters.Add("Albums", nav2); 
+            ShowAllAlbumsViewModel.album.Clear();
+            if (AllUserssAlbums.Count != 0)
+            {
+                for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
+                {
+                    ShowAllAlbumsViewModel.album.Add(AllUserssAlbums[i]);
+                }
+            }
+            await Shell.Current.GoToAsync("ShowAllAlbums");
+
         }
         #endregion
         public DisplayAlbumsPageViewModel(UserService service) 
@@ -170,10 +232,18 @@ namespace Avitals_project.ViewModels
             DropDown.Add("My albums");
             DropDown.Add("Shared with me");
             SelectedItem=DropDown.ElementAt(0);
-            FilteredAlbums = AdminAlbums;
+            if(AdminAlbums!=null)
+            {
+                foreach(Album album in AdminAlbums)
+                {
+                    FilteredAlbums.Add(album);
+                }
+            }
             SelectionChnagedCommand = new Command<object>(ComboBoxSelectionChanged);
             ShowAlbum = new Command<Album>(ShowAlbum1);
-            DisplayAlbum = new Command<Album>(DisplayAdmin);
+            DisplayAllAlbums = new Command(DisplayAllAlbums1);
+            DisplaySelectedAlbums = new Command(DisplaySelectedAlbums1);
+            DisplayAdmin= new Command<Album>(DisplayAdmin1);    
             AddAlbum = new Command(async =>
             {
                

@@ -4,6 +4,7 @@
              x:Class="Avitals_project.Views.AdminPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              Title="AdminPage"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
              BackgroundColor="#FAFAFA"
              Shell.BackgroundColor="#FAFAFA"
             Shell.NavBarIsVisible="True"
@@ -14,13 +15,25 @@
         <Grid Margin="0,0,25,0" ColumnDefinitions="*,*">
             <Border VerticalOptions="Start" WidthRequest="75" HeightRequest="75" Grid.Column="1"
                     HorizontalOptions="End" StrokeShape="RoundRectangle 80,80,80,80">
-                <Image Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100"/>
+                <Image Aspect="AspectFill" HorizontalOptions="Center" Source="{Binding ProfilePicture}" HeightRequest="100" WidthRequest="100"/>
             </Border>
         </Grid>
         <VerticalStackLayout Grid.Row="0" Margin="0,5,0,0" VerticalOptions="Start">
             <Label FontSize="30" Text="Album title"></Label>
             <Label Margin="0,10,0,0" FontSize="12" Text="Edit album"></Label>
-            <Label Text="Users" Margin="0,20,0,0"></Label>
+            <HorizontalStackLayout>
+                <Label Text="Users" Margin="0,20,0,0"></Label>
+                <Label
+FontAttributes="Bold"
+FontSize="Subtitle"
+Text="See all"
+TextColor="Gray" HorizontalOptions="End" Margin="200,20,0,0" >
+                    <Label.GestureRecognizers >
+                        <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </HorizontalStackLayout>
             <CollectionView Grid.Row="1"   VerticalOptions="Start" ItemsSource="{Binding Album.Memebers}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
@@ -56,7 +69,7 @@
                     </Label>
 
                 </Grid>
-                <Button Margin="0,-50,0,0" BackgroundColor="Black" Text="Change album cover"></Button>
+                <Button Margin="0,-50,0,0" BackgroundColor="Black" Text="Change album cover" Command="{Binding ChangePhoto}"></Button>
 
             </VerticalStackLayout>
 
@@ -65,6 +78,82 @@
             <Button CornerRadius="10" WidthRequest="100" HeightRequest="100" Text="Browse gallery" BackgroundColor="Black"></Button>
             <Button Margin="70,0,0,0" CornerRadius="10" WidthRequest="100" HeightRequest="100" Text="Save changes" BackgroundColor="Black"></Button>
         </HorizontalStackLayout>
+        <sf:SfPopup
+    HeightRequest="280"
+    IsOpen="{Binding IsOpen}"
+    ShowFooter="True"
+    ShowHeader="True"
+    WidthRequest="350">
+            <sf:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <Grid
+                HorizontalOptions="Center"
+                RowDefinitions="auto,auto,auto,auto"
+                VerticalOptions="Center">
 
+
+                        <Image
+                    Grid.RowSpan="3"
+                    Aspect="AspectFill"
+                    HeightRequest="140"
+                    Source="emptyalbumcover.jpg"
+                    WidthRequest="140" />
+                        <HorizontalStackLayout IsVisible="{Binding IsOpen}">
+                            <Button
+                        BackgroundColor="{StaticResource MainColor}"
+                        Command="{Binding ChangePhoto}"
+                        HeightRequest="40"
+                        Text="Choose from gallery"
+                        WidthRequest="70" />
+                            <Button
+                        BackgroundColor="{StaticResource MainColor}"
+                        Command="{Binding TakePhoto}"
+                        HeightRequest="40"
+                        Text="picture "
+                        WidthRequest="70" />
+                            <Button
+                        BackgroundColor="{StaticResource MainColor}"
+                        Command="{Binding TakeVideo}"
+                        HeightRequest="40"
+                        Text="video "
+                        WidthRequest="70" />
+
+                        </HorizontalStackLayout>
+
+
+
+
+
+
+                        <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+            <picker:SfPicker.Columns>
+                <picker:PickerColumn
+         ItemsSource="{Binding DropDownData}"  />
+            </picker:SfPicker.Columns>
+        </picker:SfPicker>-->
+                    </Grid>
+
+                </DataTemplate>
+            </sf:SfPopup.ContentTemplate>
+            <sf:SfPopup.FooterTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+
+                        <Line
+                BackgroundColor="Black"
+                X1="90"
+                X2="120"
+                Y1="0"
+                Y2="0" />
+                        <Label HorizontalOptions="End" Text=" Done">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangeAlbumCover}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </sf:SfPopup.FooterTemplate>
+        </sf:SfPopup>
     </Grid>
 </ContentPage>

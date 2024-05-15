@@ -11,18 +11,22 @@ using Avitals_project.Services;
 
 namespace Avitals_project.ViewModels
 {
-    [QueryProperty(nameof(List<Album>), "Albums")]
+    [QueryProperty(nameof(nav), "Albums")]
     public class ShowAllAlbumsViewModel:ViewModel
     {
         #region private fields
         private int mediacount;
-        public ObservableCollection<Album> Albums;
+        public static ObservableCollection<Album> album = new ObservableCollection<Album>();
+
+        public ObservableCollection<Album> Albums { get;  set; } 
         #endregion
         #region Properties
         public string AlbumCover { get; set; }
         public ICommand ShowAlbum { get; set; }
         public ICommand AddAlbum { get; set; }
-        public Dictionary<string, object> nav = new Dictionary<string, object>();
+        public Dictionary<string, List<object>> nav = new Dictionary<string, List<object>>();
+        public Dictionary<string, object> nav2 = new Dictionary<string, object>();
+
         public int MediaCount { get { return mediacount; } }
         #endregion
         #region Methods
@@ -31,26 +35,23 @@ namespace Avitals_project.ViewModels
 
         private async void ShowAlbum1(Album al)
         {
-            al.Media.Add(new Media("cover2.jpg"));
-            al.Media.Add(new Media("cover3.jpg"));
-            al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
-            foreach (var item in al.Media)
-            {
-                AlbumMediaPageViewModel.Media.Add(item);
-            }
-            //al.Media.Add("cover2.jpg");
-            //al.Media.Add("cover3.jpg");
-            //al.Media.Add("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
-            nav.Clear();
-            nav.Add("album", al);
-            await Shell.Current.GoToAsync("AlbumMediaPage", nav);
-            //await Shell.Current.GoToAsync("Upload");
+            nav2.Clear();
+            nav2.Add("album", al);
+            await Shell.Current.GoToAsync("AlbumMediaPage", nav2);
+
         }
         #endregion
         public ShowAllAlbumsViewModel(UserService service)
         {
-            Albums = new ObservableCollection<Album>();
-
+            
+            Albums = new ObservableCollection<Album>(); 
+            if (album.Count!=0)
+            {
+                foreach (Album al in album) 
+                { 
+                    Albums.Add(al);
+                }
+            }
             ShowAlbum = new Command<Album>(ShowAlbum1);
             AddAlbum = new Command(async =>
             {

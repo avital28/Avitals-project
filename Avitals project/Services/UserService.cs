@@ -437,6 +437,53 @@ namespace Avitals_project.Services
         //    }
         //    return new UserDto() { Message = "Update failed" };
         //}
+
+        public async Task<bool> UpdateAlbumCover(Album al, FileResult file)
+        {
+            try
+            {
+                byte[] bytes;
+
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    var stream = await file.OpenReadAsync();
+                    stream.CopyTo(ms);
+                    bytes = ms.ToArray();
+
+                    var multipartFormDataContent = new MultipartFormDataContent();
+
+                    var imagecontent = new ByteArrayContent(bytes);
+                    multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
+
+                    Album album = al;
+                    var jsonContent = JsonSerializer.Serialize(album);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    multipartFormDataContent.Add(content, "album");
+                    var response = await httpClient.PostAsync($"{URL}UpdateAlbumCover", multipartFormDataContent);
+                    switch (response.StatusCode)
+                    {
+                        case (HttpStatusCode.OK):
+                            {
+                                jsonContent = await response.Content.ReadAsStringAsync();
+                               
+                                await Task.Delay(2000);
+                                al.AlbumCover = $"{IMAGE_URL}{jsonContent}";
+                                return true;
+
+
+                            }
+                        case (HttpStatusCode.Unauthorized):
+                            {
+                                return false;
+                            }
+                    }
+
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
+        }
     }
 }
 
