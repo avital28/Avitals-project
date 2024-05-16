@@ -107,9 +107,10 @@ namespace Avitals_project.ViewModels
         private async void ShowAlbum1(Album al)
         {
             AlbumMediaPageViewModel.Media.Clear();
-            if (al.Media.Count>0)
+            List<Media> m = await GetMedia(al);
+            if (m != null)
             {
-                foreach (var item in al.Media)
+                foreach (var item in m)
                 {
 
                     AlbumMediaPageViewModel.Media.Add(item);

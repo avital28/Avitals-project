@@ -67,6 +67,10 @@
 	  <None Remove="Resources\Images\plusicon.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\user.png" />
+	  <None Remove="Resources\Images\w1.jpg" />
+	  <None Remove="Resources\Images\w2.jpg" />
+	  <None Remove="Resources\Images\w3.jpg" />
+	  <None Remove="Resources\Images\w4.jpg" />
 	  <None Remove="Resources\Raw\loadingdots.json" />
 	</ItemGroup>
 

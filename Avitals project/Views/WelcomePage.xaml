@@ -4,31 +4,28 @@
              x:Class="Avitals_project.Views.WelcomePage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
-             x:DataType="viewmodels:LoginPageViewModel"
+             x:DataType="viewmodels:WelcomePageViewModel"
              xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              Shell.TabBarIsVisible="False"
              Title="WelcomePage"
              >
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label FontSize="Title" Text="Welcome back" HorizontalOptions="Center" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
-        <Label FontSize="Subtitle" Text="Sign in to create your collective moments" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
-        <sf:SfTextInputLayout
-Hint="Username" ContainerBackground="White"  ContainerType="Outlined" 
-         >
-            <Entry Text="{Binding Username}" />
-        </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout
-   Hint="Password" ContainerBackground="White" EnablePasswordVisibilityToggle="True" HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
-            >
-            <Entry Text="{Binding Password}"/>
-        </sf:SfTextInputLayout>
-        <Label Text="Don't have an account yet? Sign up!" FontSize="Small" TextColor="{StaticResource MainColor}">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer x:DataType="viewmodels:WelcomePageViewModel" Command="{Binding ToLogin}"></TapGestureRecognizer>
-            </Label.GestureRecognizers>
-        </Label>
-        <Button Text="Log in" x:DataType="viewmodels:LoginPageViewModel" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center" Margin="0,20,0,0" FontAttributes="Bold"
-          CornerRadius="38" HeightRequest="50" WidthRequest="125" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
-
-    </VerticalStackLayout>
+    <StackLayout>
+        <Frame Margin="0,40,200,0" CornerRadius="60" WidthRequest="120" HeightRequest="120">
+            <Image Source="w3.jpg" WidthRequest="120" HeightRequest="120" Aspect="AspectFill"></Image>
+        </Frame>
+        <Frame Margin="170,-70,0,40" CornerRadius="50" WidthRequest="100" HeightRequest="100">
+        <Image Source="w1.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFill"></Image>
+    </Frame>
+        <Frame Margin="370,60,0,0" CornerRadius="85" WidthRequest="170" HeightRequest="170">
+            <Image Source="w4.jpg" WidthRequest="170" HeightRequest="170" Aspect="AspectFill"></Image>
+        </Frame>
+        <Frame Margin="250,120,0,0" CornerRadius="65" WidthRequest="130" HeightRequest="130">
+            <Image Source="w2.jpg" WidthRequest="130" HeightRequest="130" Aspect="AspectFill"></Image>
+        </Frame>
+        <Label Margin="0,-460,0,0" Text="Collective moments" Style="{StaticResource TitleLabel}"></Label>
+        <Button CornerRadius="45" ></Button>
+        
+        
+    </StackLayout>
+    
 </ContentPage>
