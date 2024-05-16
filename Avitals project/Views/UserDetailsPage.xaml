@@ -8,7 +8,7 @@
              xmlns:icons="clr-namespace:Avitals_project.Enums"
              xmlns:sf2="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
              x:DataType="viewmodels:UserDetailsPageViewModel"
-             BackgroundColor="{StaticResource MainColor}">
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainColorDark}, Default={StaticResource MainColorLight}}">
     <VerticalStackLayout>
         <Grid RowDefinitions="20,*" ColumnDefinitions="Auto,*,Auto" Padding="40,70,40,30">
             <HorizontalStackLayout Grid.Row="0">

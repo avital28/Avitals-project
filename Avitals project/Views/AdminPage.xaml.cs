@@ -9,4 +9,17 @@ public partial class AdminPage : ContentPage
 		this.BindingContext = vm;	
 		InitializeComponent();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var vm = this.BindingContext as AdminPageViewModel;
+        if (vm != null)
+        {
+            vm.LoadUsers();
+        }
+
+
+
+    }
 }

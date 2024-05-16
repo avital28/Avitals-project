@@ -25,15 +25,25 @@ namespace Avitals_project.ViewModels
         public ICommand JoinAlbum { get; set; }
         #endregion
         #region Methods
-        //private void PopulateList ()
-        //{
-            
-        //    for (int i = 0; i<5&& Album.Media.ElementAt(i)!=null;i++)
-        //    {
-        //        Medias.Add(Album.Media.ElementAt(i));
-        //    }
-            
-        //}
+        private async Task<List<Media>> GetMedia(Album al)
+        {
+            UserService s = new UserService();
+            return await s.GetMediaByAlbumAsync(al);
+        }
+        public async void LoadMedia()
+        {
+            AlbumMediaPageViewModel.Media.Clear();
+            List<Media> m = await GetMedia(Album);
+            if (m != null)
+            {
+                foreach (var item in m)
+                {
+
+                    Medias.Add(item);
+
+                }
+            }
+        }
         #endregion
         public ViewAlbumDetailsPageViewModel(UserService service)
         {
@@ -44,8 +54,12 @@ namespace Avitals_project.ViewModels
                 Album.Memebers.Add(((AppShell)Shell.Current).user);
                 DisplayAlbumsPageViewModel.AllUserssAlbums.Add(Album);
                 DisplayAlbumsPageViewModel.CurrentMembersAlbums.Add(Album);
-
-                await Shell.Current.GoToAsync("AlbumMediaPage");
+                var response = await service.AddMembersAsync(Album, ((AppShell)AppShell.Current).user);
+                if (response == true)
+                {
+                    await Shell.Current.DisplayAlert("You were added", "התחברתי", "אישור");
+                    await Shell.Current.GoToAsync("AlbumMediaPage");
+                }
             });
             
         }

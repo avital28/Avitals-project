@@ -12,7 +12,7 @@
     Title="CreateAlbumPage"
     x:DataType="viewmodels:CreateAlbumPageViewModel">
     <VerticalStackLayout> 
-        <sf:SfPopup
+        <!--<sf:SfPopup
             x:DataType="viewmodels:CreateAlbumPageViewModel"
             AcceptButtonText="Done"
             AcceptCommand="{Binding CreateAlbum}"
@@ -40,16 +40,16 @@
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
-                            <!--<FlyoutBase.ContextFlyout>
+                            --><!--<FlyoutBase.ContextFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem Text="Take a photo" Command="{Binding TakePhoto}"/>
                                     <MenuFlyoutSeparator/>
                                     <MenuFlyoutItem Text="Choose from gallery" Command="{Binding ChooseFromGallery}"/>
                                 </MenuFlyout>
-                            </FlyoutBase.ContextFlyout>-->
+                            </FlyoutBase.ContextFlyout>--><!--
                         </Image>
   
-                                <!--<sf:SfPopup Margin="110,50,0,0" Padding="110,50,0,0" BackgroundColor="White" WidthRequest="140" HeightRequest="50" IsOpen="{Binding IsOpen}" ShowFooter="False" ShowHeader="False" ShowOverlayAlways="False">
+                                --><!--<sf:SfPopup Margin="110,50,0,0" Padding="110,50,0,0" BackgroundColor="White" WidthRequest="140" HeightRequest="50" IsOpen="{Binding IsOpen}" ShowFooter="False" ShowHeader="False" ShowOverlayAlways="False">
                             <sf:SfPopup.ContentTemplate>
                                     <DataTemplate>
                
@@ -100,7 +100,7 @@
                                 <picker:PickerColumn
                          ItemsSource="{Binding DropDownData}"  />
                             </picker:SfPicker.Columns>
-                        </picker:SfPicker>-->
+                        </picker:SfPicker>--><!--
                         <Entry
                             Grid.Row="4" Margin="0,50,0,0"
                             Placeholder="Album title"
@@ -130,6 +130,6 @@
                     </VerticalStackLayout>
                 </DataTemplate>
             </sf:SfPopup.FooterTemplate>
-        </sf:SfPopup>
+        </sf:SfPopup>-->
     </VerticalStackLayout>
 </ContentPage>

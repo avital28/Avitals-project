@@ -25,7 +25,7 @@ namespace Avitals_project.ViewModels
         #endregion
         #region Properties
         public ICommand JoinAlbum { get; set; }
-        public ICommand LoadAlbums { get; set; }
+        
         public ICommand Create { get; set; }
         public ICommand CreateAlbum {  get; set; }
         public Album album { get; set; }
@@ -56,9 +56,9 @@ namespace Avitals_project.ViewModels
             al.Memebers.Add(new User() { Firstname = "D" });
             al.Memebers.Add(new User() { Firstname = "E" });
 
-            al.Media.Add(new Media("cover2.jpg"));
-            al.Media.Add(new Media("cover3.jpg"));
-            al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
+            //al.Media.Add(new Media("cover2.jpg"));
+            //al.Media.Add(new Media("cover3.jpg"));
+            //al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
 
             IsVisible = false;
             nav.Add("album", al);
@@ -83,6 +83,40 @@ namespace Avitals_project.ViewModels
                 }
             });
         }
+
+        public async void LoadAlbums()
+        {
+            Albums.Clear();
+            try
+            {
+                Location l = await Geolocation.GetLocationAsync();
+                longtitude = l.Longitude.ToString();
+                latitude = l.Latitude.ToString();
+                UserService service= new UserService();
+                ObservableCollection<Album> a = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
+                if (a != null)
+                {
+                    
+                    foreach (var item in a)
+                    {
+                        Albums.Add(item);
+                    }
+                    await Shell.Current.DisplayAlert("Albums were found", "", "אישור");
+
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("There has been an error", "", "אישור");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+        }
                 #endregion
         public AddAlbumPageViewModel(UserService service): base (service)
         {
@@ -95,55 +129,8 @@ namespace Avitals_project.ViewModels
             Cover = "emptyalbumcover.jpg";
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
-            Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 2", AlbumCover = "cover2.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 3", AlbumCover = "cover3.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
-            Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
             
-            LoadAlbums = new Command(async () =>  
-            {
-                try
-                {
-                    Location l = await Geolocation.GetLocationAsync();
-                    longtitude = l.Longitude.ToString();
-                    latitude = l.Latitude.ToString();
-
-                    ObservableCollection<Album> a = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
-
-                    IsDoneLoading = true;
-                    HeaderMessage = doneloadingmessage;
-                    if (a != null)
-                    {
-                        IsFound = true;
-                        foreach(var item in a)
-                        {
-                            Albums.Add(item);
-                        }
-                        await Shell.Current.DisplayAlert("Albums were found", "", "אישור");
-
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("There has been an error", "", "אישור");
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-                }
-
-
-
-
-               
-
-            });
+         
             JoinAlbum = new Command<Album>(JoinAlbum1);
             CreateAlbum = new Command(async () =>
             {

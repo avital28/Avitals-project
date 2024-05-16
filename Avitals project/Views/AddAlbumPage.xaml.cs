@@ -9,17 +9,18 @@ public partial class AddAlbumPage : ContentPage
 		this.BindingContext = vm;
 		InitializeComponent();
 	}
-    //protected override async void OnAppearing()
-    //{
-    //    base.OnAppearing();
-	   // popup_p.Show();
-		
-	
-		
-    //}
+	protected override async void OnAppearing()
+	{
+		base.OnAppearing();
+        var vm = this.BindingContext as AddAlbumPageViewModel;
+        if (vm != null)
+        {
+            vm.LoadAlbums();
+        }
 
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-		bool x= true;
+
+
     }
+
+	
 }

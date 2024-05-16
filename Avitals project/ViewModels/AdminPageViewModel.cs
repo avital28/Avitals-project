@@ -2,6 +2,7 @@
 using Avitals_project.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Avitals_project.ViewModels
         public string UpdatedTitle { get { return updatedtitle; } set { if (updatedtitle != value) { IsEnabled = true; updatedtitle = value; OnPropertyChange(); } } }
         public string UpdatedCover { get { return updatedcover; } set { if (updatedcover != value) { updatedcover = value; OnPropertyChange(); } } }
         public Dictionary<string, object> nav = new Dictionary<string, object>();
+        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
         public ICommand ChangeAlbumCover { get; set; }
         public ICommand DisplayUsers { get; set; }
@@ -48,6 +50,21 @@ namespace Avitals_project.ViewModels
             nav.Add("album", Album);
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);
             //await Shell.Current.GoToAsync("Upload");
+        }
+
+        public async void LoadUsers()
+        {
+              
+            UserService service = new UserService();
+            var u = await service.GetMembersAsync(Album);
+            if (u != null)
+            {
+                foreach (var item in u)
+                {
+                    Users.Add(item);
+                }
+            }
+
         }
 
         #endregion

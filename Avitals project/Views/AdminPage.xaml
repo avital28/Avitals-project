@@ -1,124 +1,225 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.AdminPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             Title="AdminPage"
-             xmlns:icons="clr-namespace:Avitals_project.Enums"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-             BackgroundColor="#FAFAFA"
-             Shell.BackgroundColor="#FAFAFA"
-            Shell.NavBarIsVisible="True"
-             Shell.TabBarIsVisible="False"
-            xmlns:controls="clr-namespace:Avitals_project.Controls"             x:DataType="viewmodels:AdminPageViewModel"
-             xmlns:models="clr-namespace:Avitals_project.Models">
+<ContentPage
+    x:Class="Avitals_project.Views.AdminPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Avitals_project.Controls"
+    xmlns:icons="clr-namespace:Avitals_project.Enums"
+    xmlns:models="clr-namespace:Avitals_project.Models"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="AdminPage"
+    x:DataType="viewmodels:AdminPageViewModel"
+    BackgroundColor="#FAFAFA"
+    Shell.BackgroundColor="#FAFAFA"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False">
     <Grid Margin="25,25,0,0" RowDefinitions=".1*, .2*, .15*,.45*,.1*">
         <Grid Margin="0,0,25,0" ColumnDefinitions="*,*">
-            <Label Margin="0,-35,0,0" Grid.Row="0" FontSize="40" TextColor="Gray" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" x:DataType="icons:Icons" Text="{x:Static icons:Icons.ArrowLeft }" FontFamily="FontIcons"></Label>
-            <Border VerticalOptions="Start" WidthRequest="75" HeightRequest="75" Grid.Column="1"
-                    HorizontalOptions="End" StrokeShape="RoundRectangle 80,80,80,80">
-                <Image Aspect="AspectFill" HorizontalOptions="Center" Source="{Binding ProfilePicture}" HeightRequest="100" WidthRequest="100"/>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,-35,0,0"
+                x:DataType="icons:Icons"
+                FontFamily="FontIcons"
+                FontSize="40"
+                HorizontalOptions="Start"
+                Text="{x:Static icons:Icons.ArrowLeft}"
+                TextColor="Gray"
+                VerticalOptions="Start">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        x:DataType="viewmodels:AdminPageViewModel"
+                        Command="{Binding DisplayUsers}"
+                        NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+
+            </Label>
+            <Border
+                Grid.Column="1"
+                HeightRequest="75"
+                HorizontalOptions="End"
+                StrokeShape="RoundRectangle 80,80,80,80"
+                VerticalOptions="Start"
+                WidthRequest="75">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="{Binding ProfilePicture}"
+                    WidthRequest="100" />
             </Border>
         </Grid>
-        <VerticalStackLayout Grid.Row="0" Margin="0,5,0,0" VerticalOptions="Start">
-            <Label FontSize="45" Style="{StaticResource TitleLabel}" Text="{Binding Album.AlbumTitle}"></Label>
-            <Label Margin="0,10,0,0" Style="{StaticResource SubTitleLabel}"  Text="Edit album"></Label>
+        <VerticalStackLayout
+            Grid.Row="0"
+            Margin="0,5,0,0"
+            VerticalOptions="Start">
+            <Label
+                FontSize="45"
+                Style="{StaticResource TitleLabel}"
+                Text="{Binding Album.AlbumTitle}" />
+            <Label
+                Margin="0,10,0,0"
+                Style="{StaticResource SubTitleLabel}"
+                Text="Edit album" />
             <HorizontalStackLayout>
-                <Label Text="Users" Margin="0,20,0,0"></Label>
+                <Label Margin="0,20,0,0" Text="Users" />
                 <Label
-FontAttributes="Bold"
-FontSize="Subtitle"
-Text="See all"
-TextColor="Gray" HorizontalOptions="End" Margin="200,20,0,0" >
-                    <Label.GestureRecognizers >
-                        <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    Margin="200,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Subtitle"
+                    HorizontalOptions="End"
+                    Text="See all"
+                    TextColor="Gray">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
 
             </HorizontalStackLayout>
-            <CollectionView Grid.Row="1"   VerticalOptions="Start" ItemsSource="{Binding Album.Memebers}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:User">
-                    <Grid ColumnDefinitions=".35*,.65*" HeightRequest="60" WidthRequest="160">
-                        <RoundRectangle Grid.ColumnSpan="2" CornerRadius="45" Fill="LightGray"></RoundRectangle>
-                        <Border Grid.RowSpan="2" Margin="5,0,0,0" HeightRequest="50" HorizontalOptions="Start"
-                                StrokeShape="RoundRectangle 80, 80, 80, 80" StrokeThickness="0" WidthRequest="50">
-                            <Image HeightRequest="50" Source="{Binding ProfilePicture}" ></Image>
-                        </Border>
-                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                            <Label Margin="10,0,0,0" HorizontalTextAlignment="Start" Text="{Binding Firstname}" VerticalTextAlignment="Center"></Label>
-                            <Label Grid.Column="1" Margin="10,0,0,0" VerticalOptions="Start" FontSize="12" Text="{Binding UserName}"></Label>
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding Users}"
+                VerticalOptions="Start">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:User">
+                        <Grid
+                            ColumnDefinitions=".35*,.65*"
+                            HeightRequest="60"
+                            WidthRequest="160">
+                            <RoundRectangle
+                                Grid.ColumnSpan="2"
+                                CornerRadius="45"
+                                Fill="LightGray" />
+                            <Border
+                                Grid.RowSpan="2"
+                                Margin="5,0,0,0"
+                                HeightRequest="50"
+                                HorizontalOptions="Start"
+                                StrokeShape="RoundRectangle 80, 80, 80, 80"
+                                StrokeThickness="0"
+                                WidthRequest="50">
+                                <Image HeightRequest="50" Source="{Binding ProfilePicture}" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label
+                                    Margin="10,0,0,0"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding Firstname}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    FontSize="12"
+                                    Text="{Binding UserName}"
+                                    VerticalOptions="Start" />
 
-                        </VerticalStackLayout>
-                        <Label Text="X" Grid.Column="1" Margin="0,5,20,0" HorizontalOptions="End" VerticalOptions="Start"></Label>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </VerticalStackLayout>
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,5,20,0"
+                                HorizontalOptions="End"
+                                Text="X"
+                                VerticalOptions="Start" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
-        <Frame Margin="0,100,0,0" HorizontalOptions="CenterAndExpand" BackgroundColor="#FFFFFF" Grid.Row="2" CornerRadius="20" WidthRequest="280" HeightRequest="380">
-            <VerticalStackLayout  >
-                <Border StrokeThickness="0"  HeightRequest="270" Margin="0,0,0,80" WidthRequest="264" StrokeShape="RoundRectangle 20">
-                    <Image Aspect="AspectFill"  Source="{Binding Album.AlbumCover}" HeightRequest="400" WidthRequest="400"></Image>
+        <Frame
+            Grid.Row="2"
+            Margin="0,100,0,0"
+            BackgroundColor="#FFFFFF"
+            CornerRadius="20"
+            HeightRequest="380"
+            HorizontalOptions="CenterAndExpand"
+            WidthRequest="280">
+            <VerticalStackLayout>
+                <Border
+                    Margin="0,0,0,80"
+                    HeightRequest="270"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    WidthRequest="264">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="400"
+                        Source="{Binding Album.AlbumCover}"
+                        WidthRequest="400" />
                 </Border>
                 <Grid ColumnDefinitions=".5*,.5*">
-                    <Label Text="Album title:" Margin="0,-85,0,0" Grid.Column="0" ></Label>
-                    <Label Text="Hello" Margin="0,-85,0,0">
+                    <Entry Text="{Binding UpdatedTitle}" />
 
-                    </Label>
+
 
                 </Grid>
-                <Button Margin="0,-50,0,0" BackgroundColor="Black" Text="Change album cover" Command="{Binding ChangePhoto}"></Button>
+                <Button
+                    Margin="0,5,0,0"
+                    BackgroundColor="Black"
+                    Command="{Binding ChangePhoto}"
+                    Text="Change album cover" />
 
             </VerticalStackLayout>
 
         </Frame>
-        <HorizontalStackLayout Margin="0,5,0,0"  Grid.Row="4">
-            <Button Style="{StaticResource ButtonColor}" CornerRadius="10" WidthRequest="90" HeightRequest="90" Command="{Binding BrowseGallery}" Text="Browse gallery" ></Button>
-            <Button Margin="70,0,0,0" CornerRadius="10" WidthRequest="90" HeightRequest="90" Text="Save changes" BackgroundColor="Black"></Button>
+        <HorizontalStackLayout Grid.Row="4" Margin="0,5,0,0">
+            <Button
+                Command="{Binding BrowseGallery}"
+                CornerRadius="10"
+                HeightRequest="90"
+                Style="{StaticResource ButtonColor}"
+                Text="Browse gallery"
+                WidthRequest="90" />
+            <Button
+                Margin="70,0,0,0"
+                BackgroundColor="Black"
+                CornerRadius="10"
+                HeightRequest="90"
+                Text="Save changes"
+                WidthRequest="90" />
         </HorizontalStackLayout>
         <sf:SfPopup
-    HeightRequest="280"
-    IsOpen="{Binding IsOpen}"
-    ShowFooter="True"
-    ShowHeader="True"
-    WidthRequest="350">
+            HeightRequest="280"
+            IsOpen="{Binding IsOpen}"
+            ShowFooter="True"
+            ShowHeader="True"
+            WidthRequest="350">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
                     <Grid
-                HorizontalOptions="Center"
-                RowDefinitions="auto,auto,auto,auto"
-                VerticalOptions="Center">
+                        HorizontalOptions="Center"
+                        RowDefinitions="auto,auto,auto,auto"
+                        VerticalOptions="Center">
 
 
                         <Image
-                    Grid.RowSpan="3"
-                    Aspect="AspectFill"
-                    HeightRequest="140"
-                    Source="emptyalbumcover.jpg"
-                    WidthRequest="140" />
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill"
+                            HeightRequest="140"
+                            Source="emptyalbumcover.jpg"
+                            WidthRequest="140" />
                         <HorizontalStackLayout IsVisible="{Binding IsOpen}">
                             <Button
-                        BackgroundColor="{StaticResource MainColor}"
-                        Command="{Binding ChangePhoto}"
-                        HeightRequest="40"
-                        Text="Choose from gallery"
-                        WidthRequest="70" />
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding ChangePhoto}"
+                                HeightRequest="40"
+                                Text="Choose from gallery"
+                                WidthRequest="70" />
                             <Button
-                        BackgroundColor="{StaticResource MainColor}"
-                        Command="{Binding TakePhoto}"
-                        HeightRequest="40"
-                        Text="picture "
-                        WidthRequest="70" />
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding TakePhoto}"
+                                HeightRequest="40"
+                                Text="picture "
+                                WidthRequest="70" />
                             <Button
-                        BackgroundColor="{StaticResource MainColor}"
-                        Command="{Binding TakeVideo}"
-                        HeightRequest="40"
-                        Text="video "
-                        WidthRequest="70" />
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding TakeVideo}"
+                                HeightRequest="40"
+                                Text="video "
+                                WidthRequest="70" />
 
                         </HorizontalStackLayout>
 
@@ -142,11 +243,11 @@ TextColor="Gray" HorizontalOptions="End" Margin="200,20,0,0" >
                     <VerticalStackLayout>
 
                         <Line
-                BackgroundColor="Black"
-                X1="90"
-                X2="120"
-                Y1="0"
-                Y2="0" />
+                            BackgroundColor="Black"
+                            X1="90"
+                            X2="120"
+                            Y1="0"
+                            Y2="0" />
                         <Label HorizontalOptions="End" Text=" Done">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangeAlbumCover}" NumberOfTapsRequired="1" />

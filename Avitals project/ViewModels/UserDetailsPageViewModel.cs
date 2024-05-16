@@ -174,7 +174,7 @@ namespace Avitals_project.ViewModels
                     if (updateduser != null)
                     {
                         updateduser.Id = currentuser.Id;    
-                        var user = await service.UpdateUserAsync(updateduser, currentfile);
+                        var user = await service.UpdateUserAsync(updateduser);
                         if (user is UserDto)
                         {
                             ErrorMessageUpdate = ((UserDto)user).Message;

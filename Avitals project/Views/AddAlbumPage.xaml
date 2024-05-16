@@ -81,19 +81,19 @@ NumberOfTapsRequired="1" />
                     Aspect="AspectFill"
                     HeightRequest="140"
                     Source="{Binding Cover}"
-                    WidthRequest="140" Margin="0,150,0,0" >
+                    WidthRequest="140" Margin="0,0,0,0" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
                             </Image>
-                            <HorizontalStackLayout Margin="0,150,0,0" IsVisible="{Binding IsOpen}">
+                            <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
                                 <Button
-    BackgroundColor="{StaticResource MainColor}"
+    BackgroundColor="{StaticResource MainColorLight}"
     Command="{Binding TakePhoto}"
     HeightRequest="40"
     Text="Take a picture "
     WidthRequest="90" />
-                                <Button BackgroundColor="{StaticResource MainColor}"
+                                <Button BackgroundColor="{StaticResource MainColorLight}"
                                 Command="{Binding ChangePhoto}"
                                 HeightRequest="40"
                                 Text="Choose from gallery"
@@ -104,7 +104,7 @@ NumberOfTapsRequired="1" />
 
 
                             <Entry
-                    Grid.Row="4" Margin="0,50,0,0"
+                    Grid.Row="4" Margin="0,150,0,0"
                     Placeholder="Album title"
                     Text="{Binding Title}"
                     TextColor="Black" />

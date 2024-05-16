@@ -4,43 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
-    xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
-
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
     Title="RegisterPage"
     x:DataType="viewmodels:RegisterPageViewModel"
-    Shell.TabBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label
-            FontSize="Title"
-            Text="Register"
-            TextColor="{StaticResource MainColor}" />
-        <dataForm:SfDataForm LayoutType="TextInputLayout"></dataForm:SfDataForm>  
-        <sf:SfTextInputLayout Hint="Username"  ContainerBackground="White"  ContainerType="Outlined" >
-            
+    Shell.TabBarIsVisible="True">
+    <VerticalStackLayout VerticalOptions="Start">
+        <Label Style="{StaticResource TitleLabel}" Text="Register" />
+        <sf:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            Hint="Username">
+
             <Entry Text="{Binding Username}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout EnablePasswordVisibilityToggle="True" Hint="Password" ContainerBackground="White"   ContainerType="Outlined" >
+        <sf:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            EnablePasswordVisibilityToggle="True"
+            Hint="Password">
             <Entry Text="{Binding Password}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="Email" ContainerBackground="White" ContainerType="Outlined" >
+        <sf:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            Hint="Email">
             <Entry Text="{Binding Email}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="First Name" ContainerBackground="White" ContainerType="Outlined" >
+        <sf:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            Hint="First Name">
             <Entry Text="{Binding Firstname}" />
         </sf:SfTextInputLayout>
-        <sf:SfTextInputLayout Hint="Last Name" ContainerBackground="White" ContainerType="Outlined" >
+        <sf:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            Hint="Last Name">
             <Entry Text="{Binding Lastname}" />
         </sf:SfTextInputLayout>
         <Button
-            BackgroundColor="{StaticResource MainColor}"
             Command="{Binding RegisterCommand}"
             CornerRadius="10"
             HeightRequest="40"
             HorizontalOptions="Center"
+            Style="{StaticResource ButtonColor}"
             Text="Register"
-            TextColor="{StaticResource TextColor}"
             WidthRequest="100" />
     </VerticalStackLayout>
 </ContentPage>

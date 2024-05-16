@@ -85,26 +85,11 @@ namespace Avitals_project.Services
             return false;
         }
 
-        public async Task<User> UpdateUserAsync(User User,  FileResult? file)
+        public async Task<User> UpdateUserAsync(User User)
         {
             try
             {
-                if (file!=null)
-                {
-                    byte[] bytes;
-
-
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        var stream = await file.OpenReadAsync();
-                        stream.CopyTo(ms);
-                        bytes = ms.ToArray();
-
-                        var multipartFormDataContent = new MultipartFormDataContent();
-
-                        var imagecontent = new ByteArrayContent(bytes);
-                        multipartFormDataContent.Add(imagecontent, "file", $"{file.FileName}");
-                    }  }
+              
                 User user = User;
                 var jsonContent = JsonSerializer.Serialize(user);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -150,7 +135,7 @@ namespace Avitals_project.Services
                             foreach(var al in albums)
                             {
                                     al.AlbumCover = $"{IMAGE_URL}{al.AlbumCover}";
-                                    //to do run on each photo in album update photo url
+                                    
                                     
                             }
                             await Task.Delay(2000);
@@ -420,6 +405,74 @@ namespace Avitals_project.Services
                 Console.WriteLine(ex.Message);
             }
             return null;
+        }
+        public async Task<List<User>> GetMembersAsync (Album a) 
+        {
+            try
+            {
+
+                var response = await httpClient.GetAsync($"{URL}GetMembersByAlbum?albumId={a.Id}");
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            var jsonContent = await response.Content.ReadAsStringAsync();
+                            List<User> U = JsonSerializer.Deserialize<List<User>>(jsonContent, _serializerOptions);
+                            
+                            await Task.Delay(2000);
+                            return U;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+        public async Task<bool> AddMembersAsync(Album a, User user)
+        {
+            try
+            {
+
+                var multipartFormDataContent = new MultipartFormDataContent();
+
+               
+
+               
+                //var jsonContent = JsonSerializer.Serialize(a);
+                //var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                //var jsonContent2 = JsonSerializer.Serialize(user);
+                //var content2 = new StringContent(jsonContent2, Encoding.UTF8, "application/json");
+                //multipartFormDataContent.Add(content, "album");
+                //multipartFormDataContent.Add(content2, "user");
+                var response = await httpClient.PostAsync($"{URL}AddMember?albumId={a.Id}&&userId={user.Id}", null);
+                switch (response.StatusCode)
+                {
+
+                    case (HttpStatusCode.OK):
+                        {
+                             var jsonContent = await response.Content.ReadAsStringAsync();
+                            var r= JsonSerializer.Deserialize<bool>(jsonContent, _serializerOptions);
+
+                            await Task.Delay(2000);
+                            return r;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return false;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
         }
         //public async Task<User> UpdateAlbumCoverAsync(User User)
         //{

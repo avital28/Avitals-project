@@ -127,8 +127,8 @@ namespace Avitals_project.ViewModels
         {
             if (SelectedItem == "My albums")
             {
-                al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
-                al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
+                //al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
+                //al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
 
                 nav.Clear();
                 nav.Add("album", al);
