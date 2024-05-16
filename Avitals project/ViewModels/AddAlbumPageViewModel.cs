@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Avitals_project.ViewModels
 {
-    public class AddAlbumPageViewModel : ViewModel
+    public class AddAlbumPageViewModel : MediaMethodsViewModel
     {
         #region Private fields
         private bool isfound;
@@ -16,6 +16,7 @@ namespace Avitals_project.ViewModels
         private string location;
         private String longtitude;
         private String latitude;
+        private string title;
         private const string notfoundmessage = "No albums were found nearby";
         private const string loadingmessage = "Searching for albums in your area";
         private const string doneloadingmessage = "Albums in your area";
@@ -26,7 +27,9 @@ namespace Avitals_project.ViewModels
         public ICommand JoinAlbum { get; set; }
         public ICommand LoadAlbums { get; set; }
         public ICommand Create { get; set; }
+        public ICommand CreateAlbum {  get; set; }
         public Album album { get; set; }
+        public string Title { get => title; set { if (title != value) { title = value; OnPropertyChange(); } } }
         public bool IsVisible { get { return isvisible; } set { if (isvisible != value) { isvisible = value; OnPropertyChange(); } } }
         public string Location_ { get { return location; } set { if (location != value) { location = value; OnPropertyChange(); } }}
         public bool IsFound { get { return isfound; } set { if (isfound != value) { isfound = value; OnPropertyChange(); } } }
@@ -81,12 +84,15 @@ namespace Avitals_project.ViewModels
             });
         }
                 #endregion
-        public AddAlbumPageViewModel(UserService service)
+        public AddAlbumPageViewModel(UserService service): base (service)
         {
-            
-            IsVisible = true;
+            //GetLocation();
+            IsVisible = false;
             IsFound = false;
             IsDoneLoading = false;
+            IsOpen= false;
+            Title = "Album title";
+            Cover = "emptyalbumcover.jpg";
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
             Albums.Add(new Album { AlbumTitle = "Album 1", AlbumCover = "cover1.jpg" });
@@ -96,7 +102,7 @@ namespace Avitals_project.ViewModels
             Albums.Add(new Album { AlbumTitle = "Album 4", AlbumCover = "cover4.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 5", AlbumCover = "cover4.jpg" });
             Albums.Add(new Album { AlbumTitle = "Album 6", AlbumCover = "cover3.jpg" });
-            //GetLocation();  
+            
             LoadAlbums = new Command(async () =>  
             {
                 try
@@ -139,17 +145,45 @@ namespace Avitals_project.ViewModels
 
             });
             JoinAlbum = new Command<Album>(JoinAlbum1);
+            CreateAlbum = new Command(async () =>
+            {
+                try
+                {
+                    Location l = await Geolocation.GetLocationAsync();
+                    longtitude = l.Longitude.ToString();
+                    latitude = l.Latitude.ToString();
+                    Album a = new Album() { AlbumCover = Cover, AlbumTitle = Title, Latitude = latitude, Longitude = longtitude };
+                    FileResult f = currentfile;
+                    var response = await service.CreateAlbumAsync(a, f);
+                    if (response == true)
+                    {
+                        DisplayAlbumsPageViewModel.AllUserssAlbums.Add(a);
+                        DisplayAlbumsPageViewModel.CurrentAdminsAlbums.Add(a);
+                        await Shell.Current.DisplayAlert("Album created successfuly", "", "אישור");
 
+
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Failed", "", "אישור");
+
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            });
 
             Create = new Command(async () =>
                 {
-                    await Shell.Current.GoToAsync("CreateAlbumPage");
+                    IsVisible = true;  
 
                 });
 
 
         }
-        public AddAlbumPageViewModel() { }
+        
     }
 }
 

@@ -75,8 +75,8 @@ TextColor="Gray" HorizontalOptions="End" Margin="200,20,0,0" >
 
         </Frame>
         <HorizontalStackLayout  Grid.Row="4">
-            <Button CornerRadius="10" WidthRequest="100" HeightRequest="100" Text="Browse gallery" BackgroundColor="Black"></Button>
-            <Button Margin="70,0,0,0" CornerRadius="10" WidthRequest="100" HeightRequest="100" Text="Save changes" BackgroundColor="Black"></Button>
+            <Button CornerRadius="10" WidthRequest="150" HeightRequest="150" Command="{Binding BrowseGallery}" Text="Browse gallery" BackgroundColor="Black"></Button>
+            <Button Margin="70,0,0,0" CornerRadius="10" WidthRequest="150" HeightRequest="150" Text="Save changes" BackgroundColor="Black"></Button>
         </HorizontalStackLayout>
         <sf:SfPopup
     HeightRequest="280"

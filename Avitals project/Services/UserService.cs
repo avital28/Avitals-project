@@ -313,6 +313,15 @@ namespace Avitals_project.Services
                                 foreach (var al in albums)
                                 {
                                     al.AlbumCover = $"{IMAGE_URL}{al.AlbumCover}";
+                                    if (al.Media.Count > 0)
+                                    {
+                                        foreach (var item in al.Media)
+                                        {
+                                            item.Sources  = $"{IMAGE_URL}{item.Sources}";
+
+                                        }
+                                    }
+
                                 }
                             }
                             await Task.Delay(2000);
@@ -484,6 +493,80 @@ namespace Avitals_project.Services
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return false;
         }
-    }
+
+        public async Task<bool> UpdateAlbumAsync(int id, string title)
+        {
+            try
+            {
+
+                Album al = new Album() { Id = id, AlbumTitle = title };
+                var jsonContent = JsonSerializer.Serialize(al);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync($"{URL}UpdateAlbum", content);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            var IsUpdated = JsonSerializer.Deserialize<bool>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return IsUpdated;
+                        }
+                    case (HttpStatusCode.Forbidden):
+                        {
+                            return false;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        public async Task<bool> AddMember(Album al, User user)
+        {
+            try
+            {
+
+
+                var multipartFormDataContent = new MultipartFormDataContent();
+                Album album = al;
+                var jsonContent = JsonSerializer.Serialize(album);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                multipartFormDataContent.Add(content, "album");
+                var jsonContent2 = JsonSerializer.Serialize(album);
+                var content2 = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                multipartFormDataContent.Add(content2, "user");
+                var response = await httpClient.PostAsync($"{URL}AddMember", multipartFormDataContent);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+
+                            await Task.Delay(2000);
+                            return true;
+
+
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return false;
+                        }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return false;
+
+        }
+          
+            
+        
+            
+        }
+    
 }
+
 

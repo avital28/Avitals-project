@@ -18,24 +18,39 @@
                     StrokeShape="RoundRectangle 45,45,45,45"
                     HorizontalOptions="Center" StrokeThickness="8"
                     >
-                            <Image x:DataType="viewmodels:UserDetailsPageViewModel" Source="{Binding ProfilePicture}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"></Image>
+                            <Image x:DataType="viewmodels:UserDetailsPageViewModel" Source="{Binding Cover}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"></Image>
                         </Border>
                     </sf:SfBadgeView.Content>
                     <sf:SfBadgeView.BadgeSettings >
                         <sf:BadgeSettings Type="None" Position="BottomRight" Offset="-20,-5" Background="Gray"  FontFamily="FontIcons"></sf:BadgeSettings>
                     </sf:SfBadgeView.BadgeSettings>
                     <sf:SfBadgeView.GestureRecognizers>
-                        <TapGestureRecognizer x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding ChangePhoto }"></TapGestureRecognizer>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" x:DataType="viewmodels:UserDetailsPageViewModel" Command="{Binding ChangePhoto }"></TapGestureRecognizer>
                     </sf:SfBadgeView.GestureRecognizers>
                 </sf:SfBadgeView>
               
                 <Label Text="Edit profile" TextColor="#FFFFFF" FontSize="Header"></Label>
-                <sf2:SfPopup IsOpen="{Binding IsOpen}" WidthRequest="350" HeightRequest="280">
+                <sf2:SfPopup RelativePosition="AlignTopRight" ShowHeader="False" Margin="0,80,0,0" WidthRequest="190" HeightRequest="60" IsOpen="{Binding IsOpen}" >
                     <sf2:SfPopup.ContentTemplate>
                         <DataTemplate>
-                            <VerticalStackLayout>
-                                <Button Text="Take picture" Command="{Binding TakePhoto }"></Button>
-                                <Button Text="Take picture" Command="{Binding ChooseFromGallery }"></Button>
+                            <VerticalStackLayout VerticalOptions="CenterAndExpand">
+                                <Label Text="Take picture">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TakePhoto}" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Line
+BackgroundColor="Black"
+X1="90"
+X2="120"
+Y1="0"
+Y2="0" />
+
+                                <Label Text="Choose from gallery">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ChooseFromGallery}" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
 
                             </VerticalStackLayout>
                         </DataTemplate>

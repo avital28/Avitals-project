@@ -106,25 +106,17 @@ namespace Avitals_project.ViewModels
 
         private async void ShowAlbum1(Album al)
         {
-            List<Media> m = await GetMedia(al);
-            if (m!=null)
+            AlbumMediaPageViewModel.Media.Clear();
+            if (al.Media.Count>0)
             {
-                foreach (var item in m)
+                foreach (var item in al.Media)
                 {
-                    al.Media.Add(item);
+
+                    AlbumMediaPageViewModel.Media.Add(item);
                     
                 }
             }
-            //al.Media.Add(new Media("cover2.jpg") );
-            //al.Media.Add(new Media("cover3.jpg") );
-            //al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") );
-            //foreach (var item in al.Media)
-            //{
-            //    AlbumMediaPageViewModel.Media.Add(item);
-            //}
-            //al.Media.Add("cover2.jpg");
-            //al.Media.Add("cover3.jpg");
-            //al.Media.Add("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+            
             nav.Clear();
             nav.Add("album", al);
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);

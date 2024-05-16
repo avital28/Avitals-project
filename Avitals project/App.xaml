@@ -11,6 +11,15 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary>
                     <Color x:Key="MainColor">#1E7B85</Color>
+                    
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <Style x:Key="TitleLabel" TargetType="Label">
+                        <Setter Property="FontFamily" Value="NexaHeavy" />
+                        <Setter Property="FontSize" Value="50" />
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Default=Green}" />
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 

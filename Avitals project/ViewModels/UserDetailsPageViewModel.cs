@@ -11,7 +11,7 @@ using Avitals_project.Services;
 
 namespace Avitals_project.ViewModels
 {
-    public class UserDetailsPageViewModel:ViewModel
+    public class UserDetailsPageViewModel:MediaMethodsViewModel
     {
         User currentuser ;
         private User updateduser=new User();
@@ -21,7 +21,6 @@ namespace Avitals_project.ViewModels
         private string username;
         private string password;
         private string profilepicture;
-        private bool isopen;
         private string errormessageupdate;
         private static FileResult currentfile = null;
 
@@ -46,10 +45,8 @@ namespace Avitals_project.ViewModels
         public string Password { get { return password; } set { if (password != value) { password = value; OnPropertyChange(); updateduser.Passwrd = password; } } }
         
         public string ProfilePicture { get { return profilepicture; } set { if (profilepicture != value) { profilepicture = value; OnPropertyChange(); updateduser.ProfilePicture = profilepicture; } } }
-        public bool IsOpen { get { return isopen; } set { if (isopen != value) { isopen = value; OnPropertyChange(); updateduser.ProfilePicture = profilepicture; } } }
 
-        public ICommand TakePhoto { get; set; }
-        public ICommand ChooseFromGallery { get; set; }
+      
 
         public string ErrorMessage { get { return errormessage; } }
         public bool ShowErrorMessage { get { return showerrormessage; } set { if (showerrormessage != value) { showerrormessage = value; OnPropertyChange(); } } }
@@ -62,7 +59,6 @@ namespace Avitals_project.ViewModels
 
         public ICommand UpdateUserCommand { get; set; }
         public ICommand UpdateProfilePicture { get; set; }
-        public ICommand ChangePhoto { get; set; }
 
         #endregion
 
@@ -146,7 +142,7 @@ namespace Avitals_project.ViewModels
         }
 
             #endregion
-            public UserDetailsPageViewModel(UserService service)
+            public UserDetailsPageViewModel(UserService service): base(service)
         {
             IsOpen= false;  
             currentuser = ((AppShell)Shell.Current).user;
@@ -157,7 +153,7 @@ namespace Avitals_project.ViewModels
                 Username=currentuser.UserName;
                 Password = currentuser.Passwrd;
             }
-            ProfilePicture = "emptyprofilepicture.jpg";
+            Cover = "emptyprofilepicture.jpg";
             UpdateProfilePicture = new Command(async () =>
             {
                 try
@@ -200,12 +196,7 @@ namespace Avitals_project.ViewModels
                 }
 
             });
-            TakePhoto = new Command(CapturePhoto);
-            ChooseFromGallery = new Command(ChooseFromGallery1);
-            ChangePhoto = new Command(async () =>
-            {
-                IsOpen = true;
-            });
+            
 
         }
     }
