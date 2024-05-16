@@ -10,10 +10,10 @@
              Title="LoginPage" 
             
             >
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label FontSize="Title" Text="Welcome back" FontAttributes="Bold" TextColor="{StaticResource MainColor}"></Label>
-        <Label FontSize="Subtitle" Text="Sign in to your account" FontAttributes="Bold" TextColor="{StaticResource MainColor}" ></Label>
-        <sf:SfTextInputLayout
+    <VerticalStackLayout Margin="0,100,0,0" HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+        <Label Text="Login" FontAttributes="Bold" Style="{StaticResource TitleLabel}"></Label>
+        <Label FontSize="Subtitle" Margin="0,20,0,0" Text=" Continue creating your collective moments" FontAttributes="Bold" ></Label>
+        <sf:SfTextInputLayout Margin="0,10,0,0"
 Hint="Username" ContainerBackground="White"  ContainerType="Outlined" 
          >
             <Entry Text="{Binding Username}" />
@@ -28,7 +28,7 @@ Hint="Username" ContainerBackground="White"  ContainerType="Outlined"
 
 
 
-        <Button Text="Log in" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
+        <Button Text="Log in" Style="{StaticResource ButtonColor}" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
                 CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
             
           </VerticalStackLayout>

@@ -29,7 +29,7 @@ Shell.BackgroundColor="#FAFAFA"
             
         </Grid>
     </Frame>
-        <Label Style="{StaticResource TitleLabel}" Margin="0,50,0,0" Text="Albums in my location"></Label>
+        <Label Style="{StaticResource TitleLabel}" FontSize="30" Margin="0,20,0,0" Text="Albums in my location"></Label>
         <CarouselView HeightRequest="350" WidthRequest="350" Margin="0,5,0,0" PeekAreaInsets="30" ItemsSource="{Binding Albums}" IndicatorView="indicatorview" Loop="False">
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Center" SnapPointsType="MandatorySingle"></LinearItemsLayout>
@@ -55,7 +55,7 @@ NumberOfTapsRequired="1" />
         </CarouselView>
         <IndicatorView HorizontalOptions="Center" IndicatorColor="LightGray" IndicatorSize="8" SelectedIndicatorColor="Black"
                            VerticalOptions="Center" x:Name="indicatorview"></IndicatorView>
-        <Frame Margin="0,70,0,0" CornerRadius="45" BackgroundColor="LightGray" Opacity=".5" WidthRequest="300" HeightRequest="100">
+        <Frame Margin="0,40,0,0" CornerRadius="45" BackgroundColor="LightGray" Opacity=".5" WidthRequest="300" HeightRequest="100">
             <VerticalStackLayout HorizontalOptions="CenterAndExpand">
                 <Label Text="Didn't find what you were looking for?"/>
                 <Button Text="Create album" Command="{Binding Create}" BackgroundColor="Black"></Button>

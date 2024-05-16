@@ -15,6 +15,12 @@
                 </ResourceDictionary>
                 <ResourceDictionary>
                     
+                    <Style x:Key="SubTitleLabel" TargetType="Label">
+                        <Setter Property="FontFamily" Value="NexaLight" />
+                        <Setter Property="FontSize" Value="25" />
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MainColorDark}, Default={StaticResource MainColorLight}}" />
+                    </Style>
                     <Style x:Key="TitleLabel" TargetType="Label">
                         <Setter Property="FontFamily" Value="NexaHeavy" />
                         <Setter Property="FontSize" Value="50" />

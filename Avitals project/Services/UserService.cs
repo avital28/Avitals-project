@@ -401,6 +401,11 @@ namespace Avitals_project.Services
                         {
                             var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Media> m = JsonSerializer.Deserialize<List<Media>>(jsonContent, _serializerOptions);
+                            foreach (var item in m)
+                            {
+                                item.Sources = $"{IMAGE_URL}{item.Sources}";
+
+                            }
                             await Task.Delay(2000);
                             return m;
                         }

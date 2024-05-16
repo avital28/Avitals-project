@@ -26,7 +26,9 @@ namespace Avitals_project.ViewModels
         public ICommand DisplayUsers { get; set; }
         public ICommand BrowseGallery { get; set; }
         public ICommand SaveChanges { get; set; }
+        public ICommand GoBack { get; set; }
         public string ProfilePicture { get; set; }
+
 
         #region Methods
         private async void ShowAlbum1()
@@ -61,6 +63,10 @@ namespace Avitals_project.ViewModels
             DisplayUsers = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("AlbumDataPage");
+            });
+            GoBack = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync("DisplayAlbumsPage");
             });
             Cover = "emptyalbumcover.jpg";
             IsOpen = false;

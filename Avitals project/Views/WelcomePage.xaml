@@ -23,9 +23,10 @@
             <Image Source="w2.jpg" WidthRequest="130" HeightRequest="130" Aspect="AspectFill"></Image>
         </Frame>
         <Label Margin="0,-460,0,0" Text="Collective moments" Style="{StaticResource TitleLabel}"></Label>
-        <Button CornerRadius="45" ></Button>
-        
-        
+        <HorizontalStackLayout Margin="0,10,0,0">
+            <Button CornerRadius="38" Margin="4,0,0,0" Text="Sign up" Command="{Binding ToRegister}" FontAttributes="Bold"  HeightRequest="50" WidthRequest="105" Style="{StaticResource ButtonColor}" ></Button>
+            <Button CornerRadius="38" Margin="10,0,0,0" Text="Login" Command="{Binding ToLogin}" FontAttributes="Bold" HeightRequest="50" WidthRequest="105" Style="{StaticResource ButtonColor}" ></Button>
+        </HorizontalStackLayout>
     </StackLayout>
     
 </ContentPage>
