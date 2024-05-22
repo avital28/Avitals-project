@@ -1,5 +1,6 @@
 ﻿
 using Avitals_project.Services;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Avitals_project.ViewModels
 {
     public class MediaMethodsViewModel:ViewModel
     {
+       protected UserService userService;
         private string cover;
         private bool isopen;
         protected static FileResult currentfile = null;
@@ -103,6 +105,7 @@ namespace Avitals_project.ViewModels
         }
         public MediaMethodsViewModel(UserService service)
         {
+            this.userService = service;
             TakePhoto = new Command(CapturePhoto);
             TakeVideo = new Command(CaptureVideo);
             ChooseFromGallery = new Command(ChooseFromGallery1);

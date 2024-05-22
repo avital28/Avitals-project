@@ -23,7 +23,14 @@ namespace Avitals_project.ViewModels
         public string UpdatedCover { get { return updatedcover; } set { if (updatedcover != value) { updatedcover = value; OnPropertyChange(); } } }
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
-        public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
+        public Album Album { get { return album; } set { if (album != value) { album = value; Updatedata(); OnPropertyChange(); } } }
+
+        private void Updatedata()
+        {
+            UpdatedCover = albumcover;
+            updatedtitle = Album.AlbumTitle;
+        }
+
         public ICommand ChangeAlbumCover { get; set; }
         public ICommand DisplayUsers { get; set; }
         public ICommand BrowseGallery { get; set; }
@@ -88,7 +95,7 @@ namespace Avitals_project.ViewModels
             Cover = "emptyalbumcover.jpg";
             IsOpen = false;
             IsEnabled = false;
-            UpdatedCover = albumcover;
+            
             BrowseGallery = new Command(ShowAlbum1);
             SaveChanges = new Command(async () =>
             {

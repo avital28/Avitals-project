@@ -150,14 +150,10 @@
                         Source="{Binding Album.AlbumCover}"
                         WidthRequest="400" />
                 </Border>
-                <Grid ColumnDefinitions=".5*,.5*">
-                    <Entry Text="{Binding UpdatedTitle}" />
+                <Grid ColumnDefinitions=".5*,.5*" />
 
-
-
-                </Grid>
                 <Button
-                    Margin="0,5,0,0"
+                    Margin="0,-110,0,0"
                     BackgroundColor="Black"
                     Command="{Binding ChangePhoto}"
                     Text="Change album cover" />
@@ -165,11 +161,15 @@
             </VerticalStackLayout>
 
         </Frame>
-        <HorizontalStackLayout Grid.Row="4" Margin="0,5,0,0">
+        <HorizontalStackLayout
+            Grid.Row="4"
+            Margin="0,5,0,0"
+            HorizontalOptions="CenterAndExpand">
             <Button
                 Command="{Binding BrowseGallery}"
                 CornerRadius="10"
                 HeightRequest="90"
+                HorizontalOptions="CenterAndExpand"
                 Style="{StaticResource ButtonColor}"
                 Text="Browse gallery"
                 WidthRequest="90" />
@@ -178,6 +178,7 @@
                 BackgroundColor="Black"
                 CornerRadius="10"
                 HeightRequest="90"
+                HorizontalOptions="CenterAndExpand"
                 Text="Save changes"
                 WidthRequest="90" />
         </HorizontalStackLayout>

@@ -132,6 +132,7 @@ namespace Avitals_project.ViewModels
 
                 nav.Clear();
                 nav.Add("album", al);
+                nav.Add("albumCover", al.AlbumCover);
 
                 AdminPageViewModel.albumcover = al.AlbumCover;
                 await Shell.Current.GoToAsync("AdminPage", nav);

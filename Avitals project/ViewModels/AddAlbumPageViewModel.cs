@@ -64,27 +64,36 @@ namespace Avitals_project.ViewModels
             nav.Add("album", al);
             await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);
         }
-        private async void GetLocation()
+        public async Task GetLocation()
         {
             Location l = await Geolocation.GetLocationAsync();
-            GetGeocodeReverseData(l.Longitude, l.Latitude); 
-        }
-        private async void GetGeocodeReverseData(double longitude, double latitude)
-        {
-            await MainThread.InvokeOnMainThreadAsync(async () =>
+            try
             {
-                IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
+                await MainThread.InvokeOnMainThreadAsync(async () =>
+                await GetGeocodeReverseData(l.Longitude, l.Latitude));
+            }
+            catch(Exception ex) { }
+        }
+        private async Task GetGeocodeReverseData(double longitude, double latitude)
+        {
+            try
+            {
+              //  await MainThread.InvokeOnMainThreadAsync(async () =>
+                //{
+                    IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
 
-                Placemark placemark = placemarks?.FirstOrDefault();
+                    Placemark placemark = placemarks?.FirstOrDefault();
 
-                if (placemark != null)
-                {
-                    Location_ = placemark.Thoroughfare.ToString();
-                }
-            });
+                    if (placemark != null)
+                    {
+                        Location_ = placemark.Thoroughfare.ToString();
+                    }
+                //});
+            }
+            catch(Exception ex) { }   
         }
 
-        public async void LoadAlbums()
+        public async Task LoadAlbums()
         {
             Albums.Clear();
             try
@@ -92,12 +101,12 @@ namespace Avitals_project.ViewModels
                 Location l = await Geolocation.GetLocationAsync();
                 longtitude = l.Longitude.ToString();
                 latitude = l.Latitude.ToString();
-                UserService service= new UserService();
-                ObservableCollection<Album> a = new ObservableCollection<Album>(await service.GetAlbumsByLocation(longtitude, latitude));
-                if (a != null)
+                List<Album> albums = await this.userService.GetAlbumsByLocation(longtitude, latitude);
+                
+                if (albums != null)
                 {
                     
-                    foreach (var item in a)
+                    foreach (var item in albums)
                     {
                         Albums.Add(item);
                     }
