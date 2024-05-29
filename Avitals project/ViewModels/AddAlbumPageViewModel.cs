@@ -42,24 +42,11 @@ namespace Avitals_project.ViewModels
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         #endregion
         #region Methods
-        //public Animation CreateAnimation ()
-        //{
-        //    var animation = new Animation ();   
-        //    animation.
-        //}
+ 
         private async void JoinAlbum1 (Album al)
         {
             nav.Clear();
-            al.Memebers.Add(new User() { Firstname = "A" });
-            al.Memebers.Add(new User() { Firstname = "B" });
-            al.Memebers.Add(new User() { Firstname = "C" });
-            al.Memebers.Add(new User() { Firstname = "D" });
-            al.Memebers.Add(new User() { Firstname = "E" });
-
-            //al.Media.Add(new Media("cover2.jpg"));
-            //al.Media.Add(new Media("cover3.jpg"));
-            //al.Media.Add(new Media("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
-
+            var a = await userService.GetMediaByAlbumAsync(al); 
             IsVisible = false;
             nav.Add("album", al);
             await Shell.Current.GoToAsync("ViewAlbumDetailsPage", nav);

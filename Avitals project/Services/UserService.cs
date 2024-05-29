@@ -389,8 +389,9 @@ namespace Avitals_project.Services
                             foreach (var item in m)
                             {
                                 item.Sources = $"{IMAGE_URL}{item.Sources}";
-
+                                a.Media.Add(item);
                             }
+                            
                             await Task.Delay(2000);
                             return m;
                         }
@@ -419,6 +420,35 @@ namespace Avitals_project.Services
                             var jsonContent = await response.Content.ReadAsStringAsync();
                             List<User> U = JsonSerializer.Deserialize<List<User>>(jsonContent, _serializerOptions);
                             
+                            await Task.Delay(2000);
+                            return U;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        public async Task<List<User>> DeleteMembersAsync(Album a, User u)
+        {
+            try
+            {
+
+                var response = await httpClient.DeleteAsync($"{URL}GetMembersByAlbum?albumId={a.Id}&userId={u.Id}");
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            var jsonContent = await response.Content.ReadAsStringAsync();
+                            List<User> U = JsonSerializer.Deserialize<List<User>>(jsonContent, _serializerOptions);
+
                             await Task.Delay(2000);
                             return U;
                         }

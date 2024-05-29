@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace Avitals_project.ViewModels
 {
     [QueryProperty(nameof(Album), "album")]
-    public class AlbumMediaPageViewModel:ViewModel
+    public class AlbumMediaPageViewModel:MediaMethodsViewModel
     {
         #region private fields
         private Album album;
@@ -24,105 +24,18 @@ namespace Avitals_project.ViewModels
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
         public Media Current { get { return current; } set { if (current != value) { current = value; OnPropertyChange(); } } }
         public ICommand AddMedia { get; set; }
-        public ICommand TakePhoto { get; set; }
-        public ICommand TakeVideo { get; set; }
-        public ICommand ChooseFromGallery { get; set; }
+       
         public ICommand LoadMedia { get; set; }
-        public ICommand ChangePhoto { get; set; }
+    
         public ICommand Tapped { get; set; }
-        public string Cover { get => cover; set { if (cover != value) { cover = value; OnPropertyChange(); } } }
-        public bool IsOpen { get => isopen; set { if (isopen != value) { isopen = value; OnPropertyChange(); } } }
-
+       
 
         public static ObservableCollection<Media> Media { get; set; } = new ObservableCollection<Media>();
         public  ObservableCollection<Media> Displayed { get; set; } = new ObservableCollection<Media>();
 
         #endregion
-        #region Methods
-        public async void CapturePhoto()
-        {
-            FileResult photo = new FileResult("a");
-            await MainThread.InvokeOnMainThreadAsync(async () =>
-            {
-                if (MediaPicker.Default.IsCaptureSupported)
-                {
-
-                    photo = await MediaPicker.Default.CapturePhotoAsync();
-
-                    if (photo.FullPath != "")
-                    {
-
-                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-
-                        using Stream sourceStream = await photo.OpenReadAsync();
-                        using FileStream localFileStream = File.OpenWrite(localFilePath);
-
-                        await sourceStream.CopyToAsync(localFileStream);
-                        Current = new Media(localFilePath);
-                        currentfile = photo;
-                        Cover = localFilePath;
-                        Album.MediaCount++;
-                       
-                    }
-                }
-
-
-            }
-         );
-        }
-        public async void CaptureVideo()
-        {
-            
-            await MainThread.InvokeOnMainThreadAsync(async () =>
-            {
-                if (MediaPicker.Default.IsCaptureSupported)
-                {
-                    FileResult video = await MediaPicker.Default.CaptureVideoAsync();
-
-                    if (video != null)
-                    {
-
-                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, video.FileName);
-
-                        using Stream sourceStream = await video.OpenReadAsync();
-                        using FileStream localFileStream = File.OpenWrite(localFilePath);
-
-                        await sourceStream.CopyToAsync(localFileStream);
-                        Current = new Media(localFilePath);
-                        currentfile=video;
-                        Cover = localFilePath;
-                        IsOpen = false;
-
-                    }
-                }
-            });
-        }
-        private async void ChooseFromGallery1()
-        {
-            FileResult photo = new FileResult("a");
-            await MainThread.InvokeOnMainThreadAsync(async () =>
-            {
-                if (MediaPicker.Default.IsCaptureSupported)
-                {
-
-                    photo = await MediaPicker.Default.PickPhotoAsync();
-                    if (photo != null)
-                    {
-                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-
-                        using Stream sourceStream = await photo.OpenReadAsync();
-                        using FileStream localFileStream = File.OpenWrite(localFilePath);
-
-                        await sourceStream.CopyToAsync(localFileStream);
-                        Current = new Media(localFilePath);
-                        IsOpen = false;
-
-                    }
-                }
-            });
-        }
-        #endregion
-        public AlbumMediaPageViewModel(UserService service)
+        
+        public AlbumMediaPageViewModel(UserService service): base (service)
         {
             IsOpen = false;
             Cover = "photoalbumicon.png";
@@ -160,9 +73,7 @@ namespace Avitals_project.ViewModels
                 }
             }
            
-            TakePhoto = new Command(CapturePhoto);
-            TakeVideo= new Command(CaptureVideo);   
-            ChooseFromGallery = new Command(ChooseFromGallery1);
+           
             ChangePhoto = new Command(async () =>
             {
                 IsOpen = true;

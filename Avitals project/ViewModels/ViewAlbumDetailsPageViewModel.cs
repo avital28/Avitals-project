@@ -18,32 +18,24 @@ namespace Avitals_project.ViewModels
         private int createdat;
         #endregion
         #region public properties
-        public Album Album { get { return album; } set { if (album != value) { album = value; /*PopulateList();*/ OnPropertyChange(); } } }
-        //public int CreatedAt { get { return (DateTime.Now.Hour - album.CreationDate.Hour); } }
+        public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); PopulateMedia(); } } }
+       
        public ObservableCollection<Media> Medias { get; set; } = new ObservableCollection<Media>();
-        public ICommand SwitchColors { get; set; }
         public ICommand JoinAlbum { get; set; }
         #endregion
         #region Methods
-        private async Task<List<Media>> GetMedia(Album al)
+      private async Task PopulateMedia()
         {
-            UserService s = new UserService();
-            return await s.GetMediaByAlbumAsync(al);
-        }
-        public async void LoadMedia()
-        {
-            AlbumMediaPageViewModel.Media.Clear();
-            List<Media> m = await GetMedia(Album);
-            if (m != null)
+            
+            if (Album.Media.Count>0)
             {
-                foreach (var item in m)
+                foreach (var item in Album.Media)
                 {
-
                     Medias.Add(item);
-
                 }
             }
         }
+        
         #endregion
         public ViewAlbumDetailsPageViewModel(UserService service)
         {

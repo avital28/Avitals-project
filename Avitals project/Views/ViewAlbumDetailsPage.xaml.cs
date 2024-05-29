@@ -11,18 +11,18 @@ public partial class ViewAlbumDetailsPage : ContentPage
 		InitializeComponent();
 	
 	}
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        var vm = this.BindingContext as ViewAlbumDetailsPageViewModel;
-        if (vm != null)
-        {
-            vm.LoadMedia();
-        }
+    //protected override async void OnAppearing()
+    //{
+    //    base.OnAppearing();
+    //    var vm = this.BindingContext as ViewAlbumDetailsPageViewModel;
+    //    if (vm != null)
+    //    {
+    //        vm.LoadMedia();
+    //    }
 
 
 
-    }
+    //}
 
 
 }
