@@ -21,7 +21,7 @@ namespace Avitals_project.ViewModels
         public object SelectedItem { get => selecteditem; set { if (selecteditem != value) { selecteditem = value; OnPropertyChange(); } } }
         public string AlbumCover { get; set; }
         public Dictionary<string, object> nav = new Dictionary<string, object>();
-        public Dictionary<string, List<object>> nav2 = new Dictionary<string, List<object>>();
+        public Dictionary<string, object> nav2 = new Dictionary<string, object>();
         public Dictionary<string, object> paramaters = new Dictionary<string, object>();
         public int MediaCount { get { return mediacount; } }
         public ObservableCollection<string> DropDown { get; set; }
@@ -128,17 +128,17 @@ namespace Avitals_project.ViewModels
         {
 
             nav2.Clear();
-            List<object> al = new List<object>();
+            List<Album> al = new List<Album>();
             if (AllUserssAlbums.Count != 0)
             {
                 for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
                 {
-                    al.Add(AllUserssAlbums.ElementAt(i) as object);
+                    al.Add(AllUserssAlbums[i]);
                 }
             }
             nav2.Add("Albums1", al);
-            paramaters.Add("Albums2", nav2);
-            await Shell.Current.GoToAsync("ShowAllAlbums", paramaters);
+            
+            await Shell.Current.GoToAsync("ShowAllAlbums", nav2);
             //ShowAllAlbumsViewModel.album.Clear();
             //if (SelectedItem == "My albums")
             //{
@@ -179,14 +179,7 @@ namespace Avitals_project.ViewModels
 
             // Dictionary<string, object> paramaters = new Dictionary<string, object>();
             //paramaters.Add("Albums", nav2); 
-            ShowAllAlbumsViewModel.album.Clear();
-            if (AllUserssAlbums.Count != 0)
-            {
-                for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
-                {
-                    ShowAllAlbumsViewModel.album.Add(AllUserssAlbums[i]);
-                }
-            }
+           
             await Shell.Current.GoToAsync("ShowAllAlbums");
 
         }

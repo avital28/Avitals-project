@@ -122,7 +122,7 @@ namespace Avitals_project.Services
             try
             {
                 
-                var response = await httpClient.GetAsync($"{URL}GetAlbumsByUser?longitude={longitude}&latitude={latitude}");
+                var response = await httpClient.GetAsync($"{URL}GetAlbumsByLocation?longitude={longitude}&latitude={latitude}");
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
