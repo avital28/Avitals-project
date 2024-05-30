@@ -30,33 +30,32 @@ namespace Avitals_project.ViewModels
             UpdatedCover = albumcover;
             updatedtitle = Album.AlbumTitle;
         }
+        private async void DeleteMembers(User user)
+        {
+            var response = await userService.DeleteMembersAsync(Album, user);
+            if (response==true)
+            {
+                Users.Remove(user);
+            }
+        }
 
         public ICommand ChangeAlbumCover { get; set; }
         public ICommand DisplayUsers { get; set; }
         public ICommand BrowseGallery { get; set; }
         public ICommand SaveChanges { get; set; }
         public ICommand GoBack { get; set; }
+        public ICommand DeleteUsers { get; set; }   
         public string ProfilePicture { get; set; }
 
 
         #region Methods
         private async void ShowAlbum1()
         {
-            AlbumMediaPageViewModel.Media.Clear();
-            if (Album.Media.Count > 0)
-            {
-                foreach (var item in Album.Media)
-                {
-
-                    AlbumMediaPageViewModel.Media.Add(item);
-
-                }
-            }
-
+            await userService.GetMediaByAlbumAsync(Album);
             nav.Clear();
             nav.Add("album", Album);
             await Shell.Current.GoToAsync("AlbumMediaPage", nav);
-            //await Shell.Current.GoToAsync("Upload");
+            
         }
 
         public async void LoadUsers()
@@ -88,6 +87,8 @@ namespace Avitals_project.ViewModels
             {
                 await Shell.Current.GoToAsync("AlbumDataPage");
             });
+            DeleteUsers = new Command<User>(DeleteMembers);
+         
             GoBack = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("DisplayAlbumsPage");

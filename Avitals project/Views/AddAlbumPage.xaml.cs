@@ -15,7 +15,7 @@ public partial class AddAlbumPage : ContentPage
         var vm = this.BindingContext as AddAlbumPageViewModel;
         if (vm != null)
         {
-			await vm.GetLocation();
+			//await vm.GetLocation();
              await vm.LoadAlbums();
         }
 

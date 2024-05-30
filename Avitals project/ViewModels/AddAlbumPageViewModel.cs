@@ -116,7 +116,7 @@ namespace Avitals_project.ViewModels
                 #endregion
         public AddAlbumPageViewModel(UserService service): base (service)
         {
-            //GetLocation();
+            
             IsVisible = false;
             IsFound = false;
             IsDoneLoading = false;

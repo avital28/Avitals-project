@@ -13,7 +13,7 @@ namespace Avitals_project.ViewModels
 {
     public class MediaMethodsViewModel:ViewModel
     {
-       protected UserService userService;
+       
         private string cover;
         private bool isopen;
         protected static FileResult currentfile = null;

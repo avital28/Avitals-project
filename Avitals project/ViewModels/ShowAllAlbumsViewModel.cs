@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avitals_project.Models;
 using Avitals_project.Services;
+using Avitals_project.Handlers;
 
 
 namespace Avitals_project.ViewModels
 {
-    [QueryProperty(nameof(nav), "Albums")]
+    //[QueryProperty(nameof(Nav2), "Albums2")]
     public class ShowAllAlbumsViewModel:ViewModel
     {
         #region private fields
-        private int mediacount;
+        private Dictionary<string, object> nav2 = new Dictionary<string, object>();
+
         public static ObservableCollection<Album> album = new ObservableCollection<Album>();
 
         public ObservableCollection<Album> Albums { get;  set; } 
@@ -25,9 +27,8 @@ namespace Avitals_project.ViewModels
         public ICommand ShowAlbum { get; set; }
         public ICommand AddAlbum { get; set; }
         public Dictionary<string, List<object>> nav = new Dictionary<string, List<object>>();
-        public Dictionary<string, object> nav2 = new Dictionary<string, object>();
-
-        public int MediaCount { get { return mediacount; } }
+        //public CustomDictionary<string , object> N  
+       
         #endregion
         #region Methods
         

@@ -26,15 +26,10 @@
                 HorizontalOptions="Start"
                 Text="{x:Static icons:Icons.ArrowLeft}"
                 TextColor="Gray"
-                VerticalOptions="Start">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer
-                        x:DataType="viewmodels:AdminPageViewModel"
-                        Command="{Binding DisplayUsers}"
-                        NumberOfTapsRequired="1" />
-                </Label.GestureRecognizers>
+                VerticalOptions="Start"/>
 
-            </Label>
+
+
             <Border
                 Grid.Column="1"
                 HeightRequest="75"
@@ -123,7 +118,14 @@
                                 Margin="0,5,20,0"
                                 HorizontalOptions="End"
                                 Text="X"
-                                VerticalOptions="Start" />
+                                VerticalOptions="Start" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+  x:DataType="viewmodels:AdminPageViewModel"
+        Command="{Binding DeleteUsers}"
+        NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

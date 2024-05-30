@@ -117,19 +117,17 @@ namespace Avitals_project.Services
             return new UserDto() { Message = "Update failed" };
         }
 
-        public async Task<List<Album>> GetAlbumsByLocation(string longitude, string altitude)
+        public async Task<List<Album>> GetAlbumsByLocation(string longitude, string latitude)
         {
             try
             {
-                Album album = new Album { Longitude = longitude, Latitude = altitude };
-                var jsonContent = JsonSerializer.Serialize(album);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}GetAlbumsByLocation", content);
+                
+                var response = await httpClient.GetAsync($"{URL}GetAlbumsByUser?longitude={longitude}&latitude={latitude}");
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
                         {
-                            jsonContent = await response.Content.ReadAsStringAsync();
+                            var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Album> albums = JsonSerializer.Deserialize<List<Album>>(jsonContent, _serializerOptions);
                             if(albums.Count>0)
                             foreach(var al in albums)
@@ -386,6 +384,7 @@ namespace Avitals_project.Services
                         {
                             var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Media> m = JsonSerializer.Deserialize<List<Media>>(jsonContent, _serializerOptions);
+                            a.Media.Clear();
                             foreach (var item in m)
                             {
                                 item.Sources = $"{IMAGE_URL}{item.Sources}";
@@ -436,7 +435,7 @@ namespace Avitals_project.Services
             return null;
         }
 
-        public async Task<List<User>> DeleteMembersAsync(Album a, User u)
+        public async Task<bool> DeleteMembersAsync(Album a, User u)
         {
             try
             {
@@ -447,14 +446,17 @@ namespace Avitals_project.Services
                     case (HttpStatusCode.OK):
                         {
                             var jsonContent = await response.Content.ReadAsStringAsync();
-                            List<User> U = JsonSerializer.Deserialize<List<User>>(jsonContent, _serializerOptions);
-
+                            bool Success = JsonSerializer.Deserialize<bool>(jsonContent, _serializerOptions);
+                            if (Success==true) 
+                            {
+                                a.Memebers.Remove(u);
+                            }
                             await Task.Delay(2000);
-                            return U;
+                            return Success;
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return null;
+                            return false;
                         }
                 }
             }
@@ -462,7 +464,7 @@ namespace Avitals_project.Services
             {
                 Console.WriteLine(ex.Message);
             }
-            return null;
+            return false;
         }
         public async Task<bool> AddMembersAsync(Album a, User user)
         {

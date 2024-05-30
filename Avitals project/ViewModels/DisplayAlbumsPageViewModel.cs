@@ -22,6 +22,7 @@ namespace Avitals_project.ViewModels
         public string AlbumCover { get; set; }
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         public Dictionary<string, List<object>> nav2 = new Dictionary<string, List<object>>();
+        public Dictionary<string, object> paramaters = new Dictionary<string, object>();
         public int MediaCount { get { return mediacount; } }
         public ObservableCollection<string> DropDown { get; set; }
         #region Static lists
@@ -106,84 +107,60 @@ namespace Avitals_project.ViewModels
 
         private async void ShowAlbum1(Album al)
         {
-            AlbumMediaPageViewModel.Media.Clear();
-            List<Media> m = await GetMedia(al);
-            if (m != null)
-            {
-                foreach (var item in m)
-                {
-
-                    AlbumMediaPageViewModel.Media.Add(item);
-                    
-                }
-            }
-            
+            await userService.GetMediaByAlbumAsync(al);
             nav.Clear();
             nav.Add("album", al);
-            await Shell.Current.GoToAsync("AlbumMediaPage", nav);
-            //await Shell.Current.GoToAsync("Upload");
+            await Shell.Current.GoToAsync("AlbumMediaPage", nav);  
         }
         private async void DisplayAdmin1(Album al)
         {
             if (SelectedItem == "My albums")
             {
-                //al.Memebers.Add(new User() { Firstname = "Eylon", UserName = "a@gmail.com" });
-                //al.Memebers.Add(new User() { Firstname = "Avia", UserName = "a@gmail.com" });
-
                 nav.Clear();
                 nav.Add("album", al);
                 nav.Add("albumCover", al.AlbumCover);
-
-                AdminPageViewModel.albumcover = al.AlbumCover;
                 await Shell.Current.GoToAsync("AdminPage", nav);
             }
-            //await Shell.Current.GoToAsync("Upload");
         }
 
-        private async Task<List<Media>> GetMedia  (Album al)
-        {
-            UserService s = new UserService();
-            return await s.GetMediaByAlbumAsync(al);
-        }
+        
         private async void DisplaySelectedAlbums1()
         {
-            
-            //nav2.Clear();
-            //List<object> al = new List<object>();
-            //if (AllUserssAlbums.Count != 0)
+
+            nav2.Clear();
+            List<object> al = new List<object>();
+            if (AllUserssAlbums.Count != 0)
+            {
+                for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
+                {
+                    al.Add(AllUserssAlbums.ElementAt(i) as object);
+                }
+            }
+            nav2.Add("Albums1", al);
+            paramaters.Add("Albums2", nav2);
+            await Shell.Current.GoToAsync("ShowAllAlbums", paramaters);
+            //ShowAllAlbumsViewModel.album.Clear();
+            //if (SelectedItem == "My albums")
             //{
-            //    for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
+            //    if (CurrentAdminsAlbums != null)
             //    {
-            //        al.Add(AllUserssAlbums.ElementAt(i) as object);
+            //        foreach (var item in CurrentAdminsAlbums)
+            //        {
+            //            ShowAllAlbumsViewModel.album.Add(item);
+            //        }
             //    }
             //}
-            //nav2.Add("Albums", al);
+            //else
+            //{
+            //    if (CurrentMembersAlbums != null)
+            //    {
+            //        foreach (var item in CurrentMembersAlbums)
+            //        {
+            //            ShowAllAlbumsViewModel.album.Add(item);
+            //        }
+            //    }
+            //}
 
-
-            // Dictionary<string, object> paramaters = new Dictionary<string, object>();
-            //paramaters.Add("Albums", nav2); 
-            ShowAllAlbumsViewModel.album.Clear();
-            if (SelectedItem == "My albums")
-            {
-                if (CurrentAdminsAlbums != null)
-                {
-                    foreach (var item in CurrentAdminsAlbums)
-                    {
-                        ShowAllAlbumsViewModel.album.Add(item);
-                    }
-                }
-            }
-            else
-            {
-                if (CurrentMembersAlbums != null)
-                {
-                    foreach (var item in CurrentMembersAlbums)
-                    {
-                        ShowAllAlbumsViewModel.album.Add(item);
-                    }
-                }
-            }
-            await Shell.Current.GoToAsync("ShowAllAlbums" );
 
         }
         private async void DisplayAllAlbums1()
