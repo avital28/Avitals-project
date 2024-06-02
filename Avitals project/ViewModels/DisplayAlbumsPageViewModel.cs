@@ -129,58 +129,37 @@ namespace Avitals_project.ViewModels
 
             nav2.Clear();
             List<Album> al = new List<Album>();
+            if  (SelectedItem == "My albums")
+                {
+                    for (int i = CurrentAdminsAlbums.Count - 1; i >= 0; i--)
+                {
+                    al.Add(CurrentAdminsAlbums[i]);
+                }
+            }
+            else
+            {
+                for (int i = CurrentMembersAlbums.Count - 1; i >= 0; i--)
+                {
+                    al.Add(CurrentMembersAlbums[i]);
+                }
+            }
+            nav2.Add("Albums", al);
+            
+            await Shell.Current.GoToAsync("ShowAllAlbums", nav2);
+        }
+        private async void DisplayAllAlbums1()
+        {
+            nav2.Clear();
+            List<object> al = new List<object>();
             if (AllUserssAlbums.Count != 0)
             {
                 for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
                 {
-                    al.Add(AllUserssAlbums[i]);
+                    al.Add(AllUserssAlbums.ElementAt(i) as object);
                 }
             }
-            nav2.Add("Albums1", al);
-            
+            nav2.Add("Albums", al);
             await Shell.Current.GoToAsync("ShowAllAlbums", nav2);
-            //ShowAllAlbumsViewModel.album.Clear();
-            //if (SelectedItem == "My albums")
-            //{
-            //    if (CurrentAdminsAlbums != null)
-            //    {
-            //        foreach (var item in CurrentAdminsAlbums)
-            //        {
-            //            ShowAllAlbumsViewModel.album.Add(item);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    if (CurrentMembersAlbums != null)
-            //    {
-            //        foreach (var item in CurrentMembersAlbums)
-            //        {
-            //            ShowAllAlbumsViewModel.album.Add(item);
-            //        }
-            //    }
-            //}
-
-
-        }
-        private async void DisplayAllAlbums1()
-        {
-            //nav2.Clear();
-            //List<object> al = new List<object>();
-            //if (AllUserssAlbums.Count != 0)
-            //{
-            //    for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
-            //    {
-            //        al.Add(AllUserssAlbums.ElementAt(i) as object);
-            //    }
-            //}
-            //nav2.Add("Albums", al);
-
-
-            // Dictionary<string, object> paramaters = new Dictionary<string, object>();
-            //paramaters.Add("Albums", nav2); 
-           
-            await Shell.Current.GoToAsync("ShowAllAlbums");
 
         }
         #endregion

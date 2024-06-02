@@ -14,7 +14,6 @@
     Title="ViewAlbumDetailsPage"
     x:DataType="viewmodels:ViewAlbumDetailsPageViewModel"
    >
-    <!--<Grid RowDefinitions="auto,auto,auto,*" ColumnDefinitions="auto,*,auto">-->
         <VerticalStackLayout>
             <Frame CornerRadius="45" Margin="-7,-20,0,0" HeightRequest="490" WidthRequest="405"  HorizontalOptions="Start" >
                 <Image Aspect="AspectFill" Margin="-17,-20,0,0" HorizontalOptions="Start"  HeightRequest="510" Source="{Binding Album.AlbumCover}" WidthRequest="405"></Image>
@@ -61,98 +60,13 @@
                 </VerticalStackLayout>
             </rv:MaterialFrame>-->
             
-            <!--<Frame Margin="0,-600,0,0" Opacity=".5" BackgroundColor="LightGray" HeightRequest="100" WidthRequest="300"  CornerRadius="40">
-                <VerticalStackLayout Opacity=".9">
-                    <Label Opacity=".9" TextColor="White" Text="{Binding Album.AlbumTitle}" HorizontalOptions="Start" FontAttributes="Bold" Padding="10,5,0,0" FontSize="Title"></Label>
-                    <Label Text="{Binding CreatedAt}" TextColor="White"></Label>
-                </VerticalStackLayout>
-            </Frame>-->
-          
+           
 
-    <!--</Grid>-->
-
-    <!--<Grid RowDefinitions="Auto,Auto,Auto,Auto">
-
-        <VerticalStackLayout>
-
-            --><!--<VerticalStackLayout.Background>
-            <LinearGradientBrush EndPoint="1,0">
-                <GradientStop Color="{StaticResource MainColor}"
-       Offset="0.1" />
-                <GradientStop Color="#B5EEED"
-       Offset="1.0" />
-            </LinearGradientBrush>
-        </VerticalStackLayout.Background>--><!--
-            <Label
-                Grid.Row="0"
-                FontSize="Title"
-                Text="{Binding Album.AlbumTitle}"
-                TextColor="White" />
-
-
-            <Frame
-                Margin="0,110,0,0"
-                Padding="0,150,0,0"
-                BackgroundColor="White"
-                CornerRadius="-45"
-                HeightRequest="700">
-                <VerticalStackLayout>
-                    <Label
-                        Margin="5,0,0,0"
-                        FontAttributes="Bold"
-                        FontSize="Subtitle"
-                        HorizontalOptions="Start"
-                        Text="Members"
-                        TextColor="{StaticResource MainColor}" />
-                    <CarouselView
-                        Margin="-10,20,0,0"
-                        ItemsSource="{Binding Album.Memebers}"
-                        ItemsUpdatingScrollMode="KeepLastItemInView"
-                        Loop="False"
-                        PeekAreaInsets="130">
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout
-                                Orientation="Horizontal"
-                                SnapPointsAlignment="End"
-                                SnapPointsType="MandatorySingle" />
-                        </CarouselView.ItemsLayout>
-                        <CarouselView.ItemTemplate>
-
-                            <DataTemplate x:DataType="models:User">
-                                <VerticalStackLayout HorizontalOptions="StartAndExpand">
-                                    <toolkit:AvatarView
-                                        CornerRadius="50"
-                                        HeightRequest="100"
-                                        ImageSource="{Binding ProfilePicture}"
-                                        WidthRequest="100" />
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        Text="{Binding Firstname}"
-                                        VerticalOptions="Center" />
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-
-                    </CarouselView>
-                </VerticalStackLayout>
-
-
-
-            </Frame>
-
-
-        </VerticalStackLayout>
-        <Image
-            Grid.Row="3"
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Margin="0,-800,0,0"
-            Aspect="AspectFill"
-            HeightRequest="140"
-            HorizontalOptions="Center"
-            Source="{Binding Album.AlbumCover}"
-            VerticalOptions="StartAndExpand"
-            WidthRequest="270" />
         
-    </Grid>-->
+
+
+           
+
+
+        
 </ContentPage>

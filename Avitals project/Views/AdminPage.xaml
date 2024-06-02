@@ -22,7 +22,7 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
-                Margin="0,-35,0,0"
+                Margin="-10,-35,0,0"
                 x:DataType="icons:Icons"
                 FontFamily="FontIcons"
                 FontSize="40"
@@ -40,7 +40,7 @@
                 StrokeShape="RoundRectangle 80,80,80,80"
                 VerticalOptions="Start"
                 WidthRequest="75">
-                <Image
+                <Image Grid.Column="1"
                     Aspect="AspectFill"
                     HeightRequest="100"
                     HorizontalOptions="Center"
@@ -69,7 +69,7 @@
                     FontSize="Subtitle"
                     HorizontalOptions="End"
                     Text="See all"
-                    TextColor="Gray">
+                    TextColor="Gray" ZIndex="4">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
@@ -126,7 +126,7 @@
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         x:DataType="viewmodels:AdminPageViewModel"
-                                        Command="{Binding DeleteUsers}"
+                                        Command="{Binding DeleteUsers, Source={RelativeSource AncestorType={x:Type viewmodels:AdminPageViewModel}}}"
                                         NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
                             </Label>

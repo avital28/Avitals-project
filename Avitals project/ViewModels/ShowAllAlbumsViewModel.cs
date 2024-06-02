@@ -12,7 +12,7 @@ using Avitals_project.Handlers;
 
 namespace Avitals_project.ViewModels
 {
-    [QueryProperty(nameof(QueryAlbums), "Albums2")]
+    [QueryProperty(nameof(QueryAlbums), "Albums")]
     public class ShowAllAlbumsViewModel:ViewModel
     {
         #region private fields

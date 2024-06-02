@@ -50,6 +50,7 @@ namespace Avitals_project.ViewModels
                 if (response == true)
                 {
                     await Shell.Current.DisplayAlert("You were added", "התחברתי", "אישור");
+
                     await Shell.Current.GoToAsync("AlbumMediaPage");
                 }
             });

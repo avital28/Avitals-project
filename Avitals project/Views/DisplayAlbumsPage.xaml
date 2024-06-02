@@ -89,7 +89,7 @@ TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
 
     </Grid>
         <HorizontalStackLayout Margin="0,30,0,0">
-                <combobox:SfComboBox ItemsSource="{Binding DropDown}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" WidthRequest="160" HeightRequest="40" MaxDropDownHeight="80">
+                <combobox:SfComboBox IsEditable="False" ItemsSource="{Binding DropDown}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" WidthRequest="160" HeightRequest="40" MaxDropDownHeight="80">
                     <combobox:SfComboBox.Behaviors>
                         <behaviors:EventToCommandBehavior Command="{Binding SelectionChnagedCommand}" EventName="SelectionChanged"></behaviors:EventToCommandBehavior>
                     </combobox:SfComboBox.Behaviors>
@@ -98,8 +98,8 @@ TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
                 <Label
 FontAttributes="Bold"
 FontSize="Subtitle"
-Text="See all"
-TextColor="Gray" HorizontalOptions="End" Margin="250,0,0,0" >
+Text="See all" 
+TextColor="Gray" HorizontalOptions="End" Margin="151,7,0,0" >
                     <Label.GestureRecognizers >
                         <TapGestureRecognizer Command="{Binding DisplaySelectedAlbums}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
