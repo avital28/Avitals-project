@@ -107,10 +107,14 @@ namespace Avitals_project.ViewModels
 
         private async void ShowAlbum1(Album al)
         {
-            await userService.GetMediaByAlbumAsync(al);
-            nav.Clear();
-            nav.Add("album", al);
-            await Shell.Current.GoToAsync("AlbumMediaPage", nav);  
+            
+            var response =await userService.GetMediaByAlbumAsync(al);
+            if (response==true)
+            {
+                nav.Clear();
+                nav.Add("album", al);
+                await Shell.Current.GoToAsync("AlbumMediaPage", nav);
+            }
         }
         private async void DisplayAdmin1(Album al)
         {
@@ -118,7 +122,7 @@ namespace Avitals_project.ViewModels
             {
                 nav.Clear();
                 nav.Add("album", al);
-                nav.Add("albumCover", al.AlbumCover);
+                
                 await Shell.Current.GoToAsync("AdminPage", nav);
             }
         }

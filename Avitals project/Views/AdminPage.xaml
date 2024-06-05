@@ -14,11 +14,14 @@
     Shell.BackgroundColor="#FAFAFA"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False">
-    <Grid ZIndex="1" Margin="25,25,0,0" RowDefinitions=".1*, .2*, .15*,.45*,.1*">
+    <Grid
+        Margin="25,25,0,0"
+        RowDefinitions=".1*, .2*, .15*,.45*,.1*"
+        ZIndex="1">
         <Grid
             Margin="0,0,25,0"
             ColumnDefinitions="*,*"
-            ZIndex="1">
+            ZIndex="2">
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
@@ -34,13 +37,13 @@
 
 
             <Border
-                
+                Margin="470,0,0,0"
                 HeightRequest="75"
-               
                 StrokeShape="RoundRectangle 80,80,80,80"
                 VerticalOptions="Start"
-                WidthRequest="75" Margin="470,0,0,0">
-                <Image Grid.Column="1"
+                WidthRequest="75">
+                <Image
+                    Grid.Column="1"
                     Aspect="AspectFill"
                     HeightRequest="100"
                     HorizontalOptions="Center"
@@ -49,19 +52,22 @@
             </Border>
         </Grid>
         <VerticalStackLayout
-            Grid.Row="0" Grid.Column="0"
+            Grid.Row="0"
+            Grid.Column="0"
             Margin="0,5,0,0"
+            Padding="5"
             VerticalOptions="Start"
-            ZIndex="2">
+            ZIndex="97">
             <Label
-                FontSize="45" Margin="-15,0,0,0"
+                Margin="-15,0,0,0"
+                FontSize="45"
                 Style="{StaticResource TitleLabel}"
-                Text="{Binding Album.AlbumTitle}"  />
+                Text="{Binding Album.AlbumTitle}" />
             <Label
                 Margin="0,10,0,0"
                 Style="{StaticResource SubTitleLabel}"
                 Text="Edit album" />
-            <HorizontalStackLayout ZIndex="3">
+            <HorizontalStackLayout Padding="3" ZIndex="98">
                 <Label Margin="0,20,0,0" Text="Users" />
                 <Label
                     Margin="200,20,0,0"
@@ -69,7 +75,8 @@
                     FontSize="Subtitle"
                     HorizontalOptions="End"
                     Text="See all"
-                    TextColor="Gray" ZIndex="4">
+                    TextColor="Gray"
+                    ZIndex="99">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
@@ -79,7 +86,8 @@
             <CollectionView
                 Grid.Row="1"
                 ItemsSource="{Binding Users}"
-                VerticalOptions="Start">
+                VerticalOptions="Start"
+                ZIndex="4">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
@@ -140,7 +148,7 @@
             Margin="0,100,25,0"
             BackgroundColor="#FFFFFF"
             CornerRadius="20"
-            HeightRequest="380" 
+            HeightRequest="380"
             HorizontalOptions="Center"
             WidthRequest="280">
             <VerticalStackLayout Margin="0,30,0,0" HeightRequest="380">
@@ -157,8 +165,16 @@
                         WidthRequest="400" />
                 </Border>
                 <Grid ColumnDefinitions=".5*,.5*" />
-                
-                <Entry  WidthRequest="110" HeightRequest="100" FontFamily="NexaHeavy" FontAttributes="Bold" FontSize="15" TextColor="Black"  Text="{Binding Album.AlbumTitle}" Margin ="0,-112,0,0"></Entry> 
+
+                <Entry
+                    Margin="0,-112,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="NexaHeavy"
+                    FontSize="15"
+                    HeightRequest="100"
+                    Text="{Binding Album.AlbumTitle}"
+                    TextColor="Black"
+                    WidthRequest="110" />
                 <Button
                     Margin="0,-35,0,0"
                     BackgroundColor="Black"
@@ -177,9 +193,10 @@
                 CornerRadius="10"
                 HeightRequest="90"
                 HorizontalOptions="CenterAndExpand"
+                Opacity=".8"
                 Style="{StaticResource ButtonColor}"
                 Text="Browse gallery"
-                WidthRequest="110" Opacity=".8" />
+                WidthRequest="110" />
             <Button
                 Margin="70,0,0,0"
                 BackgroundColor="Black"

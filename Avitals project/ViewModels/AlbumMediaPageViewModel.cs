@@ -16,25 +16,41 @@ namespace Avitals_project.ViewModels
         #region private fields
         private Album album;
         private Media current;
-        private static FileResult currentfile = null;
         private string cover;
         private bool isopen;
         #endregion
         #region public properties
-        public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); } } }
+        public Album Album { get { return album; } set { if (album != value) { album = value; UpdateMedia(); OnPropertyChange(); } } }
         public Media Current { get { return current; } set { if (current != value) { current = value; OnPropertyChange(); } } }
         public ICommand AddMedia { get; set; }
        
         public ICommand LoadMedia { get; set; }
     
         public ICommand Tapped { get; set; }
+
        
 
-        public static ObservableCollection<Media> Media { get; set; } = new ObservableCollection<Media>();
-        public  ObservableCollection<Media> Displayed { get; set; } = new ObservableCollection<Media>();
+        public ObservableCollection<Media> Displayed { get; set; } = new ObservableCollection<Media>();
 
         #endregion
-        
+        #region Methods
+        private async void UpdateMedia()
+        {
+            Displayed.Clear();
+            if (Album.MediaCount>0)
+            {
+                foreach (var item in Album.Media)
+                {
+                    Displayed.Add(item);
+                }
+            }
+        }
+        public override void CapturePhoto()
+        {
+            base.CapturePhoto();
+            //Current = new Media(localFilePath);
+        }
+        #endregion
         public AlbumMediaPageViewModel(UserService service): base (service)
         {
             IsOpen = false;
@@ -64,14 +80,7 @@ namespace Avitals_project.ViewModels
             {
                 IsOpen = true;
             });
-            if (Media != null)
-            {
-                Displayed = new ObservableCollection<Media>();
-                foreach (var item in Media)
-                {
-                    Displayed.Add(item);
-                }
-            }
+           
            
            
             ChangePhoto = new Command(async () =>

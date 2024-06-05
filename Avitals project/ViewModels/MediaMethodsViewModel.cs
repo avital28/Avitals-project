@@ -16,6 +16,7 @@ namespace Avitals_project.ViewModels
        
         private string cover;
         private bool isopen;
+        protected string localFilePath;
         protected static FileResult currentfile = null;
         public string Cover { get => cover; set { if (cover != value) { cover = value; OnPropertyChange(); } } }
         public bool IsOpen { get => isopen; set { if (isopen != value) { isopen = value; OnPropertyChange(); } } }
@@ -23,7 +24,7 @@ namespace Avitals_project.ViewModels
         public ICommand TakeVideo { get; set; }
         public ICommand ChangePhoto { get; set; }
         public ICommand ChooseFromGallery { get; set; }
-        public async void CapturePhoto()
+        public virtual async void CapturePhoto()
         {
             FileResult photo = new FileResult("a");
             await MainThread.InvokeOnMainThreadAsync(async () =>
@@ -36,7 +37,7 @@ namespace Avitals_project.ViewModels
                     if (photo.FullPath != "")
                     {
 
-                        string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                        localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
 
                         using Stream sourceStream = await photo.OpenReadAsync();
                         using FileStream localFileStream = File.OpenWrite(localFilePath);
@@ -52,7 +53,7 @@ namespace Avitals_project.ViewModels
             }
          );
         }
-        public async void CaptureVideo()
+        public virtual async void CaptureVideo()
         {
 
             await MainThread.InvokeOnMainThreadAsync(async () =>

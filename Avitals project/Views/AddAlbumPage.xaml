@@ -8,109 +8,176 @@
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    x:Name="AddPage"
     Title="AddAlbumPage"
-    Shell.NavBarIsVisible="False"
+    x:DataType="viewmodels:AddAlbumPageViewModel"
     BackgroundColor="#FAFAFA"
-Shell.BackgroundColor="#FAFAFA"
-   x:Name="AddPage"
-    x:DataType="viewmodels:AddAlbumPageViewModel">
+    Shell.BackgroundColor="#FAFAFA"
+    Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
-        <Frame  Margin="0,30,0,0" BackgroundColor="{StaticResource MainColor}" Opacity=".8" CornerRadius="30"  WidthRequest="370" HeightRequest="120">
-        <Grid ColumnDefinitions=".65*,.35*" HeightRequest="60" WidthRequest="160">
-            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
-                <Label Margin="10,0,0,0" HorizontalTextAlignment="Start" Text="My location"  VerticalTextAlignment="Center"></Label>
-                <Label Grid.Column="0" Margin="10,0,0,0" VerticalOptions="Start" FontSize="12" Text="location"></Label>
+        <Frame
+            Margin="0,30,0,0"
+            BackgroundColor="{StaticResource MainColor}"
+            CornerRadius="30"
+            HeightRequest="120"
+            Opacity=".8"
+            WidthRequest="370">
+            <Grid
+                ColumnDefinitions=".65*,.35*"
+                HeightRequest="60"
+                WidthRequest="160">
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label
+                        Margin="10,0,0,0"
+                        HorizontalTextAlignment="Start"
+                        Text="My location"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        Grid.Column="0"
+                        Margin="10,0,0,0"
+                        FontSize="12"
+                        Text="location"
+                        VerticalOptions="Start" />
 
-            </VerticalStackLayout>
-            <Border Grid.Column="1" Margin="35,0,0,0" HeightRequest="50" HorizontalOptions="Start"
-            StrokeShape="RoundRectangle 80, 80, 80, 80" StrokeThickness="0" WidthRequest="50">
-                <Image HeightRequest="50" Source="location2.png" ></Image>
-            </Border>
-            
-        </Grid>
-    </Frame>
-        <Label Style="{StaticResource TitleLabel}" FontSize="30" Margin="0,20,0,0" Text="Albums in my location"></Label>
-        <CarouselView HeightRequest="350" WidthRequest="350" Margin="0,5,0,0" PeekAreaInsets="30" ItemsSource="{Binding Albums}" IndicatorView="indicatorview" Loop="False">
+                </VerticalStackLayout>
+                <Border
+                    Grid.Column="1"
+                    Margin="35,0,0,0"
+                    HeightRequest="50"
+                    HorizontalOptions="Start"
+                    StrokeShape="RoundRectangle 80, 80, 80, 80"
+                    StrokeThickness="0"
+                    WidthRequest="50">
+                    <Image HeightRequest="50" Source="location2.png" />
+                </Border>
+
+            </Grid>
+        </Frame>
+        <Label
+            Margin="0,20,0,0"
+            FontSize="30"
+            Style="{StaticResource TitleLabel}"
+            Text="Albums in my location" />
+        <CarouselView
+            Margin="0,5,0,0"
+            HeightRequest="350"
+            IndicatorView="indicatorview"
+            ItemsSource="{Binding Albums}"
+            Loop="False"
+            PeekAreaInsets="30"
+            WidthRequest="350">
             <CarouselView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Center" SnapPointsType="MandatorySingle"></LinearItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle" />
             </CarouselView.ItemsLayout>
+            <CarouselView.EmptyView>
+                <ActivityIndicator IsRunning="True" Color="{AppThemeBinding Dark={StaticResource MainColorDark}, Default={StaticResource MainColorLight}}" />
+            </CarouselView.EmptyView>
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Album">
                     <Grid RowDefinitions=".2*,.6*,.2*">
-                        <Frame  WidthRequest="300" HeightRequest="300" Grid.RowSpan="3" CornerRadius="30">
-                            <Image Aspect="AspectFill" WidthRequest="360" HeightRequest="350" Source="{Binding AlbumCover}">
+                        <Frame
+                            Grid.RowSpan="3"
+                            CornerRadius="30"
+                            HeightRequest="300"
+                            WidthRequest="300">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="350"
+                                Source="{Binding AlbumCover}"
+                                WidthRequest="360">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
-x:DataType="viewmodels:AddAlbumPageViewModel"
-Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}"
-CommandParameter="{Binding .}"
-NumberOfTapsRequired="1" />
+                                        x:DataType="viewmodels:AddAlbumPageViewModel"
+                                        Command="{Binding JoinAlbum, Source={RelativeSource AncestorType={x:Type viewmodels:AddAlbumPageViewModel}}}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>
                             </Image>
-                            
+
                         </Frame>
                     </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-        <IndicatorView HorizontalOptions="Center" IndicatorColor="LightGray" IndicatorSize="8" SelectedIndicatorColor="Black"
-                           VerticalOptions="Center" x:Name="indicatorview"></IndicatorView>
-        <Frame Margin="0,40,0,0" CornerRadius="45" BackgroundColor="LightGray" Opacity=".5" WidthRequest="300" HeightRequest="100">
+        <IndicatorView
+            x:Name="indicatorview"
+            HorizontalOptions="Center"
+            IndicatorColor="LightGray"
+            IndicatorSize="8"
+            IsVisible="{Binding IsFound}"
+            SelectedIndicatorColor="Black"
+            VerticalOptions="Center" />
+        <Frame
+            Margin="0,40,0,0"
+            BackgroundColor="LightGray"
+            CornerRadius="45"
+            HeightRequest="100"
+            Opacity=".5"
+            WidthRequest="300">
             <VerticalStackLayout HorizontalOptions="CenterAndExpand">
-                <Label Text="Didn't find what you were looking for?"/>
-                <Button Text="Create album" Command="{Binding Create}" BackgroundColor="Black"></Button>
+                <Label Text="Didn't find what you were looking for?" />
+                <Button
+                    BackgroundColor="Black"
+                    Command="{Binding Create}"
+                    Text="Create album" />
             </VerticalStackLayout>
         </Frame>
 
-    <sf:SfPopup
-    HeightRequest="280"
-    IsOpen="{Binding IsVisible}"
-    ShowFooter="True"
-    ShowHeader="True"
-    WidthRequest="350"   HeaderHeight="230">
+        <sf:SfPopup
+            HeaderHeight="230"
+            HeightRequest="280"
+            IsOpen="{Binding IsVisible}"
+            ShowFooter="True"
+            ShowHeader="True"
+            WidthRequest="350">
 
             <sf:SfPopup.HeaderTemplate>
-                <DataTemplate>
-</DataTemplate>
+                <DataTemplate />
             </sf:SfPopup.HeaderTemplate>
-            <sf:SfPopup.ContentTemplate >
-                <DataTemplate  >
+            <sf:SfPopup.ContentTemplate>
+                <DataTemplate>
 
-                    <VerticalStackLayout Padding="0,00,0,100"  >
+                    <!--<VerticalStackLayout>-->
 
-                        <Image Margin="0,90,0,0"
-                   VerticalOptions="Center"
-                    Aspect="AspectFill"
-                    HeightRequest="140"
-                    Source="{Binding Cover}"
-                    WidthRequest="140"  >
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="140"
+                            Source="{Binding Cover}"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1" />
                             </Image.GestureRecognizers>
                         </Image>
-                        <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
+                        <!--<HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
                             <Button
-    BackgroundColor="{StaticResource MainColorLight}"
-    Command="{Binding TakePhoto}"
-    HeightRequest="40"
-    Text="Take a picture "
-    WidthRequest="90" />
-                            <Button BackgroundColor="{StaticResource MainColorLight}"
+                                BackgroundColor="{StaticResource MainColorLight}"
+                                Command="{Binding TakePhoto}"
+                                HeightRequest="40"
+                                Text="Take a picture "
+                                WidthRequest="90" />
+                            <Button
+                                BackgroundColor="{StaticResource MainColorLight}"
                                 Command="{Binding ChangePhoto}"
                                 HeightRequest="40"
                                 Text="Choose from gallery"
                                 WidthRequest="90" />
-                        </HorizontalStackLayout>
+                        </HorizontalStackLayout>-->
 
-                        <Entry
-Grid.Row="4" Margin="0,150,0,0"
-Placeholder="Album title"
-Text="{Binding Title}"
-TextColor="Black" />
+                        <!--<Entry
+                            Grid.Row="4"
+                            Margin="0,150,0,0"
+                            Placeholder="Album title"
+                            Text="{Binding Title}"
+                            TextColor="Black" />
 
 
 
-                    </VerticalStackLayout>
+                    </VerticalStackLayout>-->
 
 
                 </DataTemplate>
@@ -120,11 +187,11 @@ TextColor="Black" />
                     <VerticalStackLayout>
 
                         <Line
-                BackgroundColor="Black"
-                X1="90"
-                X2="120"
-                Y1="0"
-                Y2="0" />
+                            BackgroundColor="Black"
+                            X1="90"
+                            X2="120"
+                            Y1="0"
+                            Y2="0" />
                         <Label HorizontalOptions="End" Text=" Done">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding CreateAlbum}" NumberOfTapsRequired="1" />

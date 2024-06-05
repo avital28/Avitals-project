@@ -372,7 +372,7 @@ namespace Avitals_project.Services
             return null;
         }
 
-        public async Task<List<Media>> GetMediaByAlbumAsync(Album a)
+        public async Task<bool> GetMediaByAlbumAsync(Album a)
         {
             try
             {
@@ -392,11 +392,11 @@ namespace Avitals_project.Services
                             }
                             
                             await Task.Delay(2000);
-                            return m;
+                            return true;
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return null;
+                            return false;
                         }
                 }
             }
@@ -404,7 +404,7 @@ namespace Avitals_project.Services
             {
                 Console.WriteLine(ex.Message);
             }
-            return null;
+            return false;
         }
         public async Task<List<User>> GetMembersAsync (Album a) 
         {

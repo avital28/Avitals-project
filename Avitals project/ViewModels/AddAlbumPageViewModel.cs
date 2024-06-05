@@ -97,8 +97,8 @@ namespace Avitals_project.ViewModels
                     {
                         Albums.Add(item);
                     }
-                    await Shell.Current.DisplayAlert("Albums were found", "", "אישור");
-
+                    
+                    IsFound = true;
                 }
                 else
                 {

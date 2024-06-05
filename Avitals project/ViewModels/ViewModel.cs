@@ -12,7 +12,7 @@ namespace Avitals_project.ViewModels
     public class ViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected UserService userService;
+        protected UserService userService= new UserService();
         public void OnPropertyChange([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

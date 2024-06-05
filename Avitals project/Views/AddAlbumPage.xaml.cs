@@ -16,7 +16,9 @@ public partial class AddAlbumPage : ContentPage
         if (vm != null)
         {
 			//await vm.GetLocation();
+			vm.IsFound = false;
              await vm.LoadAlbums();
+			
         }
 
 
