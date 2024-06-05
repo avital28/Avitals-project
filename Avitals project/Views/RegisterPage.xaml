@@ -17,7 +17,7 @@
             ContainerType="Outlined"
             Hint="Username">
 
-            <Entry Text="{Binding Username}" />
+            <Entry Text="{Binding Username}"  />
         </sf:SfTextInputLayout>
         <sf:SfTextInputLayout
             ContainerBackground="White"
