@@ -126,7 +126,19 @@
                     Text="Create album" />
             </VerticalStackLayout>
         </Frame>
+        
 
+
+
+
+
+                        <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+            <picker:SfPicker.Columns>
+                <picker:PickerColumn
+         ItemsSource="{Binding DropDownData}"  />
+            </picker:SfPicker.Columns>
+        </picker:SfPicker>-->
+                   
         <sf:SfPopup
             HeaderHeight="230"
             HeightRequest="280"
@@ -139,11 +151,16 @@
                 <DataTemplate />
             </sf:SfPopup.HeaderTemplate>
             <sf:SfPopup.ContentTemplate>
-                <DataTemplate>
-
-                    <!--<VerticalStackLayout>-->
+            
+                    <DataTemplate>
+                    <Grid
+         HorizontalOptions="Center"
+         RowDefinitions="auto,auto,auto,auto"
+         VerticalOptions="Center">
+                        <!--<VerticalStackLayout>-->
 
                         <Image
+                            Grid.RowSpan="3"
                             Aspect="AspectFill"
                             HeightRequest="140"
                             Source="{Binding Cover}"
@@ -153,7 +170,7 @@
                                 <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1" />
                             </Image.GestureRecognizers>
                         </Image>
-                        <!--<HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
+                        <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
                             <Button
                                 BackgroundColor="{StaticResource MainColorLight}"
                                 Command="{Binding TakePhoto}"
@@ -166,7 +183,7 @@
                                 HeightRequest="40"
                                 Text="Choose from gallery"
                                 WidthRequest="90" />
-                        </HorizontalStackLayout>-->
+                        </HorizontalStackLayout>
 
                         <!--<Entry
                             Grid.Row="4"
@@ -179,7 +196,7 @@
 
                     </VerticalStackLayout>-->
 
-
+                    </Grid>
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
