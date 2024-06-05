@@ -138,65 +138,62 @@
          ItemsSource="{Binding DropDownData}"  />
             </picker:SfPicker.Columns>
         </picker:SfPicker>-->
-                   
-        <sf:SfPopup
-            HeaderHeight="230"
-            HeightRequest="280"
-            IsOpen="{Binding IsVisible}"
-            ShowFooter="True"
-            ShowHeader="True"
-            WidthRequest="350">
 
-            <sf:SfPopup.HeaderTemplate>
-                <DataTemplate />
-            </sf:SfPopup.HeaderTemplate>
+        <sf:SfPopup
+     HeightRequest="280"
+     IsOpen="{Binding IsVisible}"
+     ShowFooter="True"
+     ShowHeader="False"
+     WidthRequest="350">
             <sf:SfPopup.ContentTemplate>
-            
-                    <DataTemplate>
+                <DataTemplate>
                     <Grid
-         HorizontalOptions="Center"
-         RowDefinitions="auto,auto,auto,auto"
-         VerticalOptions="Center">
-                        <!--<VerticalStackLayout>-->
+                 HorizontalOptions="Center"
+                 RowDefinitions="auto,auto,auto,auto"
+                 VerticalOptions="Center">
+
 
                         <Image
-                            Grid.RowSpan="3"
-                            Aspect="AspectFill"
-                            HeightRequest="140"
-                            Source="{Binding Cover}"
-                            VerticalOptions="Center"
-                            WidthRequest="140">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
+                     Grid.RowSpan="3"
+                     Aspect="AspectFill"
+                     HeightRequest="140"
+                     Source="{Binding Cover}"
+                     WidthRequest="140" />
+                        <HorizontalStackLayout IsVisible="{Binding IsOpen}">
                             <Button
-                                BackgroundColor="{StaticResource MainColorLight}"
-                                Command="{Binding TakePhoto}"
-                                HeightRequest="40"
-                                Text="Take a picture "
-                                WidthRequest="90" />
+                         BackgroundColor="{StaticResource MainColor}"
+                         Command="{Binding ChangePhoto}"
+                         HeightRequest="40"
+                         Text="Choose from gallery"
+                         WidthRequest="70" />
                             <Button
-                                BackgroundColor="{StaticResource MainColorLight}"
-                                Command="{Binding ChangePhoto}"
-                                HeightRequest="40"
-                                Text="Choose from gallery"
-                                WidthRequest="90" />
+                         BackgroundColor="{StaticResource MainColor}"
+                         Command="{Binding TakePhoto}"
+                         HeightRequest="40"
+                         Text="picture "
+                         WidthRequest="70" />
+                            <Button
+                         BackgroundColor="{StaticResource MainColor}"
+                         Command="{Binding TakeVideo}"
+                         HeightRequest="40"
+                         Text="video "
+                         WidthRequest="70" />
+
                         </HorizontalStackLayout>
-
-                        <!--<Entry
-                            Grid.Row="4"
-                            Margin="0,150,0,0"
-                            Placeholder="Album title"
-                            Text="{Binding Title}"
-                            TextColor="Black" />
+                        <Entry WidthRequest="100" Grid.Row="3" HorizontalTextAlignment="Center" Placeholder="Album title" Text="{Binding Title}"></Entry>
 
 
 
-                    </VerticalStackLayout>-->
 
+
+                        <!--<picker:SfPicker  HorizontalOptions="Center" Grid.Row="2" IsVisible="{Binding IsOpen}" WidthRequest="95" HeightRequest="100"  >
+             <picker:SfPicker.Columns>
+                 <picker:PickerColumn
+          ItemsSource="{Binding DropDownData}"  />
+             </picker:SfPicker.Columns>
+         </picker:SfPicker>-->
                     </Grid>
+
                 </DataTemplate>
             </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
@@ -204,11 +201,11 @@
                     <VerticalStackLayout>
 
                         <Line
-                            BackgroundColor="Black"
-                            X1="90"
-                            X2="120"
-                            Y1="0"
-                            Y2="0" />
+                     BackgroundColor="Black"
+                     X1="90"
+                     X2="120"
+                     Y1="0"
+                     Y2="0" />
                         <Label HorizontalOptions="End" Text=" Done">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding CreateAlbum}" NumberOfTapsRequired="1" />
