@@ -4,7 +4,7 @@ namespace Avitals_project.Views;
 
 public partial class AlbumDataPage : ContentPage
 {
-	public AlbumDataPage(AdminPageViewModel vm)
+	public AlbumDataPage(AlbumDataPage vm)
 	{
 		this.BindingContext = vm;
 		InitializeComponent();

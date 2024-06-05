@@ -5,9 +5,9 @@
              Title="AlbumDataPage"
              xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
              xmlns:models="clr-namespace:Avitals_project.Models"
-             x:DataType="viewmodels:AdminPageViewModel">
+             x:DataType="viewmodels:AlbumDataPageViewModel">
     <Grid Margin="25,25,0,0" RowDefinitions=".1*, .2*, .15*,.45*,.1*">
-        <CollectionView Grid.Row="1"   VerticalOptions="Start" ItemsSource="{Binding Album.Memebers}">
+        <CollectionView Grid.Row="1"   VerticalOptions="Start" ItemsSource="{Binding Members}">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
         </CollectionView.ItemsLayout>

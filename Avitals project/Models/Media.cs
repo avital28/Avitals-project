@@ -24,6 +24,7 @@ namespace Avitals_project.Models
 
         public void MediaTypeCheck(string src)
         {
+            
             string str = src.Substring(src.Length - 3);
             if (str == "jpg" || str == "png" || str == "svg")
             {

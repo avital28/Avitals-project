@@ -1,82 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Avitals_project.Views.AdminPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Avitals_project.Controls"
-    xmlns:icons="clr-namespace:Avitals_project.Enums"
-    xmlns:models="clr-namespace:Avitals_project.Models"
-    xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-    Title="AdminPage"
-    x:DataType="viewmodels:AdminPageViewModel"
-    BackgroundColor="#FAFAFA"
-    Shell.BackgroundColor="#FAFAFA"
-    Shell.NavBarIsVisible="True"
-    Shell.TabBarIsVisible="False">
+        x:Class="Avitals_project.Views.AdminPage"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:Avitals_project.Controls"
+        xmlns:icons="clr-namespace:Avitals_project.Enums"
+        xmlns:models="clr-namespace:Avitals_project.Models"
+        xmlns:sf="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+        xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+        Title="AdminPage"
+        x:DataType="viewmodels:AdminPageViewModel"
+        BackgroundColor="#FAFAFA"
+        Shell.BackgroundColor="#FAFAFA"
+        Shell.NavBarIsVisible="True"
+        Shell.TabBarIsVisible="False">
+
     <Grid
-        Margin="25,25,0,0"
-        RowDefinitions=".1*, .2*, .15*,.45*,.1*"
-        ZIndex="1">
+            Margin="25,25,0,0"
+            RowDefinitions=".1*, .2*, .15*,.45*,.1*"
+            ZIndex="1">
         <Grid
-            Margin="0,0,25,0"
-            ColumnDefinitions="*,*"
-            ZIndex="2">
+                Margin="0,0,25,0"
+                ColumnDefinitions="*,*"
+                ZIndex="2">
             <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="-10,-35,0,0"
-                x:DataType="icons:Icons"
-                FontFamily="FontIcons"
-                FontSize="40"
-                HorizontalOptions="Start"
-                Text="{x:Static icons:Icons.ArrowLeft}"
-                TextColor="Gray"
-                VerticalOptions="Start" />
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="-10,-35,0,0"
+                    x:DataType="icons:Icons"
+                    FontFamily="FontIcons"
+                    FontSize="40"
+                    HorizontalOptions="Start"
+                    Text="{x:Static icons:Icons.ArrowLeft}"
+                    TextColor="Gray"
+                    VerticalOptions="Start" />
 
 
 
             <Border
-                Margin="470,0,0,0"
-                HeightRequest="75"
-                StrokeShape="RoundRectangle 80,80,80,80"
-                VerticalOptions="Start"
-                WidthRequest="75">
+                    Margin="470,0,0,0"
+                    HeightRequest="75"
+                    StrokeShape="RoundRectangle 80,80,80,80"
+                    VerticalOptions="Start"
+                    WidthRequest="75">
                 <Image
-                    Grid.Column="1"
-                    Aspect="AspectFill"
-                    HeightRequest="100"
-                    HorizontalOptions="Center"
-                    Source="{Binding ProfilePicture}"
-                    WidthRequest="100" />
+                        Grid.Column="1"
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        Source="{Binding ProfilePicture}"
+                        WidthRequest="100" />
             </Border>
         </Grid>
         <VerticalStackLayout
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="0,5,0,0"
-            Padding="5"
-            VerticalOptions="Start"
-            ZIndex="97">
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,5,0,0"
+                Padding="5"
+                VerticalOptions="Start"
+                ZIndex="97">
             <Label
-                Margin="-15,0,0,0"
-                FontSize="45"
-                Style="{StaticResource TitleLabel}"
-                Text="{Binding Album.AlbumTitle}" />
+                    Margin="-15,0,0,0"
+                    FontSize="45"
+                    Style="{StaticResource TitleLabel}"
+                    Text="{Binding Album.AlbumTitle}" />
             <Label
-                Margin="0,10,0,0"
-                Style="{StaticResource SubTitleLabel}"
-                Text="Edit album" />
+                    Margin="0,10,0,0"
+                    Style="{StaticResource SubTitleLabel}"
+                    Text="Edit album" />
             <HorizontalStackLayout Padding="3" ZIndex="98">
                 <Label Margin="0,20,0,0" Text="Users" />
                 <Label
-                    Margin="200,20,0,0"
-                    FontAttributes="Bold"
-                    FontSize="Subtitle"
-                    HorizontalOptions="End"
-                    Text="See all"
-                    TextColor="Gray"
-                    ZIndex="99">
+                        Margin="200,20,0,0"
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        HorizontalOptions="End"
+                        Text="See all"
+                        TextColor="Gray"
+                        ZIndex="99">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
@@ -84,58 +85,58 @@
 
             </HorizontalStackLayout>
             <CollectionView
-                Grid.Row="1"
-                ItemsSource="{Binding Users}"
-                VerticalOptions="Start"
-                ZIndex="4">
+                    Grid.Row="1"
+                    ItemsSource="{Binding Users}"
+                    VerticalOptions="Start"
+                    ZIndex="4">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:User">
                         <Grid
-                            ColumnDefinitions=".35*,.65*"
-                            HeightRequest="60"
-                            WidthRequest="160">
+                                ColumnDefinitions=".35*,.65*"
+                                HeightRequest="60"
+                                WidthRequest="160">
                             <RoundRectangle
-                                Grid.ColumnSpan="2"
-                                CornerRadius="45"
-                                Fill="LightGray" />
+                                    Grid.ColumnSpan="2"
+                                    CornerRadius="45"
+                                    Fill="LightGray" />
                             <Border
-                                Grid.RowSpan="2"
-                                Margin="5,0,0,0"
-                                HeightRequest="50"
-                                HorizontalOptions="Start"
-                                StrokeShape="RoundRectangle 80, 80, 80, 80"
-                                StrokeThickness="0"
-                                WidthRequest="50">
+                                    Grid.RowSpan="2"
+                                    Margin="5,0,0,0"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Start"
+                                    StrokeShape="RoundRectangle 80, 80, 80, 80"
+                                    StrokeThickness="0"
+                                    WidthRequest="50">
                                 <Image HeightRequest="50" Source="{Binding ProfilePicture}" />
                             </Border>
                             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                 <Label
-                                    Margin="10,0,0,0"
-                                    HorizontalTextAlignment="Start"
-                                    Text="{Binding Firstname}"
-                                    VerticalTextAlignment="Center" />
+                                        Margin="10,0,0,0"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Firstname}"
+                                        VerticalTextAlignment="Center" />
                                 <Label
-                                    Grid.Column="1"
-                                    Margin="10,0,0,0"
-                                    FontSize="12"
-                                    Text="{Binding UserName}"
-                                    VerticalOptions="Start" />
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        FontSize="12"
+                                        Text="{Binding UserName}"
+                                        VerticalOptions="Start" />
 
                             </VerticalStackLayout>
                             <Label
-                                Grid.Column="1"
-                                Margin="0,5,20,0"
-                                HorizontalOptions="End"
-                                Text="X"
-                                VerticalOptions="Start">
+                                    Grid.Column="1"
+                                    Margin="0,5,20,0"
+                                    HorizontalOptions="End"
+                                    Text="X"
+                                    VerticalOptions="Start">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        x:DataType="viewmodels:AdminPageViewModel"
-                                        Command="{Binding DeleteUsers, Source={RelativeSource AncestorType={x:Type viewmodels:AdminPageViewModel}}}"
-                                        NumberOfTapsRequired="1" />
+                                            x:DataType="viewmodels:AdminPageViewModel"
+                                            Command="{Binding DeleteUsers, Source={RelativeSource AncestorType={x:Type viewmodels:AdminPageViewModel}}}"
+                                            NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </Grid>
@@ -144,107 +145,107 @@
             </CollectionView>
         </VerticalStackLayout>
         <Frame
-            Grid.Row="2"
-            Margin="0,100,25,0"
-            BackgroundColor="#FFFFFF"
-            CornerRadius="20"
-            HeightRequest="380"
-            HorizontalOptions="Center"
-            WidthRequest="280">
+                Grid.Row="2"
+                Margin="0,100,25,0"
+                BackgroundColor="#FFFFFF"
+                CornerRadius="20"
+                HeightRequest="380"
+                HorizontalOptions="Center"
+                WidthRequest="280">
             <VerticalStackLayout Margin="0,30,0,0" HeightRequest="380">
                 <Border
-                    Margin="0,0,0,80"
-                    HeightRequest="270"
-                    StrokeShape="RoundRectangle 20"
-                    StrokeThickness="0"
-                    WidthRequest="264">
+                        Margin="0,0,0,80"
+                        HeightRequest="270"
+                        StrokeShape="RoundRectangle 20"
+                        StrokeThickness="0"
+                        WidthRequest="264">
                     <Image
-                        Aspect="AspectFill"
-                        HeightRequest="400"
-                        Source="{Binding Album.AlbumCover}"
-                        WidthRequest="400" />
+                            Aspect="AspectFill"
+                            HeightRequest="400"
+                            Source="{Binding Album.AlbumCover}"
+                            WidthRequest="400" />
                 </Border>
                 <Grid ColumnDefinitions=".5*,.5*" />
 
                 <Entry
-                    Margin="0,-112,0,0"
-                    FontAttributes="Bold"
-                    FontFamily="NexaHeavy"
-                    FontSize="15"
-                    HeightRequest="100"
-                    Text="{Binding Album.AlbumTitle}"
-                    TextColor="Black"
-                    WidthRequest="110" />
+                        Margin="0,-112,0,0"
+                        FontAttributes="Bold"
+                        FontFamily="NexaHeavy"
+                        FontSize="15"
+                        HeightRequest="100"
+                        Text="{Binding Album.AlbumTitle}"
+                        TextColor="Black"
+                        WidthRequest="110" />
                 <Button
-                    Margin="0,-35,0,0"
-                    BackgroundColor="Black"
-                    Command="{Binding ChangePhoto}"
-                    Text="Change album cover" />
+                        Margin="0,-35,0,0"
+                        BackgroundColor="Black"
+                        Command="{Binding ChangePhoto}"
+                        Text="Change album cover" />
 
             </VerticalStackLayout>
 
         </Frame>
         <HorizontalStackLayout
-            Grid.Row="4"
-            Margin="0,5,0,0"
-            HorizontalOptions="CenterAndExpand">
+                Grid.Row="4"
+                Margin="0,5,0,0"
+                HorizontalOptions="CenterAndExpand">
             <Button
-                Command="{Binding BrowseGallery}"
-                CornerRadius="10"
-                HeightRequest="90"
-                HorizontalOptions="CenterAndExpand"
-                Opacity=".8"
-                Style="{StaticResource ButtonColor}"
-                Text="Browse gallery"
-                WidthRequest="110" />
+                    Command="{Binding BrowseGallery}"
+                    CornerRadius="10"
+                    HeightRequest="90"
+                    HorizontalOptions="CenterAndExpand"
+                    Opacity=".8"
+                    Style="{StaticResource ButtonColor}"
+                    Text="Browse gallery"
+                    WidthRequest="110" />
             <Button
-                Margin="70,0,0,0"
-                BackgroundColor="Black"
-                CornerRadius="10"
-                HeightRequest="90"
-                HorizontalOptions="CenterAndExpand"
-                Text="Save changes"
-                WidthRequest="90" />
+                    Margin="70,0,0,0"
+                    BackgroundColor="Black"
+                    CornerRadius="10"
+                    HeightRequest="90"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Save changes"
+                    WidthRequest="90" />
         </HorizontalStackLayout>
         <sf:SfPopup
-            HeightRequest="280"
-            IsOpen="{Binding IsOpen}"
-            ShowFooter="True"
-            ShowHeader="True"
-            WidthRequest="350">
+                HeightRequest="280"
+                IsOpen="{Binding IsOpen}"
+                ShowFooter="True"
+                ShowHeader="True"
+                WidthRequest="350">
             <sf:SfPopup.ContentTemplate>
                 <DataTemplate>
                     <Grid
-                        HorizontalOptions="Center"
-                        RowDefinitions="auto,auto,auto,auto"
-                        VerticalOptions="Center">
+                            HorizontalOptions="Center"
+                            RowDefinitions="auto,auto,auto,auto"
+                            VerticalOptions="Center">
 
 
                         <Image
-                            Grid.RowSpan="3"
-                            Aspect="AspectFill"
-                            HeightRequest="140"
-                            Source="emptyalbumcover.jpg"
-                            WidthRequest="140" />
+                                Grid.RowSpan="3"
+                                Aspect="AspectFill"
+                                HeightRequest="140"
+                                Source="emptyalbumcover.jpg"
+                                WidthRequest="140" />
                         <HorizontalStackLayout IsVisible="{Binding IsOpen}">
                             <Button
-                                BackgroundColor="{StaticResource MainColor}"
-                                Command="{Binding ChangePhoto}"
-                                HeightRequest="40"
-                                Text="Choose from gallery"
-                                WidthRequest="70" />
+                                    BackgroundColor="{StaticResource MainColor}"
+                                    Command="{Binding ChangePhoto}"
+                                    HeightRequest="40"
+                                    Text="Choose from gallery"
+                                    WidthRequest="70" />
                             <Button
-                                BackgroundColor="{StaticResource MainColor}"
-                                Command="{Binding TakePhoto}"
-                                HeightRequest="40"
-                                Text="picture "
-                                WidthRequest="70" />
+                                    BackgroundColor="{StaticResource MainColor}"
+                                    Command="{Binding TakePhoto}"
+                                    HeightRequest="40"
+                                    Text="picture "
+                                    WidthRequest="70" />
                             <Button
-                                BackgroundColor="{StaticResource MainColor}"
-                                Command="{Binding TakeVideo}"
-                                HeightRequest="40"
-                                Text="video "
-                                WidthRequest="70" />
+                                    BackgroundColor="{StaticResource MainColor}"
+                                    Command="{Binding TakeVideo}"
+                                    HeightRequest="40"
+                                    Text="video "
+                                    WidthRequest="70" />
 
                         </HorizontalStackLayout>
 
@@ -268,11 +269,11 @@
                     <VerticalStackLayout>
 
                         <Line
-                            BackgroundColor="Black"
-                            X1="90"
-                            X2="120"
-                            Y1="0"
-                            Y2="0" />
+                                BackgroundColor="Black"
+                                X1="90"
+                                X2="120"
+                                Y1="0"
+                                Y2="0" />
                         <Label HorizontalOptions="End" Text=" Done">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangeAlbumCover}" NumberOfTapsRequired="1" />
@@ -283,5 +284,26 @@
                 </DataTemplate>
             </sf:SfPopup.FooterTemplate>
         </sf:SfPopup>
+        <HorizontalStackLayout
+                Margin="0,100,0,0"
+                Padding="3"
+                ZIndex="98">
+            <Label Margin="0,20,0,0" Text="Users" />
+            <Label
+                    Margin="200,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Subtitle"
+                    HorizontalOptions="End"
+                    Text="See all"
+                    TextColor="Gray"
+                    ZIndex="99">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DisplayUsers}" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </HorizontalStackLayout>
     </Grid>
+
+
 </ContentPage>

@@ -45,11 +45,7 @@ namespace Avitals_project.ViewModels
                 }
             }
         }
-        public override void CapturePhoto()
-        {
-            base.CapturePhoto();
-            //Current = new Media(localFilePath);
-        }
+        
         #endregion
         public AlbumMediaPageViewModel(UserService service): base (service)
         {
@@ -59,7 +55,7 @@ namespace Avitals_project.ViewModels
             {
                 try
                 {
-
+                    Current = new Media(localFilePath);
                     var response = await service.UploadMedia(Album, Current, currentfile);
                     if (response!=null)
                     {

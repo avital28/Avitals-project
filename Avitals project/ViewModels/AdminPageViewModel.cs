@@ -85,6 +85,13 @@ namespace Avitals_project.ViewModels
             });
             DisplayUsers = new Command(async () =>
             {
+                nav.Clear();
+                List<User> users = new List<User>();    
+                foreach (var item in Album.Memebers)
+                {
+                    users.Add(item);
+                }
+                nav.Add("users", users);
                 await Shell.Current.GoToAsync("AlbumDataPage");
             });
             DeleteUsers = new Command<User>(DeleteMembers);
