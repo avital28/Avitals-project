@@ -66,53 +66,55 @@ NumberOfTapsRequired="1" />
     HeightRequest="280"
     IsOpen="{Binding IsVisible}"
     ShowFooter="True"
-    ShowHeader="False"
-    WidthRequest="350">
-        <sf:SfPopup.ContentTemplate >
-            <DataTemplate >
-                <Grid Margin="0,25,0,0"
-                HorizontalOptions="Center"
-                RowDefinitions="auto,auto,auto,auto"
-                VerticalOptions="Center">
-                    <VerticalStackLayout>
+    ShowHeader="True"
+    WidthRequest="350"   HeaderHeight="230">
 
-                            <Image
-                    Grid.RowSpan="3"
+            <sf:SfPopup.HeaderTemplate>
+                <DataTemplate>
+</DataTemplate>
+            </sf:SfPopup.HeaderTemplate>
+            <sf:SfPopup.ContentTemplate >
+                <DataTemplate  >
+
+                    <VerticalStackLayout Padding="0,00,0,100"  >
+
+                        <Image Margin="0,90,0,0"
+                   VerticalOptions="Center"
                     Aspect="AspectFill"
                     HeightRequest="140"
                     Source="{Binding Cover}"
-                    WidthRequest="140" Margin="0,0,0,0" >
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
-                                <Button
+                    WidthRequest="140"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangePhoto}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <HorizontalStackLayout Margin="0,0,0,0" IsVisible="{Binding IsOpen}">
+                            <Button
     BackgroundColor="{StaticResource MainColorLight}"
     Command="{Binding TakePhoto}"
     HeightRequest="40"
     Text="Take a picture "
     WidthRequest="90" />
-                                <Button BackgroundColor="{StaticResource MainColorLight}"
+                            <Button BackgroundColor="{StaticResource MainColorLight}"
                                 Command="{Binding ChangePhoto}"
                                 HeightRequest="40"
                                 Text="Choose from gallery"
                                 WidthRequest="90" />
-                            </HorizontalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <Entry
+Grid.Row="4" Margin="0,150,0,0"
+Placeholder="Album title"
+Text="{Binding Title}"
+TextColor="Black" />
 
 
 
-
-                            <Entry
-                    Grid.Row="4" Margin="0,150,0,0"
-                    Placeholder="Album title"
-                    Text="{Binding Title}"
-                    TextColor="Black" />
                     </VerticalStackLayout>
-                </Grid>
 
-            </DataTemplate>
-        </sf:SfPopup.ContentTemplate>
+
+                </DataTemplate>
+            </sf:SfPopup.ContentTemplate>
             <sf:SfPopup.FooterTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>
