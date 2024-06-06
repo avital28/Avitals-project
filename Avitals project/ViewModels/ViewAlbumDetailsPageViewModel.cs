@@ -19,8 +19,9 @@ namespace Avitals_project.ViewModels
         #endregion
         #region public properties
         public Album Album { get { return album; } set { if (album != value) { album = value; OnPropertyChange(); PopulateMedia(); } } }
-       
-       public ObservableCollection<Media> Medias { get; set; } = new ObservableCollection<Media>();
+        public Dictionary<string, object> nav2 = new Dictionary<string, object>();
+
+        public ObservableCollection<Media> Medias { get; set; } = new ObservableCollection<Media>();
         public ICommand JoinAlbum { get; set; }
         #endregion
         #region Methods
@@ -51,7 +52,13 @@ namespace Avitals_project.ViewModels
                 {
                     await Shell.Current.DisplayAlert("You were added", "התחברתי", "אישור");
 
-                    await Shell.Current.GoToAsync("AlbumMediaPage");
+                    var response1 = await userService.GetMediaByAlbumAsync(Album);
+                    if (response1 == true)
+                    {
+                        nav2.Clear();
+                        nav2.Add("album", Album);
+                        await Shell.Current.GoToAsync("AlbumMediaPage", nav2);
+                    }
                 }
             });
             
