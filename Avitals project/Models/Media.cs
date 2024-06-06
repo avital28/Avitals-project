@@ -26,7 +26,7 @@ namespace Avitals_project.Models
         {
             
             string str = src.Substring(src.Length - 3);
-            if (str == "jpg" || str == "png" || str == "svg")
+            if (str == "jpg" || str == "jpeg" || str == "png" || str == "svg")
             {
                 IsImage = true;
                 IsVideo = false;

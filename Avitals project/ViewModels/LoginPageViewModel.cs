@@ -43,7 +43,7 @@ namespace Avitals_project.ViewModels
                         ((AppShell)AppShell.Current).user = user;
                         await SecureStorage.Default.SetAsync("user", JsonSerializer.Serialize(user));
                         //TODO p : move to X screen
-                        await Shell.Current.DisplayAlert("הצלחתי", "התחברתי", "אישור");
+                        await Shell.Current.DisplayAlert("success", "Logged in", "Done");
                         isvisible = true;
                         var useralbums= await service.GetAlbumsByUserAsync(user);
                         foreach(var album in useralbums)
@@ -56,7 +56,7 @@ namespace Avitals_project.ViewModels
 
 
                         }
-                        await Shell.Current.GoToAsync("UserDetailsPage");
+                        await Shell.Current.GoToAsync("///UserDetailsPage");
 
                     }
                 }

@@ -158,7 +158,13 @@
                      Aspect="AspectFill"
                      HeightRequest="140"
                      Source="{Binding Cover}"
-                     WidthRequest="140" />
+                     WidthRequest="140" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Tapped}" NumberOfTapsRequired="1">
+
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <HorizontalStackLayout IsVisible="{Binding IsOpen}">
                             <Button
                          BackgroundColor="{StaticResource MainColor}"

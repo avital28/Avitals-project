@@ -174,7 +174,7 @@
                         FontFamily="NexaHeavy"
                         FontSize="15"
                         HeightRequest="100"
-                        Text="{Binding Album.AlbumTitle}"
+                        Text="{Binding UpdatedTitle}"
                         TextColor="Black"
                         WidthRequest="110" />
                 <Button

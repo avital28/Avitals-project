@@ -159,7 +159,7 @@ namespace Avitals_project.ViewModels
             {
                 for (int i = AllUserssAlbums.Count - 1; i >= 0; i--)
                 {
-                    al.Add(AllUserssAlbums.ElementAt(i) as object);
+                    al.Add(AllUserssAlbums[i]);
                 }
             }
             nav2.Add("Albums", al);

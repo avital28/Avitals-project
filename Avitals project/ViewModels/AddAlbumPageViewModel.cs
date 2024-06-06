@@ -25,7 +25,7 @@ namespace Avitals_project.ViewModels
         #endregion
         #region Properties
         public ICommand JoinAlbum { get; set; }
-        
+        public ICommand Tapped { get; set; }
         public ICommand Create { get; set; }
         public ICommand CreateAlbum {  get; set; }
         public Album album { get; set; }
@@ -125,8 +125,11 @@ namespace Avitals_project.ViewModels
             Cover = "emptyalbumcover.jpg";
             HeaderMessage = loadingmessage;
             Albums = new ObservableCollection<Album>();
-            
-         
+            Tapped = new Command(async () =>
+            {
+                IsOpen = true;
+            });
+
             JoinAlbum = new Command<Album>(JoinAlbum1);
             CreateAlbum = new Command(async () =>
             {

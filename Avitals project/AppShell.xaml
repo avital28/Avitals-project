@@ -22,14 +22,6 @@
                 
             </ShellContent>
         </Tab>
-        <Tab Title="settings">
-            <ShellContent
-        x:Name="settings"
-        ContentTemplate="{DataTemplate views:SettingsPage}"
-        Route="SettingsPage">
-
-            </ShellContent>
-        </Tab>
         <Tab Icon="plusicon">
             <ShellContent 
                 x:Name="addalbum"

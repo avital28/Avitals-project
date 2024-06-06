@@ -19,16 +19,16 @@ namespace Avitals_project.ViewModels
         private string updatedcover;
         private string updatedtitle;
         public bool IsEnabled { get { return isenabled; } set { if (isenabled != value) { isenabled = value; OnPropertyChange(); } } }
-        public string UpdatedTitle { get { return updatedtitle; } set { if (updatedtitle != value) { IsEnabled = true; updatedtitle = value; OnPropertyChange(); } } }
+        public string UpdatedTitle { get { return updatedtitle; } set { if (updatedtitle != value) { updatedtitle = value; OnPropertyChange(); } } }
         public string UpdatedCover { get { return updatedcover; } set { if (updatedcover != value) { updatedcover = value; OnPropertyChange(); } } }
         public Dictionary<string, object> nav = new Dictionary<string, object>();
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
-        public Album Album { get { return album; } set { if (album != value) { album = value; Updatedata(); OnPropertyChange(); } } }
+        public Album Album { get { return album; } set { if (album != value) { album = value; Updatedata();OnPropertyChange(); } } }
 
         private void Updatedata()
         {
             UpdatedCover = albumcover;
-            updatedtitle = Album.AlbumTitle;
+            UpdatedTitle = Album.AlbumTitle;
         }
         private async void DeleteMembers(User user)
         {
@@ -76,6 +76,7 @@ namespace Avitals_project.ViewModels
         #endregion
         public AdminPageViewModel(UserService service):base(service)
         {
+            
             ProfilePicture = ((AppShell)AppShell.Current).user.ProfilePicture;
             ChangeAlbumCover = new Command(async () =>
             {

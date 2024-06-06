@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avitals_project.Views.LoginPage"
-             xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
-             xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
-             x:DataType="viewmodels:LoginPageViewModel"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-             
-             Title="LoginPage" 
-            
-            >
-    <VerticalStackLayout Margin="0,100,0,0" HorizontalOptions="Center" VerticalOptions="StartAndExpand">
-        <Label Text="Login" FontAttributes="Bold" Style="{StaticResource TitleLabel}"></Label>
-        <Label FontSize="Subtitle" Margin="0,20,0,0" Text=" Continue creating your collective moments" FontAttributes="Bold" ></Label>
-        <sf:SfTextInputLayout Margin="0,10,0,0"
-Hint="Username" ContainerBackground="White"  ContainerType="Outlined" 
-         >
+<ContentPage
+    x:Class="Avitals_project.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomControls="clr-namespace:Avitals_project.Controls"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:viewmodels="clr-namespace:Avitals_project.ViewModels"
+    Title="LoginPage"
+    x:DataType="viewmodels:LoginPageViewModel"
+    Shell.TabBarIsVisible="False">
+    <VerticalStackLayout
+        Margin="0,100,0,0"
+        HorizontalOptions="Center"
+        VerticalOptions="StartAndExpand">
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource TitleLabel}"
+            Text="Login" />
+        <Label
+            Margin="0,20,0,0"
+            FontAttributes="Bold"
+            FontSize="Subtitle"
+            Text=" Continue creating your collective moments" />
+        <sf:SfTextInputLayout
+            Margin="0,10,0,0"
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            Hint="Username">
             <Entry Text="{Binding Username}" />
         </sf:SfTextInputLayout>
         <sf:SfTextInputLayout
-   Hint="Password" ContainerBackground="White" EnablePasswordVisibilityToggle="True" HelperText="{Binding ErrorMessage}" ContainerType="Outlined" 
-            >
-            <Entry Text="{Binding Password}"/>
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            EnablePasswordVisibilityToggle="True"
+            HelperText="{Binding ErrorMessage}"
+            Hint="Password">
+            <Entry Text="{Binding Password}" />
         </sf:SfTextInputLayout>
-        
 
 
 
 
-        <Button Text="Log in" Style="{StaticResource ButtonColor}" Command="{Binding LoginCommand}" Grid.Row="4" HorizontalOptions="Center"
-                CornerRadius="10" HeightRequest="40" WidthRequest="100" TextColor="{StaticResource TextColor}" BackgroundColor="{StaticResource MainColor}"></Button>
-            
-          </VerticalStackLayout>
+
+        <Button
+            Grid.Row="4"
+            BackgroundColor="{StaticResource MainColor}"
+            Command="{Binding LoginCommand}"
+            CornerRadius="10"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            Style="{StaticResource ButtonColor}"
+            Text="Log in"
+            TextColor="{StaticResource TextColor}"
+            WidthRequest="100" />
+
+    </VerticalStackLayout>
 </ContentPage>
