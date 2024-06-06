@@ -84,6 +84,7 @@
                 </Label>
 
             </HorizontalStackLayout>
+           
             <CollectionView
                     Grid.Row="1"
                     ItemsSource="{Binding Users}"
@@ -95,48 +96,48 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:User">
                         <Grid
-                                ColumnDefinitions=".35*,.65*"
-                                HeightRequest="60"
-                                WidthRequest="160">
+             ColumnDefinitions=".35*,.65*"
+             HeightRequest="60"
+             WidthRequest="160">
                             <RoundRectangle
-                                    Grid.ColumnSpan="2"
-                                    CornerRadius="45"
-                                    Fill="LightGray" />
+                 Grid.ColumnSpan="2"
+                 CornerRadius="45"
+                 Fill="LightGray" />
                             <Border
-                                    Grid.RowSpan="2"
-                                    Margin="5,0,0,0"
-                                    HeightRequest="50"
-                                    HorizontalOptions="Start"
-                                    StrokeShape="RoundRectangle 80, 80, 80, 80"
-                                    StrokeThickness="0"
-                                    WidthRequest="50">
+                 Grid.RowSpan="2"
+                 Margin="5,0,0,0"
+                 HeightRequest="50"
+                 HorizontalOptions="Start"
+                 StrokeShape="RoundRectangle 80, 80, 80, 80"
+                 StrokeThickness="0"
+                 WidthRequest="50">
                                 <Image HeightRequest="50" Source="{Binding ProfilePicture}" />
                             </Border>
                             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                 <Label
-                                        Margin="10,0,0,0"
-                                        HorizontalTextAlignment="Start"
-                                        Text="{Binding Firstname}"
-                                        VerticalTextAlignment="Center" />
+                     Margin="10,0,0,0"
+                     HorizontalTextAlignment="Start"
+                     Text="{Binding Firstname}"
+                     VerticalTextAlignment="Center" />
                                 <Label
-                                        Grid.Column="1"
-                                        Margin="10,0,0,0"
-                                        FontSize="12"
-                                        Text="{Binding UserName}"
-                                        VerticalOptions="Start" />
+                     Grid.Column="1"
+                     Margin="10,0,0,0"
+                     FontSize="12"
+                     Text="{Binding UserName}"
+                     VerticalOptions="Start" />
 
                             </VerticalStackLayout>
                             <Label
-                                    Grid.Column="1"
-                                    Margin="0,5,20,0"
-                                    HorizontalOptions="End"
-                                    Text="X"
-                                    VerticalOptions="Start">
+                 Grid.Column="1"
+                 Margin="0,5,20,0"
+                 HorizontalOptions="End"
+                 Text="X"
+                 VerticalOptions="Start">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
-                                            x:DataType="viewmodels:AdminPageViewModel"
-                                            Command="{Binding DeleteUsers, Source={RelativeSource AncestorType={x:Type viewmodels:AdminPageViewModel}}}"
-                                            NumberOfTapsRequired="1" />
+                         x:DataType="viewmodels:AdminPageViewModel"
+                         Command="{Binding DeleteUsers, Source={RelativeSource AncestorType={x:Type viewmodels:AdminPageViewModel}}}"
+                         NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </Grid>
@@ -205,7 +206,7 @@
                     HeightRequest="90"
                     HorizontalOptions="CenterAndExpand"
                     Text="Save changes"
-                    WidthRequest="90" />
+                    WidthRequest="90" Command="{Binding SaveChanges}" />
         </HorizontalStackLayout>
         <sf:SfPopup
                 HeightRequest="280"
